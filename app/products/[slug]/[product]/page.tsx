@@ -89,6 +89,7 @@ export default async function ProductPage({ params }: Props) {
                     <p className="mt-8 text-lg leading-8 text-slate-600">
                         {selectedProduct.description}
                     </p>
+                    {/* Years Experience, Projects Delivered, Happy Clients 
                     <div className="mt-10 grid grid-cols-3 gap-4">
 
                         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-center">
@@ -111,7 +112,7 @@ export default async function ProductPage({ params }: Props) {
                                 Happy Clients
                             </p>
                         </div>
-
+                    
                     </div>
                     <div className="mt-10 flex flex-wrap gap-4">
 
@@ -124,7 +125,7 @@ export default async function ProductPage({ params }: Props) {
 
 
                     </div>
-
+                    */}
                     {/* Features */}
 
                     <h2 className="mt-14 text-2xl font-bold">
@@ -133,7 +134,7 @@ export default async function ProductPage({ params }: Props) {
 
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
 
-                        {selectedProduct.features.map((feature) => (
+                    {(selectedProduct.features ?? []).map((feature) => (
 
                             <div
                                 key={feature}
@@ -161,28 +162,40 @@ export default async function ProductPage({ params }: Props) {
 
                     <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-                        {selectedProduct.specifications.map((spec, index) => (
+                      {/* Specifications */}
 
-                            <div
-                                key={spec.label}
-                                className={`flex items-center justify-between px-6 py-5 transition hover:bg-slate-50 ${index !== selectedProduct.specifications.length - 1
-                                        ? "border-b border-slate-200"
-                                        : ""
-                                    } ${index % 2 === 0 ? "bg-white" : "bg-slate-50/50"
-                                    }`}
-                            >
+{selectedProduct.specifications && selectedProduct.specifications.length > 0 && (
+  <>
+    <h2 className="mt-14 text-2xl font-bold">
+      Specifications
+    </h2>
 
-                                <span className="font-medium text-slate-600">
-                                    {spec.label}
-                                </span>
+    <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-                                <span className="font-semibold text-slate-900">
-                                    {spec.value}
-                                </span>
+      {selectedProduct.specifications.map((spec, index) => (
+        <div
+          key={spec.label}
+          className={`flex items-center justify-between px-6 py-5 transition hover:bg-slate-50 ${
+            index !== selectedProduct.specifications.length - 1
+              ? "border-b border-slate-200"
+              : ""
+          } ${
+            index % 2 === 0 ? "bg-white" : "bg-slate-50/50"
+          }`}
+        >
+          <span className="font-medium text-slate-600">
+            {spec.label}
+          </span>
 
-                            </div>
+          <span className="font-semibold text-slate-900">
+            {spec.value}
+          </span>
+        </div>
+      ))}
 
-                        ))}
+    </div>
+  </>
+)}
 
                     </div>
 
