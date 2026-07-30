@@ -39,7 +39,7 @@ export default function Projects() {
           </span>
 
           <h2 className="mt-4 text-4xl font-bold text-slate-900">
-            Commercial Kitchens We've Delivered
+            Commercial Kitchens We&apos;ve Delivered
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-slate-600">

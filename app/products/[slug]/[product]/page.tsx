@@ -29,6 +29,9 @@ export default async function ProductPage({ params }: Props) {
             item.id !== selectedProduct.id
     );
 
+    const features = selectedProduct.features ?? [];
+    const specifications = selectedProduct.specifications ?? [];
+
     return (
         <main className="mx-auto max-w-7xl px-6 py-20">
 
@@ -134,7 +137,7 @@ export default async function ProductPage({ params }: Props) {
 
                     <div className="mt-6 grid gap-4 sm:grid-cols-2">
 
-                    {(selectedProduct.features ?? []).map((feature) => (
+                    {features.map((feature) => (
 
                             <div
                                 key={feature}
@@ -154,50 +157,36 @@ export default async function ProductPage({ params }: Props) {
 
                     </div>
 
-                    {/* Specifications */}
+                    {specifications.length > 0 && (
+                        <>
+                            <h2 className="mt-14 text-2xl font-bold">
+                                Specifications
+                            </h2>
 
-                    <h2 className="mt-14 text-2xl font-bold">
-                        Specifications
-                    </h2>
+                            <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                                {specifications.map((spec, index) => (
+                                    <div
+                                        key={spec.label}
+                                        className={`flex items-center justify-between px-6 py-5 transition hover:bg-slate-50 ${
+                                            index !== specifications.length - 1
+                                                ? "border-b border-slate-200"
+                                                : ""
+                                        } ${
+                                            index % 2 === 0 ? "bg-white" : "bg-slate-50/50"
+                                        }`}
+                                    >
+                                        <span className="font-medium text-slate-600">
+                                            {spec.label}
+                                        </span>
 
-                    <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-
-                      {/* Specifications */}
-
-{selectedProduct.specifications && selectedProduct.specifications.length > 0 && (
-  <>
-    <h2 className="mt-14 text-2xl font-bold">
-      Specifications
-    </h2>
-
-    <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-
-      {selectedProduct.specifications.map((spec, index) => (
-        <div
-          key={spec.label}
-          className={`flex items-center justify-between px-6 py-5 transition hover:bg-slate-50 ${
-            index !== selectedProduct.specifications.length - 1
-              ? "border-b border-slate-200"
-              : ""
-          } ${
-            index % 2 === 0 ? "bg-white" : "bg-slate-50/50"
-          }`}
-        >
-          <span className="font-medium text-slate-600">
-            {spec.label}
-          </span>
-
-          <span className="font-semibold text-slate-900">
-            {spec.value}
-          </span>
-        </div>
-      ))}
-
-    </div>
-  </>
-)}
-
-                    </div>
+                                        <span className="font-semibold text-slate-900">
+                                            {spec.value}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    )}
 
                 </div>
 

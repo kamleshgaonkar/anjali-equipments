@@ -99,7 +99,7 @@ import {
               </h3>
   
               <p className="mt-5 text-lg leading-8 text-slate-600">
-                To become one of India's most trusted commercial kitchen equipment
+                To become one of India&apos;s most trusted commercial kitchen equipment
                 manufacturers by combining innovation, precision engineering and
                 customer-centric solutions that set new benchmarks in quality and
                 performance.
