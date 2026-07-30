@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
+import { Fira_Sans } from "next/font/google";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import FloatingContact from "@/components/layout/FloatingContact";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const heading = Plus_Jakarta_Sans({
+const firaSans = Fira_Sans({
   subsets: ["latin"],
-  variable: "--font-heading",
-});
-
-
-
-const body = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-fira",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -30,15 +26,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${heading.variable} ${body.variable} bg-white text-slate-900`}
+        className={`${firaSans.variable} ${firaSans.className} bg-white text-slate-900`}
       >
-<Navbar />
+        <Navbar />
 
-{children}
+        {children}
 
-<Footer />
+        <Footer />
 
-<FloatingContact />
+        <FloatingContact />
       </body>
     </html>
   );

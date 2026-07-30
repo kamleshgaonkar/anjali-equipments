@@ -4,16 +4,10 @@ import { ArrowRight } from "lucide-react";
 
 const categories = [
   {
-    title: "Preparation Equipment",
-    count: "18 Products",
-    image: "/categories/preparation.jpg",
-    slug: "preparation-equipment",
-  },
-  {
-    title: "Cooking Equipment",
+    title: "Cooking",
     count: "24 Products",
     image: "/categories/cooking.jpg",
-    slug: "cooking-equipment",
+    slug: "cooking",
   },
   {
     title: "Refrigeration",
@@ -22,22 +16,52 @@ const categories = [
     slug: "refrigeration",
   },
   {
-    title: "Display Counters",
-    count: "15 Products",
-    image: "/categories/display-counters.jpg",
-    slug: "display-counters",
+    title: "Food Preparation",
+    count: "18 Products",
+    image: "/categories/food-preparation.jpg",
+    slug: "food-preparation",
   },
   {
-    title: "Bakery Equipment",
+    title: "Storage & Handling",
+    count: "8 Products",
+    image: "/categories/storage-handling.jpg",
+    slug: "storage-handling",
+  },
+  {
+    title: "Washing",
+    count: "10 Products",
+    image: "/categories/washing.jpg",
+    slug: "washing",
+  },
+  {
+    title: "Exhaust & Ventilation",
+    count: "8 Products",
+    image: "/categories/exhaust-ventilation.jpg",
+    slug: "exhaust-ventilation",
+  },
+  {
+    title: "Food Holding & Serving",
+    count: "15 Products",
+    image: "/categories/food-holding-serving.jpg",
+    slug: "food-holding-serving",
+  },
+  {
+    title: "Bar",
+    count: "8 Products",
+    image: "/categories/bar.jpg",
+    slug: "bar",
+  },
+  {
+    title: "Bakery",
     count: "10 Products",
     image: "/categories/bakery.jpg",
-    slug: "bakery-equipment",
+    slug: "bakery",
   },
   {
-    title: "Storage Equipment",
-    count: "8 Products",
-    image: "/categories/storage.jpg",
-    slug: "storage-equipment",
+    title: "Other",
+    count: "Various Products",
+    image: "/categories/other.jpg",
+    slug: "other",
   },
 ];
 
@@ -46,7 +70,6 @@ export default function Categories() {
     <section className="bg-slate-50 py-24">
       <div className="mx-auto max-w-7xl px-6">
         {/* Heading */}
-
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-red-600">
             Product Categories
@@ -64,15 +87,14 @@ export default function Categories() {
         </div>
 
         {/* Cards */}
-
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {categories.map((category) => (
             <Link
               key={category.slug}
               href={`/products/${category.slug}`}
               className="group overflow-hidden rounded-3xl bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-56 overflow-hidden">
                 <Image
                   src={category.image}
                   alt={category.title}
@@ -89,12 +111,12 @@ export default function Categories() {
                 </div>
               </div>
 
-              <div className="p-7">
-                <h3 className="text-2xl font-bold text-slate-900">
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-slate-900">
                   {category.title}
                 </h3>
 
-                <div className="mt-6 inline-flex items-center gap-2 font-semibold text-red-600 transition group-hover:gap-3">
+                <div className="mt-5 inline-flex items-center gap-2 font-semibold text-red-600 transition group-hover:gap-3">
                   View Category
                   <ArrowRight size={18} />
                 </div>
@@ -104,7 +126,6 @@ export default function Categories() {
         </div>
 
         {/* Bottom CTA */}
-
         <div className="mt-16 text-center">
           <Link
             href="/products"

@@ -1,23 +1,26 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
-type Props = {
+interface CategoryCardProps {
+  id: number;
   name: string;
   slug: string;
   image: string;
-};
+  description: string;
+}
 
 export default function CategoryCard({
   name,
   slug,
   image,
-}: Props) {
+  description,
+}: CategoryCardProps) {
   return (
     <Link
       href={`/products/${slug}`}
-      className="group overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:shadow-xl"
+      className="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-xl"
     >
-      <div className="relative h-60 overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
         <Image
           src={image}
           alt={name}
@@ -27,11 +30,18 @@ export default function CategoryCard({
       </div>
 
       <div className="p-6">
-        <h3 className="text-2xl font-bold">{name}</h3>
+        <h2 className="text-2xl font-bold text-slate-900">
+          {name}
+        </h2>
 
-        <p className="mt-2 text-slate-600">
-          View Products →
+        <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">
+          {description}
         </p>
+
+        <div className="mt-6 inline-flex items-center gap-2 font-semibold text-red-700 transition-all group-hover:gap-3">
+          Explore Category
+          <span>→</span>
+        </div>
       </div>
     </Link>
   );
