@@ -47,16 +47,17 @@ h6 {
     transform: translateX(-50%);
   }
 }
-
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 35s linear infinite;
+  animation: marquee 90s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
 @layer components {
   .hero-title {
     @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1];
@@ -97,4 +98,44 @@ h6 {
 
 .container-custom {
   @apply mx-auto max-w-7xl px-5 lg:px-6;
+} 
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+}
+
+.animate-scroll {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* ==========================================
+   Categories Marquee
+========================================== */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+  width: max-content;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

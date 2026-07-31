@@ -1,68 +1,75 @@
-import Image from "next/image";
+import Link from "next/link";
 import Button from "@/components/ui/Button";
 
 export default function Hero() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto grid min-h-[88vh] max-w-7xl grid-cols-1 items-center gap-12 px-5 py-12 lg:grid-cols-2 lg:gap-16 lg:px-6 lg:py-16">
+    <section className="relative h-[calc(100vh-80px)] overflow-hidden">
 
-        {/* LEFT */}
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
 
-        <div>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/55" />
 
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-red-700 sm:text-sm">
-            Trusted Commercial Kitchen Manufacturer
+      {/* Optional Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/50" />
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex h-full items-center justify-center">
+
+        <div className="container-custom text-center">
+
+          <p className="eyebrow mb-6 text-white/80">
+            Premium Commercial Kitchen Solutions
           </p>
 
-          <h1 className="text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
-
+          <h1 className="hero-title text-white">
             Commercial Kitchen Equipment
-
-            <span className="mt-2 block text-red-700">
-              Built To Perform.
-            </span>
-
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 lg:mt-8 lg:text-lg lg:leading-8">
+          <h2 className="mt-3 text-4xl font-bold text-red-500 md:text-5xl lg:text-6xl">
+            Built To Perform.
+          </h2>
 
-            Anjali Equipments manufactures premium stainless steel
-            commercial kitchen equipment for hotels, restaurants,
-            cloud kitchens, hospitals, canteens and industrial food
-            facilities across India.
-
-          </p>
-
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row lg:mt-10">
+          <div className="mt-12">
 
             <Button>
               Explore Products
             </Button>
 
-            <button className="rounded-xl border border-slate-300 px-8 py-4 font-semibold transition hover:bg-slate-50">
-              Contact Us
-            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2">
+
+        <div className="flex flex-col items-center gap-3">
+
+          <span className="text-xs uppercase tracking-[0.35em] text-white/70">
+            Scroll
+          </span>
+
+          <div className="flex h-12 w-7 items-start justify-center rounded-full border border-white/50 p-2">
+
+            <span className="h-2 w-2 animate-bounce rounded-full bg-white" />
 
           </div>
 
         </div>
 
-        {/* RIGHT */}
-
-        <div className="relative order-first lg:order-last">
-
-          <Image
-            src="/hero/kitchen.jpg"
-            alt="Commercial Kitchen"
-            width={700}
-            height={700}
-            priority
-            className="h-auto w-full rounded-3xl object-cover shadow-2xl"
-          />
-
-        </div>
-
       </div>
+
     </section>
   );
 }

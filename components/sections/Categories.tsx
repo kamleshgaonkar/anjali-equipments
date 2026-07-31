@@ -1,140 +1,200 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { useLayoutEffect, useRef } from "react";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const categories = [
   {
     title: "Cooking",
     count: "24 Products",
-    image: "/categories/cooking.jpg",
+    image: "/categories/cooking.webp",
     slug: "cooking",
   },
   {
     title: "Refrigeration",
     count: "12 Products",
-    image: "/categories/refrigeration.jpg",
+    image: "/categories/refrigeration.avif",
     slug: "refrigeration",
   },
   {
     title: "Food Preparation",
     count: "18 Products",
-    image: "/categories/food-preparation.jpg",
+    image: "/categories/food-preparation.avif",
     slug: "food-preparation",
   },
   {
     title: "Storage & Handling",
     count: "8 Products",
-    image: "/categories/storage-handling.jpg",
+    image: "/categories/storage-handling.avif",
     slug: "storage-handling",
   },
   {
     title: "Washing",
     count: "10 Products",
-    image: "/categories/washing.jpg",
+    image: "/categories/washing.avif",
     slug: "washing",
   },
   {
     title: "Exhaust & Ventilation",
     count: "8 Products",
-    image: "/categories/exhaust-ventilation.jpg",
+    image: "/categories/exhaust-ventilation.avif",
     slug: "exhaust-ventilation",
   },
   {
     title: "Food Holding & Serving",
     count: "15 Products",
-    image: "/categories/food-holding-serving.jpg",
+    image: "/categories/food-holding-serving.avif",
     slug: "food-holding-serving",
   },
   {
     title: "Bar",
     count: "8 Products",
-    image: "/categories/bar.jpg",
+    image: "/categories/bar.webp",
     slug: "bar",
   },
   {
     title: "Bakery",
     count: "10 Products",
-    image: "/categories/bakery.jpg",
+    image: "/categories/bakery.avif",
     slug: "bakery",
   },
   {
-    title: "Other",
+    title: "Other Equipment",
     count: "Various Products",
-    image: "/categories/other.jpg",
+    image: "/categories/others.avif",
     slug: "other",
   },
 ];
 
 export default function Categories() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const slider = sliderRef.current;
+
+    if (!section || !slider) return;
+
+    const ctx = gsap.context(() => {
+      const totalScroll =
+        slider.scrollWidth - window.innerWidth;
+
+      gsap.to(slider, {
+        x: -totalScroll,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${totalScroll}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, section);
+
+    return () => ctx.revert();
+
+  }, []);
+
   return (
-    <section className="bg-slate-50 py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Heading */}
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-red-600">
-            Product Categories
-          </span>
+    <section
+      ref={sectionRef}
+      className="relative bg-slate-50 overflow-hidden"
+    >
+    <div className="flex h-screen items-center">
 
-          <h2 className="mt-4 text-4xl font-bold text-slate-900">
-            Commercial Kitchen Equipment
-          </h2>
+        <div className="w-full">
 
-          <p className="mt-5 text-lg leading-8 text-slate-600">
-            Discover our extensive range of premium stainless steel
-            commercial kitchen equipment engineered for performance,
-            durability and hygiene.
-          </p>
-        </div>
+          {/* Heading */}
 
-        {/* Cards */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {categories.map((category) => (
-            <Link
-              key={category.slug}
-              href={`/products/${category.slug}`}
-              className="group overflow-hidden rounded-3xl bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
-            >
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src={category.image}
-                  alt={category.title}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-110"
-                />
+          <div className="mx-auto mb-16 max-w-3xl px-6 text-center">
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <span className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
+              PRODUCT CATEGORIES
+            </span>
 
-                <div className="absolute bottom-6 left-6">
-                  <span className="rounded-full bg-white/90 px-4 py-1 text-sm font-medium text-slate-800">
-                    {category.count}
-                  </span>
-                </div>
-              </div>
+            <h2 className="mt-5 text-5xl font-bold leading-tight text-slate-900">
+              Commercial Kitchen Equipment
+            </h2>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-900">
-                  {category.title}
-                </h3>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+              Discover our extensive range of premium stainless steel
+              commercial kitchen equipment engineered for performance,
+              durability and hygiene.
+            </p>
 
-                <div className="mt-5 inline-flex items-center gap-2 font-semibold text-red-600 transition group-hover:gap-3">
-                  View Category
-                  <ArrowRight size={18} />
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+          </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 rounded-xl bg-red-700 px-8 py-4 font-semibold text-white transition hover:bg-red-800"
+          {/* Horizontal Slider */}
+
+          <div
+            ref={sliderRef}
+            className="flex gap-8 pl-[10vw] pr-[20vw] will-change-transform"
           >
-            View All Products
-            <ArrowRight size={18} />
-          </Link>
+
+            {categories.map((category) => (
+
+              <Link
+                key={category.slug}
+                href={`/products/${category.slug}`}
+                className="group w-[380px] shrink-0"
+              >
+
+                <article className="overflow-hidden rounded-xl">
+
+                  {/* Image */}
+
+                  <div className="relative h-[480px] overflow-hidden">
+
+                    <Image
+                      src={category.image}
+                      alt={category.title}
+                      fill
+                      sizes="380px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                    <div className="absolute bottom-6 left-6">
+
+                      <span className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg">
+                        {category.count}
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  {/* Content */}
+
+                  <div className="pt-5">
+
+                    <h3 className="text-[24px] font-medium tracking-tight leading-tight text-slate-900">
+                      {category.title}
+                    </h3>
+
+                  </div>
+
+                </article>
+
+              </Link>
+
+            ))}
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );
