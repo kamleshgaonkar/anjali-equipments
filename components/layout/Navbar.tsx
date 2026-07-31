@@ -7,14 +7,14 @@ import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
+  
   const links = [
     { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
     { name: "Products", href: "/products" },
-    { name: "Industries", href: "/industries" },
+    { name: "Clients", href: "/clients" },
     { name: "Projects", href: "/projects" },
     { name: "Blog", href: "/blog" },
-    { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
 

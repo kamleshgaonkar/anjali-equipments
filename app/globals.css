@@ -57,3 +57,44 @@ h6 {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+@layer components {
+  .hero-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1];
+  }
+
+  .page-title {
+    @apply text-4xl md:text-5xl font-bold tracking-tight leading-tight;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold tracking-tight leading-tight;
+  }
+
+  .subsection-title {
+    @apply text-2xl md:text-3xl font-semibold tracking-tight;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-[0.25em];
+  }
+
+  .body-lg {
+    @apply text-lg leading-8;
+  }
+
+  .body {
+    @apply text-base leading-7;
+  }
+
+  .card-title {
+    @apply text-xl font-semibold;
+  }
+
+  .container-custom {
+    @apply mx-auto max-w-7xl px-5 lg:px-6;
+  }
+}
+
+.container-custom {
+  @apply mx-auto max-w-7xl px-5 lg:px-6;
+}

@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Fira_Sans } from "next/font/google";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
-import FloatingContact from "@/components/layout/FloatingContact";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FloatingContact from "@/components/layout/FloatingContact";
 
-const firaSans = Fira_Sans({
+const headingFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-fira",
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const bodyFont = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -26,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${firaSans.variable} ${firaSans.className} bg-white text-slate-900`}
+        className={`${headingFont.variable} ${bodyFont.variable} bg-white text-slate-900`}
       >
         <Navbar />
 

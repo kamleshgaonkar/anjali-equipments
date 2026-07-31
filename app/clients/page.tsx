@@ -1,0 +1,190 @@
+import Link from "next/link";
+
+export const metadata = {
+  title: "Our Clients | Anjali Equipments",
+  description:
+    "Trusted by leading hotels, restaurants, hospitals, cloud kitchens and corporate clients across India.",
+};
+
+const clientCategories = [
+  {
+    title: "Airport Hotels & Restaurants",
+    folder: "airport-hotels-restaurants",
+    logos: ["tajsats"],
+  },
+
+  {
+    title: "Hotels, Resorts & Hospitality",
+    folder: "hotels-resorts",
+    logos: [
+      "athiva",
+      "hilton",
+      "hyatt",
+      "jw-marriott",
+      "ks-charcoal",
+      "lodha",
+      "massive-restaurants",
+      "perch",
+      "pritam",
+      "radisson",
+      "ramada",
+      "the-paradise-tunga",
+      "urbo-kitchen-and-bar",
+      "view-hotels",
+      "welcome-hotels",
+    ],
+  },
+
+  {
+    title: "Restaurants, Cafés & Bars",
+    folder: "restaurants-cafes",
+    logos: [
+      "aromas-cafe",
+      "baaroq",
+      "bombay-missal",
+      "brittos",
+      "casa-tito",
+      "denish-cakes",
+      "effingut",
+      "filament-bar",
+      "hitchki",
+      "house-of-candy",
+      "jamie-oliver-kitchen",
+      "lord-of-the-drinks",
+      "pop-tates",
+      "punjab-grill",
+      "rajdhani",
+      "ribbons-and-balloons",
+      "sante-spa-cuisine",
+      "tanjore",
+      "the-fern",
+    ],
+  },
+
+  {
+    title: "Corporate Cafeterias",
+    folder: "corporate-cafeterias",
+    logos: ["amazon", "godrej", "kpmg", "sodexo", "tcs"],
+  },
+
+  {
+    title: "Educational Institutes",
+    folder: "educational-institutes",
+    logos: [
+      "cv-raman-university",
+      "nahar-international-school",
+      "universal-business-school",
+    ],
+  },
+
+  {
+    title: "Entertainment & Clubs",
+    folder: "entertainment-clubs",
+    logos: ["inox", "ministry-of-dance", "miraj-cinemas"],
+  },
+];
+
+const industries = [
+  "Airport Hotels & Restaurants",
+  "Hotels & Resorts",
+  "Restaurants, Cafés & Bars",
+  "Corporate Cafeterias",
+  "Educational Institutes",
+  "Industrial Canteens",
+  "Cloud Kitchens",
+  "Hospitals",
+];
+
+export default function ClientsPage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-slate-50 py-24">
+        <div className="container-custom text-center">
+          <p className="eyebrow mb-3 text-red-700">
+            Our Clients
+          </p>
+
+          <h1 className="hero-title text-slate-900">
+            Trusted By Leading Brands Across India
+          </h1>
+
+          <p className="body-lg mx-auto mt-6 max-w-3xl text-slate-600">
+            From luxury hotels and restaurants to hospitals and industrial
+            kitchens, Anjali Equipments has delivered reliable commercial
+            kitchen solutions to businesses across multiple industries.
+          </p>
+        </div>
+      </section>
+
+      {/* Client Categories */}
+      <section className="py-20">
+        <div className="container-custom">
+          {clientCategories.map((category) => (
+            <div key={category.title} className="mb-20">
+              <h2 className="section-title mb-8 text-slate-900">
+                {category.title}
+              </h2>
+
+              <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+                {category.logos.map((logo) => (
+                  <div
+                    key={logo}
+                    className="flex h-30 items-center justify-center rounded-xl border border-slate-200 bg-white p-1"
+                  >
+                    <img
+                      src={`/clients/${category.folder}/${logo}.jpg`}
+                      alt={logo.replace(/-/g, " ")}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Industries */}
+      <section className="bg-slate-50 py-20">
+        <div className="container-custom">
+          <h2 className="section-title mb-12 text-center text-slate-900">
+            Industries We Serve
+          </h2>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {industries.map((industry) => (
+              <div
+                key={industry}
+                className="rounded-xl bg-white p-6 shadow-sm"
+              >
+                ✓ {industry}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24">
+        <div className="mx-auto max-w-5xl rounded-3xl bg-red-700 px-8 py-16 text-center">
+          <h2 className="section-title text-white">
+            Planning a Commercial Kitchen?
+          </h2>
+
+          <p className="body-lg mx-auto mt-5 max-w-2xl text-red-100">
+            Let our experts help you design and manufacture the perfect kitchen
+            solution for your business.
+          </p>
+
+          <Link
+            href="/contact"
+            className="mt-8 inline-block rounded-xl bg-white px-8 py-4 font-semibold text-red-700 transition hover:bg-slate-100"
+          >
+            Request a Quote
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
