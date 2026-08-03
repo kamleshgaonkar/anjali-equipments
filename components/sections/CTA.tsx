@@ -14,8 +14,8 @@ export default function CTA() {
             COMPLETE COMMERCIAL KITCHEN SOLUTIONS
           </span>
 
-          <h2 className="mt-5 text-4xl font-bold text-slate-900 lg:text-5xl">
-            Planning a Commercial Kitchen Project?
+          <h2 className="mt-5 text-5xl font-bold leading-tight text-slate-900">
+          Let’s Cook Up Something Great!
           </h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
@@ -24,10 +24,7 @@ export default function CTA() {
             hotels, restaurants, cloud kitchens, hospitals, educational
             institutions and industrial canteens.
           </p>
-
-          <p className="mt-6 text-xl font-medium text-slate-800">
-            Need expert guidance? Speak with our kitchen specialists today.
-          </p>
+ 
 
         </div>
 
@@ -52,7 +49,7 @@ export default function CTA() {
 
         </div>
 
-        {/* Trust Badges */}
+        {/* Trust Badges
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
 
@@ -98,7 +95,7 @@ export default function CTA() {
 
           </div>
 
-        </div>
+        </div> */}
 
       </div>
     </section>

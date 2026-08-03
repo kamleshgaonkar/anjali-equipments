@@ -1,95 +1,178 @@
-import {
-    ShieldCheck,
-    Wrench,
-    Truck,
-    Headphones,
-    BadgeCheck,
-    Factory,
-  } from "lucide-react";
-  
-  const features = [
-    {
-      icon: Factory,
-      title: "In-House Manufacturing",
-      description:
-        "Modern manufacturing facility producing precision stainless steel equipment.",
-    },
-    {
-      icon: BadgeCheck,
-      title: "Premium SS304 Quality",
-      description:
-        "Built using high-grade stainless steel for durability and hygiene.",
-    },
-    {
-      icon: Wrench,
-      title: "Custom Solutions",
-      description:
-        "Tailor-made equipment designed to match your kitchen requirements.",
-    },
-    {
-      icon: Truck,
-      title: "Pan India Delivery",
-      description:
-        "Efficient logistics and timely delivery across India.",
-    },
-    {
-      icon: Headphones,
-      title: "After Sales Support",
-      description:
-        "Installation guidance, maintenance and responsive customer support.",
-    },
-    {
-      icon: ShieldCheck,
-      title: "Reliable Performance",
-      description:
-        "Engineered for long-lasting performance in demanding commercial kitchens.",
-    },
-  ];
-  
-  export default function WhyChoose() {
-    return (
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-red-600">
-              Why Choose Us
-            </span>
-  
-            <h2 className="mt-4 text-4xl font-bold text-slate-900">
-              Built on Quality. Trusted by Professionals.
-            </h2>
-  
-            <p className="mt-5 text-lg leading-8 text-slate-600">
-              We combine engineering expertise, premium materials and dependable
-              service to deliver commercial kitchen equipment businesses can rely on.
-            </p>
+"use client";
+
+import Image from "next/image";
+import { Check } from "lucide-react";
+import ImageSlider from "@/components/ui/ImageSlider";
+
+const manufacturing = [
+  "Premium SS304 Stainless Steel",
+  "CNC Laser Cutting",
+  "Hydraulic Press Brake Bending",
+  "Precision TIG & MIG Welding",
+  "Strict Quality Inspection",
+];
+
+const solutions = [
+  "Custom Commercial Kitchen Design",
+  "In-house Manufacturing",
+  "Pan India Installation",
+  "Project Execution & Commissioning",
+  "After Sales Support & AMC",
+];
+
+const stats = [
+  {
+    number: "18+",
+    label: "Years Experience",
+  },
+  {
+    number: "500+",
+    label: "Projects Completed",
+  },
+  {
+    number: "8,000",
+    label: "Sq. Ft. Manufacturing Facility",
+  },
+  {
+    number: "40+",
+    label: "Manufacturing & Support Team",
+  },
+];
+
+export default function WhyChooseUs() {
+  return (
+    <section className="bg-white py-28">
+      <div className="container-custom">
+
+        {/* Heading */}
+
+        <div className="mx-auto mb-20 max-w-3xl text-center">
+
+          <p className="eyebrow text-red-600">
+            Why Choose Us
+          </p>
+
+          <h2 className="mt-5 section-title text-5xl text-slate-900">
+            Precision Engineering.
+            <br />
+            Trusted Manufacturing.
+          </h2>
+
+          <p className="body-lg mt-8 text-slate-600">
+            From CNC laser cutting and hydraulic press brake bending
+            to precision TIG welding and final installation,
+            every commercial kitchen solution is manufactured
+            in-house using premium SS304 stainless steel to
+            deliver exceptional quality, durability and
+            long-term performance.
+          </p>
+
+        </div>
+
+        {/* Main Grid */}
+
+        <div className="grid gap-20 lg:grid-cols-[1.15fr_0.85fr]">
+
+          {/* Left Image */}
+
+          <div className="relative overflow-hidden rounded-2xl">
+
+          <ImageSlider /> 
+
           </div>
-  
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-  
-              return (
+
+          {/* Right Content */}
+
+          <div>
+
+            {/* Stats */}
+
+            <div className="grid grid-cols-2 gap-x-12 gap-y-10">
+
+              {stats.map((item) => (
                 <div
-                  key={feature.title}
-                  className="rounded-2xl border border-slate-200 bg-white p-8 transition hover:-translate-y-1 hover:shadow-xl"
+                  key={item.label}
+                  className="border-b border-slate-200 pb-8"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-red-50">
-                    <Icon className="h-7 w-7 text-red-600" />
-                  </div>
-  
-                  <h3 className="mt-6 text-xl font-semibold text-slate-900">
-                    {feature.title}
+                  <h3 className="text-5xl font-semibold text-slate-900">
+                    {item.number}
                   </h3>
-  
-                  <p className="mt-3 leading-7 text-slate-600">
-                    {feature.description}
+
+                  <p className="mt-3 text-slate-600">
+                    {item.label}
                   </p>
                 </div>
-              );
-            })}
+              ))}
+
+            </div>
+
+            {/* Features */}
+
+            <div className="mt-14 grid gap-12 lg:grid-cols-2">
+
+              <div>
+
+                <h4 className="mb-6 text-xl font-semibold text-slate-900">
+                  Manufacturing Excellence
+                </h4>
+
+                <ul className="space-y-5">
+
+                  {manufacturing.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3"
+                    >
+                      <Check
+                        size={18}
+                        className="mt-1 text-red-600"
+                      />
+
+                      <span className="text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+
+                </ul>
+
+              </div>
+
+              <div>
+
+                <h4 className="mb-6 text-xl font-semibold text-slate-900">
+                  End-to-End Solutions
+                </h4>
+
+                <ul className="space-y-5">
+
+                  {solutions.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3"
+                    >
+                      <Check
+                        size={18}
+                        className="mt-1 text-red-600"
+                      />
+
+                      <span className="text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+
+                </ul>
+
+              </div>
+
+            </div>
+
           </div>
+
         </div>
-      </section>
-    );
-  }
+
+      </div>
+    </section>
+  );
+}

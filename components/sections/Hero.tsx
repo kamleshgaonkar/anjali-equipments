@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 
 export default function Hero() {
   return (
-    <section className="relative h-[calc(100vh-80px)] overflow-hidden">
+    <section className="relative h-[calc(85vh-80px)] overflow-hidden">
 
       {/* Background Video */}
       <video
@@ -16,34 +16,73 @@ export default function Hero() {
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/55" />
-
-      {/* Optional Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/50" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
 
       {/* Hero Content */}
-      <div className="relative z-10 flex h-full items-center justify-center">
+      <div className="relative z-10 h-full">
 
-        <div className="container-custom text-center">
+        <div className="container-custom h-full">
 
-          <p className="eyebrow mb-6 text-white/80">
-            Premium Commercial Kitchen Solutions
-          </p>
+          <div className="flex h-full items-center">
 
-          <h1 className="hero-title text-white">
-            Commercial Kitchen Equipment
-          </h1>
+            {/* Left Content */}
+            <div className="w-full max-w-[680px]">
 
-          <h2 className="mt-3 text-4xl font-bold text-red-500 md:text-5xl lg:text-6xl">
-            Built To Perform.
-          </h2>
+              {/* Eyebrow */}
 
-          <div className="mt-12">
+              <div className="mb-8 flex items-center gap-4">
 
-            <Button>
-              Explore Products
-            </Button>
+                <span className="h-px w-10 bg-red-600" />
+
+                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
+                  Since 2010
+                </span>
+
+              </div>
+
+              {/* Heading */}
+
+              <h1 className="text-6xl font-semibold leading-[0.95] tracking-tight text-white lg:text-7xl">
+
+                Engineering
+                <br />
+                Commercial Kitchen
+                <br />
+                Excellence.
+
+              </h1>
+
+              {/* Body */}
+
+              <p className="mt-8 max-w-xl text-lg leading-8 text-white/75">
+
+                Designing, manufacturing and installing premium
+                SS304 commercial kitchen equipment trusted by
+                hotels, restaurants, hospitals and institutional
+                kitchens across India.
+
+              </p>
+
+              {/* Buttons */}
+
+              <div className="mt-12 flex flex-wrap gap-5">
+
+                <Button>
+                  Explore Products
+                </Button>
+
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center justify-center rounded-lg border border-white/30 px-8 py-4 font-medium text-white transition-all duration-300 hover:bg-white hover:text-slate-900"
+                >
+                  View Projects
+                </Link>
+
+              </div>
+
+            </div>
 
           </div>
 
@@ -52,17 +91,18 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2">
+
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
 
         <div className="flex flex-col items-center gap-3">
 
-          <span className="text-xs uppercase tracking-[0.35em] text-white/70">
+          <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
             Scroll
           </span>
 
-          <div className="flex h-12 w-7 items-start justify-center rounded-full border border-white/50 p-2">
+          <div className="flex h-12 w-7 justify-center rounded-full border border-white/40">
 
-            <span className="h-2 w-2 animate-bounce rounded-full bg-white" />
+            <span className="mt-2 h-2 w-2 animate-scroll rounded-full bg-white" />
 
           </div>
 

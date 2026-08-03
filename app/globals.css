@@ -24,9 +24,8 @@
     --foreground: #ededed;
   }
 }
-
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-blinker);
 }
 
 h1,
@@ -35,7 +34,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-blinker);
+  font-weight: 600 ;
 }
 
 @keyframes marquee {
@@ -116,26 +116,4 @@ h6 {
 .animate-scroll {
   animation: scrollBounce 2s ease-in-out infinite;
 }
-
-/* ==========================================
-   Categories Marquee
-========================================== */
-
-@keyframes marquee {
-  from {
-    transform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 40s linear infinite;
-  width: max-content;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
+ 

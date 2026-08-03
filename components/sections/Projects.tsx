@@ -28,7 +28,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-slate-50 py-24">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Heading */}
@@ -38,7 +38,7 @@ export default function Projects() {
             Recent Projects
           </span>
 
-          <h2 className="mt-4 text-4xl font-bold text-slate-900">
+          <h2 className="mt-5 text-5xl font-bold leading-tight text-slate-900">
             Commercial Kitchens We&apos;ve Delivered
           </h2>
 

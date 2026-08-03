@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Blinker } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingContact from "@/components/layout/FloatingContact";
 
-const headingFont = Plus_Jakarta_Sans({
+const blinker = Blinker({
   subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const bodyFont = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
+  weight: ["300", "400", "600", "700", "800"],
+  variable: "--font-blinker",
   display: "swap",
 });
 
@@ -31,7 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${headingFont.variable} ${bodyFont.variable} bg-white text-slate-900`}
+  
+        className={`${blinker.variable} ${blinker.className} bg-white text-slate-900`}
+      
       >
         <Navbar />
 

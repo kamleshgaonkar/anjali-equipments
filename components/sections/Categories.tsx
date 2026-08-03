@@ -13,55 +13,55 @@ const categories = [
   {
     title: "Cooking",
     count: "24 Products",
-    image: "/categories/cooking.webp",
+    image: "/categories/cooking.jpg",
     slug: "cooking",
   },
   {
     title: "Refrigeration",
     count: "12 Products",
-    image: "/categories/refrigeration.avif",
+    image: "/categories/refrigeration.png",
     slug: "refrigeration",
   },
   {
     title: "Food Preparation",
     count: "18 Products",
-    image: "/categories/food-preparation.avif",
+    image: "/categories/food-preparation.jpg",
     slug: "food-preparation",
   },
   {
     title: "Storage & Handling",
     count: "8 Products",
-    image: "/categories/storage-handling.avif",
+    image: "/categories/storage-handling.png",
     slug: "storage-handling",
   },
   {
     title: "Washing",
     count: "10 Products",
-    image: "/categories/washing.avif",
+    image: "/categories/washing.jpg",
     slug: "washing",
   },
   {
     title: "Exhaust & Ventilation",
     count: "8 Products",
-    image: "/categories/exhaust-ventilation.avif",
+    image: "/categories/exhaust-ventilation.jpg",
     slug: "exhaust-ventilation",
   },
   {
     title: "Food Holding & Serving",
     count: "15 Products",
-    image: "/categories/food-holding-serving.avif",
+    image: "/categories/Food-Holding-&-Serving.jpg",
     slug: "food-holding-serving",
   },
   {
     title: "Bar",
     count: "8 Products",
-    image: "/categories/bar.webp",
+    image: "/categories/bar.jpg",
     slug: "bar",
   },
   {
     title: "Bakery",
     count: "10 Products",
-    image: "/categories/bakery.avif",
+    image: "/categories/bakery.jpg",
     slug: "bakery",
   },
   {
@@ -77,6 +77,9 @@ export default function Categories() {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+
+    if (window.innerWidth < 1024) return;
+    
     const section = sectionRef.current;
     const slider = sliderRef.current;
 
@@ -107,9 +110,9 @@ export default function Categories() {
 
   return (
     <section
-      ref={sectionRef}
-      className="relative bg-slate-50 overflow-hidden"
-    >
+    ref={sectionRef}
+    className="relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#202020] to-[#151515]"
+  >
     <div className="flex h-screen items-center">
 
         <div className="w-full">
@@ -122,11 +125,11 @@ export default function Categories() {
               PRODUCT CATEGORIES
             </span>
 
-            <h2 className="mt-5 text-5xl font-bold leading-tight text-slate-900">
+            <h2 className="mt-5 text-5xl font-semibold text-white">
               Commercial Kitchen Equipment
             </h2>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/70">
               Discover our extensive range of premium stainless steel
               commercial kitchen equipment engineered for performance,
               durability and hygiene.
@@ -137,16 +140,16 @@ export default function Categories() {
           {/* Horizontal Slider */}
 
           <div
-            ref={sliderRef}
-            className="flex gap-8 pl-[10vw] pr-[20vw] will-change-transform"
-          >
+  ref={sliderRef}
+  className="flex gap-6 overflow-x-auto lg:overflow-visible pl-5 lg:pl-[10vw] pr-5 lg:pr-[20vw] scrollbar-hide will-change-transform"
+>
 
             {categories.map((category) => (
 
               <Link
                 key={category.slug}
                 href={`/products/${category.slug}`}
-                className="group w-[380px] shrink-0"
+                className="group w-[280px] sm:w-[340px] lg:w-[380px] shrink-0"
               >
 
                 <article className="overflow-hidden rounded-xl">
@@ -159,6 +162,8 @@ export default function Categories() {
                       src={category.image}
                       alt={category.title}
                       fill
+                      unoptimized
+                      quality={100}
                       sizes="380px"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
@@ -179,7 +184,7 @@ export default function Categories() {
 
                   <div className="pt-5">
 
-                    <h3 className="text-[24px] font-medium tracking-tight leading-tight text-slate-900">
+                  <h3 className="text-[23px] font-light tracking-[0.06em] leading-[1.3] text-slate-100">
                       {category.title}
                     </h3>
 
