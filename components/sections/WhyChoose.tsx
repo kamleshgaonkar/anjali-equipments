@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
 import ImageSlider from "@/components/ui/ImageSlider";
+import Counter from "@/components/ui/Counter";
 
 const manufacturing = [
   "Premium SS304 Stainless Steel",
@@ -22,19 +23,19 @@ const solutions = [
 
 const stats = [
   {
-    number: "18+",
+    number: <Counter end={18} suffix="+" />,
     label: "Years Experience",
   },
   {
-    number: "500+",
+    number: <Counter end={500} suffix="+" />,
     label: "Projects Completed",
   },
   {
-    number: "8,000",
+    number: <Counter end={8000} />,
     label: "Sq. Ft. Manufacturing Facility",
   },
   {
-    number: "40+",
+    number: <Counter end={40} suffix="+" />,
     label: "Manufacturing & Support Team",
   },
 ];
@@ -93,7 +94,7 @@ export default function WhyChooseUs() {
                   key={item.label}
                   className="border-b border-slate-200 pb-8"
                 >
-                  <h3 className="text-5xl font-semibold text-slate-900">
+                  <h3 className="text-5xl font-semibold text-red-600">
                     {item.number}
                   </h3>
 

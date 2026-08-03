@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useLayoutEffect, useRef } from "react";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
-gsap.registerPlugin(ScrollTrigger);
+import { ChevronLeft, ChevronRight } from "lucide-react";
+ 
 
 const categories = [
   {
@@ -73,74 +73,27 @@ const categories = [
 ];
 
 export default function Categories() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "start",
+      skipSnaps: false,
+    },
+    [
+      Autoplay({
+        delay: 4000,
+        stopOnInteraction: false,
+        stopOnMouseEnter: false,
+      }),
+    ]
+  );
 
-    if (window.innerWidth < 1024) return;
-
-    const section = sectionRef.current;
-    const track = sliderRef.current;
-
-    if (!section || !track) return;
-
-    const ctx = gsap.context(() => {
-
-        const getDistance = () => {
-
-            const lastCard = track.lastElementChild as HTMLElement;
-
-            if (!lastCard) return 0;
-
-            const cardCenter =
-                lastCard.offsetLeft +
-                lastCard.offsetWidth / 2;
-
-            const viewportCenter =
-                window.innerWidth / 2;
-
-            return cardCenter - viewportCenter;
-
-        };
-
-        gsap.to(track, {
-
-            x: () => -getDistance(),
-
-            ease: "none",
-
-            scrollTrigger: {
-
-                trigger: section,
-
-                start: "top top",
-
-                end: () => `+=${getDistance()}`,
-
-                pin: true,
-
-                scrub: 1,
-
-                invalidateOnRefresh: true,
-
-                anticipatePin: 1
-
-            }
-
-        });
-
-    }, section);
-
-    return () => ctx.revert();
-
-}, []);
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
 
   return (
-    <section
-    ref={sectionRef}
-    className="relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#202020] to-[#151515]"
->
-   <div className="flex h-[100vh] items-center">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#202020] to-[#151515]">
+   <div className="py-24">
 
         <div className="w-full">
 
@@ -165,54 +118,87 @@ export default function Categories() {
           </div>
 
           {/* Horizontal Slider */}
-          <div className="relative overflow-hidden mt-16">
-          <div
-    ref={sliderRef}
-    className="flex gap-8 pl-[max(20px,calc((100vw-1280px)/2))] pr-[30vw] will-change-transform"
+          <div className="relative mt-16">
+
+  {/* Left Arrow */}
+
+  <button
+  onClick={scrollPrev}
+  className="absolute left-4 lg:left-6 top-1/2 z-20 -translate-y-1/2 h-12 w-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white transition-all duration-300 hover:bg-red-600 flex items-center justify-center"
 >
-        {categories.map((category) => (
-            <Link
-                key={category.slug}
-                href={`/products/${category.slug}`}
-                className="group shrink-0 w-[380px]"
-            >
-                <article className="overflow-hidden rounded-xl">
+  <ChevronLeft size={22} />
+</button>
 
-                    <div className="relative h-[480px] overflow-hidden">
+  {/* Right Arrow */}
 
-                        <Image
-                            src={category.image}
-                            alt={category.title}
-                            fill
-                            quality={100}
-                            unoptimized
-                            className="object-cover transition duration-700 group-hover:scale-105"
-                        />
+  <button
+  onClick={scrollNext}
+  className="absolute right-4 lg:right-6 top-1/2 z-20 -translate-y-1/2 h-12 w-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white transition-all duration-300 hover:bg-red-600 flex items-center justify-center"
+>
+  <ChevronRight size={22} />
+</button>
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+  {/* Embla */}
 
-                        <div className="absolute bottom-6 left-6">
+  <div
+    className="overflow-hidden"
+    ref={emblaRef}
+  >
+    <div className="flex px-4 lg:px-6">
 
-                            <span className="rounded-full bg-white px-5 py-2 text-sm font-semibold">
-                                {category.count}
-                            </span>
+      {categories.map((category) => (
 
-                        </div>
+        <div
+          key={category.slug}
+          className="min-w-0 flex-[0_0_88%] sm:flex-[0_0_48%] lg:flex-[0_0_25%] xl:flex-[0_0_20%] px-4"
+        >
 
-                    </div>
+          <Link
+            href={`/products/${category.slug}`}
+            className="group block"
+          >
 
-                    <div className="pt-5">
+            <article className="overflow-hidden rounded-xl">
 
-                        <h3 className="text-[23px] font-light tracking-[0.06em] text-white">
-                            {category.title}
-                        </h3>
+              <div className="relative h-[480px] overflow-hidden">
 
-                    </div>
+                <Image
+                  src={category.image}
+                  alt={category.title}
+                  fill
+                  quality={100}
+                  unoptimized
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
 
-                </article>
-            </Link>
-        ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                <span className="absolute bottom-6 left-6 rounded-full bg-white px-5 py-2 text-sm font-semibold text-black">
+                  {category.count}
+                </span>
+
+              </div>
+
+              <div className="pt-5">
+
+                <h3 className="text-[23px] font-light tracking-[0.06em] leading-[1.3] text-white">
+                  {category.title}
+                </h3>
+
+              </div>
+
+            </article>
+
+          </Link>
+
+        </div>
+
+      ))}
+
     </div>
+
+  </div>
+
 </div>
 
         </div>
