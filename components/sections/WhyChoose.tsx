@@ -46,7 +46,7 @@ export default function WhyChooseUs() {
 
         {/* Heading */}
 
-        <div className="mx-auto mb-20 max-w-3xl text-center">
+        <div className="mb-20 max-w-4xl">
 
           <p className="eyebrow text-red-600">
             Why Choose Us
@@ -54,7 +54,6 @@ export default function WhyChooseUs() {
 
           <h2 className="mt-5 section-title text-5xl text-slate-900">
             Precision Engineering.
-            <br />
             Trusted Manufacturing.
           </h2>
 

@@ -75,45 +75,72 @@ const categories = [
 export default function Categories() {
   const sectionRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
-
   useLayoutEffect(() => {
 
     if (window.innerWidth < 1024) return;
-    
-    const section = sectionRef.current;
-    const slider = sliderRef.current;
 
-    if (!section || !slider) return;
+    const section = sectionRef.current;
+    const track = sliderRef.current;
+
+    if (!section || !track) return;
 
     const ctx = gsap.context(() => {
-      const totalScroll =
-        slider.scrollWidth - window.innerWidth;
 
-      gsap.to(slider, {
-        x: -totalScroll,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${totalScroll}`,
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
+        const getDistance = () => {
+
+            const lastCard = track.lastElementChild as HTMLElement;
+
+            if (!lastCard) return 0;
+
+            const cardCenter =
+                lastCard.offsetLeft +
+                lastCard.offsetWidth / 2;
+
+            const viewportCenter =
+                window.innerWidth / 2;
+
+            return cardCenter - viewportCenter;
+
+        };
+
+        gsap.to(track, {
+
+            x: () => -getDistance(),
+
+            ease: "none",
+
+            scrollTrigger: {
+
+                trigger: section,
+
+                start: "top top",
+
+                end: () => `+=${getDistance()}`,
+
+                pin: true,
+
+                scrub: 1,
+
+                invalidateOnRefresh: true,
+
+                anticipatePin: 1
+
+            }
+
+        });
+
     }, section);
 
     return () => ctx.revert();
 
-  }, []);
+}, []);
 
   return (
     <section
     ref={sectionRef}
     className="relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#202020] to-[#151515]"
-  >
-    <div className="flex h-screen items-center">
+>
+   <div className="flex h-[100vh] items-center">
 
         <div className="w-full">
 
@@ -138,65 +165,55 @@ export default function Categories() {
           </div>
 
           {/* Horizontal Slider */}
-
+          <div className="relative overflow-hidden mt-16">
           <div
-  ref={sliderRef}
-  className="flex gap-6 overflow-x-auto lg:overflow-visible pl-5 lg:pl-[10vw] pr-5 lg:pr-[20vw] scrollbar-hide will-change-transform"
+    ref={sliderRef}
+    className="flex gap-8 pl-[max(20px,calc((100vw-1280px)/2))] pr-[30vw] will-change-transform"
 >
-
-            {categories.map((category) => (
-
-              <Link
+        {categories.map((category) => (
+            <Link
                 key={category.slug}
                 href={`/products/${category.slug}`}
-                className="group w-[280px] sm:w-[340px] lg:w-[380px] shrink-0"
-              >
-
+                className="group shrink-0 w-[380px]"
+            >
                 <article className="overflow-hidden rounded-xl">
 
-                  {/* Image */}
+                    <div className="relative h-[480px] overflow-hidden">
 
-                  <div className="relative h-[480px] overflow-hidden">
+                        <Image
+                            src={category.image}
+                            alt={category.title}
+                            fill
+                            quality={100}
+                            unoptimized
+                            className="object-cover transition duration-700 group-hover:scale-105"
+                        />
 
-                    <Image
-                      src={category.image}
-                      alt={category.title}
-                      fill
-                      unoptimized
-                      quality={100}
-                      sizes="380px"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                        <div className="absolute bottom-6 left-6">
 
-                    <div className="absolute bottom-6 left-6">
+                            <span className="rounded-full bg-white px-5 py-2 text-sm font-semibold">
+                                {category.count}
+                            </span>
 
-                      <span className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow-lg">
-                        {category.count}
-                      </span>
+                        </div>
 
                     </div>
 
-                  </div>
+                    <div className="pt-5">
 
-                  {/* Content */}
+                        <h3 className="text-[23px] font-light tracking-[0.06em] text-white">
+                            {category.title}
+                        </h3>
 
-                  <div className="pt-5">
-
-                  <h3 className="text-[23px] font-light tracking-[0.06em] leading-[1.3] text-slate-100">
-                      {category.title}
-                    </h3>
-
-                  </div>
+                    </div>
 
                 </article>
-
-              </Link>
-
-            ))}
-
-          </div>
+            </Link>
+        ))}
+    </div>
+</div>
 
         </div>
 
