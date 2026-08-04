@@ -34,7 +34,7 @@ export default function ContactPage() {
             </div>
           </div>
   
-          <form className="space-y-5">
+          <form className="space-y-5 pr-14 sm:pr-0">
             <input
               className="w-full rounded-lg border p-4"
               placeholder="Name"
@@ -52,7 +52,7 @@ export default function ContactPage() {
   
             <textarea
               rows={6}
-              className="w-full rounded-lg border p-4"
+              className="mb-4 w-full rounded-lg border p-4"
               placeholder="Message"
             />
   

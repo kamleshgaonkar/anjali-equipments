@@ -25,10 +25,10 @@ export default function Hero() {
 
         <div className="container-custom h-full">
 
-          <div className="flex min-h-[calc(100svh-80px)] items-end pb-28 pt-10 sm:pb-24 lg:min-h-0 lg:h-full lg:items-center lg:pb-0 lg:pt-0">
+          <div className="flex min-h-[calc(100svh-80px)] items-end pb-36 pt-10 sm:pb-28 lg:min-h-0 lg:h-full lg:items-center lg:pb-0 lg:pt-0">
 
             {/* Left Content */}
-            <div className="w-full max-w-[680px]">
+            <div className="w-full max-w-[680px] pr-16 sm:pr-0">
 
               {/* Eyebrow */}
 

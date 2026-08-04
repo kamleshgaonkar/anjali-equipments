@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Check } from "lucide-react";
 import ImageSlider from "@/components/ui/ImageSlider";
 import Counter from "@/components/ui/Counter";

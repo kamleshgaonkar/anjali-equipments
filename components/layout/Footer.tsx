@@ -4,7 +4,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  ArrowRight,
 } from "lucide-react";
 
 const companyLinks = [
