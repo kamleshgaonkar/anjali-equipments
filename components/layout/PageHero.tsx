@@ -5,10 +5,6 @@ interface Props {
   title: string;
   description: string;
   background: string;
-  breadcrumbs: {
-    label: string;
-    href?: string;
-  }[];
 }
 
 export default function PageHero({
@@ -16,13 +12,11 @@ export default function PageHero({
   title,
   description,
   background,
-  breadcrumbs,
 }: Props) {
   return (
     <section className="relative overflow-hidden">
 
       {/* Background */}
-
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -33,7 +27,6 @@ export default function PageHero({
       <div className="absolute inset-0 bg-black/70" />
 
       {/* Content */}
-
       <div className="relative container-custom flex min-h-[260px] items-center py-20">
 
         <div className="max-w-3xl">
