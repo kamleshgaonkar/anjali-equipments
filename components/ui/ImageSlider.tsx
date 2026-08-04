@@ -37,12 +37,12 @@ export default function ImageSlider() {
   useEffect(() => {
     if (!emblaApi) return;
 
-    onSelect();
-
     emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
 
     return () => {
       emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
   }, [emblaApi, onSelect]);
 
@@ -62,7 +62,7 @@ export default function ImageSlider() {
               className="relative min-w-full"
             >
 
-              <div className="relative h-[700px] overflow-hidden">
+              <div className="relative h-[280px] overflow-hidden sm:h-[400px] lg:h-[700px]">
 
                 <Image
                   src={image}
@@ -90,13 +90,19 @@ export default function ImageSlider() {
 
           <button
             key={index}
+            type="button"
+            aria-label={`Go to slide ${index + 1}`}
             onClick={() => emblaApi?.scrollTo(index)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
-              index === selectedIndex
-                ? "w-10 bg-red-600"
-                : "w-2.5 bg-slate-300"
-            }`}
-          />
+            className="flex min-h-11 min-w-11 items-center justify-center"
+          >
+            <span
+              className={`block h-2.5 rounded-full transition-all duration-300 ${
+                index === selectedIndex
+                  ? "w-10 bg-red-600"
+                  : "w-2.5 bg-slate-300"
+              }`}
+            />
+          </button>
 
         ))}
 

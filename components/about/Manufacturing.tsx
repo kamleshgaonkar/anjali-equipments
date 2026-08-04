@@ -77,7 +77,7 @@ export default function Manufacturing() {
           {/* Row 1 */}
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div className="relative h-[450px] overflow-hidden rounded-3xl">
+            <div className="relative h-[280px] overflow-hidden rounded-3xl sm:h-[360px] lg:h-[450px]">
               <Image
                 src="/images/manufacturing/laser-machine.png"
                 alt="CNC Laser Cutting Machine"
@@ -91,11 +91,11 @@ export default function Manufacturing() {
                 Advanced Machinery
               </span>
 
-              <h3 className="mt-4 text-4xl font-bold text-slate-900">
+              <h3 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
                 CNC Fiber Laser Cutting
               </h3>
 
-              <p className="mt-6 text-lg leading-8 text-slate-600">
+              <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 Our CNC laser cutting machine delivers exceptional precision,
                 clean edges and dimensional accuracy, enabling us to fabricate
                 high-quality stainless steel components with speed and
@@ -107,25 +107,23 @@ export default function Manufacturing() {
           {/* Row 2 */}
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div className="order-2 relative h-[450px] overflow-hidden rounded-3xl lg:order-1">
-              <div>
-                <span className="text-sm font-semibold uppercase tracking-widest text-red-600">
-                  Precision Fabrication
-                </span>
+            <div className="order-2 lg:order-1">
+              <span className="text-sm font-semibold uppercase tracking-widest text-red-600">
+                Precision Fabrication
+              </span>
 
-                <h3 className="mt-4 text-4xl font-bold text-slate-900">
-                  CNC Press Brake Technology
-                </h3>
+              <h3 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
+                CNC Press Brake Technology
+              </h3>
 
-                <p className="mt-6 text-lg leading-8 text-slate-600">
-                  Advanced CNC bending technology allows us to manufacture
-                  products with perfect angles, superior strength and unmatched
-                  consistency, ensuring every piece meets our quality standards.
-                </p>
-              </div>
+              <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                Advanced CNC bending technology allows us to manufacture
+                products with perfect angles, superior strength and unmatched
+                consistency, ensuring every piece meets our quality standards.
+              </p>
             </div>
 
-            <div className="order-1 relative h-[450px] overflow-hidden rounded-3xl lg:order-2">
+            <div className="order-1 relative h-[280px] overflow-hidden rounded-3xl sm:h-[360px] lg:order-2 lg:h-[450px]">
               <Image
                 src="/images/manufacturing/press-brake.png"
                 alt="Press Brake Machine"
@@ -138,7 +136,7 @@ export default function Manufacturing() {
           {/* Row 3 */}
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div className="relative h-[450px] overflow-hidden rounded-3xl">
+            <div className="relative h-[280px] overflow-hidden rounded-3xl sm:h-[360px] lg:h-[450px]">
               <Image
                 src="/images/manufacturing/factory.png"
                 alt="Manufacturing Facility"
@@ -152,11 +150,11 @@ export default function Manufacturing() {
                 Production Facility
               </span>
 
-              <h3 className="mt-4 text-4xl font-bold text-slate-900">
+              <h3 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
                 Modern Manufacturing Infrastructure
               </h3>
 
-              <p className="mt-6 text-lg leading-8 text-slate-600">
+              <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 Spread across an 8,000+ sq. ft. manufacturing facility, our
                 production unit is designed to efficiently handle projects of
                 every scale while maintaining strict quality control at every
@@ -173,18 +171,18 @@ export default function Manufacturing() {
                 Skilled Workforce
               </span>
 
-              <h3 className="mt-4 text-4xl font-bold text-slate-900">
+              <h3 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
                 Craftsmanship That Builds Confidence
               </h3>
 
-              <p className="mt-6 text-lg leading-8 text-slate-600">
+              <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 Behind every product is a dedicated team of skilled fabricators
                 and technicians who ensure every weld, bend and finish meets the
                 highest standards of quality, durability and performance.
               </p>
             </div>
 
-            <div className="order-1 relative h-[450px] overflow-hidden rounded-3xl lg:order-2">
+            <div className="order-1 relative h-[280px] overflow-hidden rounded-3xl sm:h-[360px] lg:order-2 lg:h-[450px]">
               <Image
                 src="/images/manufacturing/team.png"
                 alt="Fabrication Team"

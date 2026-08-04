@@ -5,7 +5,7 @@ export default function OurStory() {
     <section className="bg-white py-24">
       <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
 
-        <div className="relative h-[500px] overflow-hidden rounded-3xl">
+        <div className="relative h-[280px] overflow-hidden rounded-3xl sm:h-[360px] lg:h-[500px]">
           <Image
             src="/images/about-company.png"
             alt="Anjali Equipments"
