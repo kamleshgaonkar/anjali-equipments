@@ -15,7 +15,7 @@ export default function About() {
             About Us
           </span>
 
-          <h2 className="mt-5 section-title text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight text-slate-900">
+          <h2 className="mt-5 text-3xl font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-4xl lg:text-6xl lg:leading-[0.95]">
 
             Engineering Commercial Kitchen
             
@@ -29,7 +29,7 @@ export default function About() {
 
           {/* Left Image */}
 
-          <div className="relative h-[450px] overflow-hidden rounded-2xl">
+          <div className="relative h-[280px] overflow-hidden rounded-2xl sm:h-[360px] lg:h-[450px]">
             <Image
               src="/about/about-main.png"
               alt="Anjali Equipments"

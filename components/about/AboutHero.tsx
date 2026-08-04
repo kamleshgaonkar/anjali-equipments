@@ -12,7 +12,7 @@ export default function AboutHero() {
             About Anjali Equipments
           </span>
 
-          <h1 className="mt-6 text-5xl font-bold leading-tight text-slate-900 lg:text-6xl">
+          <h1 className="mt-6 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-6xl">
             Building Reliable Commercial Kitchen Solutions for Every Business
           </h1>
 

@@ -69,13 +69,13 @@ import {
   
           <div className="grid gap-8 lg:grid-cols-2">
   
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-10">
   
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-100">
                 <Target className="h-8 w-8 text-red-600" />
               </div>
   
-              <h3 className="mt-8 text-3xl font-bold text-slate-900">
+              <h3 className="mt-8 text-2xl font-bold text-slate-900 sm:text-3xl">
                 Our Mission
               </h3>
   
@@ -88,13 +88,13 @@ import {
   
             </div>
   
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-10">
   
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-100">
                 <Eye className="h-8 w-8 text-red-600" />
               </div>
   
-              <h3 className="mt-8 text-3xl font-bold text-slate-900">
+              <h3 className="mt-8 text-2xl font-bold text-slate-900 sm:text-3xl">
                 Our Vision
               </h3>
   

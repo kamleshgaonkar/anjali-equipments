@@ -10,11 +10,11 @@ export default function CTA() {
 
         <div className="mx-auto max-w-4xl text-center">
 
-          <span className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-red-600 sm:text-sm sm:tracking-[0.25em]">
             COMPLETE COMMERCIAL KITCHEN SOLUTIONS
           </span>
 
-          <h2 className="mt-5 text-5xl font-bold leading-tight text-slate-900">
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
           Let’s Cook Up Something Great!
           </h2>
 

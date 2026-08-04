@@ -53,12 +53,12 @@ export default function WhyChooseUs() {
             Why Choose Us
           </p>
 
-          <h2 className="mt-5 section-title text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight text-slate-900">
-            Precision Engineering. 
+          <h2 className="mt-5 text-3xl font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-4xl lg:text-6xl lg:leading-[0.95]">
+            Precision Engineering.{" "}
             Trusted Manufacturing.
           </h2>
 
-          <p className="body-lg mt-8 text-slate-600">
+          <p className="mt-6 text-base leading-7 text-slate-600 sm:mt-8 sm:text-lg sm:leading-8">
             From CNC laser cutting and hydraulic press brake bending
             to precision TIG welding and final installation,
             every commercial kitchen solution is manufactured
@@ -87,18 +87,18 @@ export default function WhyChooseUs() {
 
             {/* Stats */}
 
-            <div className="grid grid-cols-2 gap-x-12 gap-y-10">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-12 sm:gap-y-10">
 
               {stats.map((item) => (
                 <div
                   key={item.label}
-                  className="border-b border-slate-200 pb-8"
+                  className="border-b border-slate-200 pb-6 sm:pb-8"
                 >
-                  <h3 className="text-5xl font-semibold text-red-600">
+                  <h3 className="text-3xl font-semibold text-red-600 sm:text-4xl lg:text-5xl">
                     {item.number}
                   </h3>
 
-                  <p className="mt-3 text-slate-600">
+                  <p className="mt-2 text-sm text-slate-600 sm:mt-3 sm:text-base">
                     {item.label}
                   </p>
                 </div>

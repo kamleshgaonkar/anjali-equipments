@@ -142,7 +142,7 @@ export default function Footer() {
                   className="mt-1 text-red-500"
                 />
 
-                <span className="text-slate-400">
+                <span className="text-slate-400 break-all">
                   info@anjaliequipments.com
                 </span>
 
@@ -196,7 +196,7 @@ export default function Footer() {
 
       {/* Bottom */}
 
-      <div className="border-t border-slate-800">
+      <div className="border-t border-slate-800 pb-28 sm:pb-6">
 
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm text-slate-500 md:flex-row">
 

@@ -71,25 +71,25 @@ export default function Clients() {
 
         {/* Left Fade */}
 
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-40 bg-gradient-to-r from-white to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r from-white to-transparent sm:w-24 lg:w-40" />
 
         {/* Right Fade */}
 
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-40 bg-gradient-to-l from-white to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l from-white to-transparent sm:w-24 lg:w-40" />
 
-        <div className="flex animate-marquee gap-16 whitespace-nowrap">
+        <div className="flex animate-marquee gap-6 whitespace-nowrap sm:gap-10 lg:gap-16">
 
         {[...logos, ...logos].map((logo, index) => (
   <div
     key={index}
-    className="flex h-28 w-56 items-center justify-center rounded-2xl border border-slate-200 bg-white p-6"
+    className="flex h-20 w-36 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 sm:h-24 sm:w-44 sm:p-5 lg:h-28 lg:w-56 lg:p-6"
   >
     <Image
   src={`/clients/home/${logo}`}
   alt={logo.replace(".jpg", "")}
   width={220}  
   height={100}
-  className="max-h-16 w-auto object-contain opacity-100 transition duration-9000"
+  className="max-h-12 w-auto object-contain opacity-100 transition duration-9000 sm:max-h-14 lg:max-h-16"
 />
   </div>
 ))}

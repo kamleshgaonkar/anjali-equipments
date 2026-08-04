@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 
 export default function Hero() {
   return (
-    <section className="relative h-[calc(85vh-80px)] overflow-hidden">
+    <section className="relative min-h-[calc(100svh-80px)] overflow-hidden lg:h-[calc(85vh-80px)] lg:min-h-0">
 
       {/* Background Video */}
       <video
@@ -25,18 +25,18 @@ export default function Hero() {
 
         <div className="container-custom h-full">
 
-        <div className="flex h-full items-end lg:items-center pb-24 lg:pb-0">
+          <div className="flex min-h-[calc(100svh-80px)] items-end pb-16 pt-10 sm:pb-20 lg:min-h-0 lg:h-full lg:items-center lg:pb-0 lg:pt-0">
 
             {/* Left Content */}
             <div className="w-full max-w-[680px]">
 
               {/* Eyebrow */}
 
-              <div className="mb-8 flex items-center gap-4">
+              <div className="mb-6 flex items-center gap-4 sm:mb-8">
 
                 <span className="h-px w-10 bg-red-600" />
 
-                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 sm:tracking-[0.35em]">
                   Since 2010
                 </span>
 
@@ -44,16 +44,7 @@ export default function Hero() {
 
               {/* Heading */}
 
-              <h1 className="
-text-5xl
-sm:text-6xl
-lg:text-7xl
-font-semibold
-leading-[0.95]
-tracking-tight
-text-white
-max-w-3xl
-">
+              <h1 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl sm:leading-[0.95] lg:text-7xl">
 
                 Engineering
                 <br />
@@ -65,15 +56,7 @@ max-w-3xl
 
               {/* Body */}
 
-              <p className="
-mt-7
-max-w-[340px]
-lg:max-w-xl
-text-base
-lg:text-lg
-leading-8
-text-white/80
-">
+              <p className="mt-6 max-w-xl text-base leading-7 text-white/80 sm:mt-7 sm:leading-8 lg:text-lg">
 
                 Designing, manufacturing and installing premium
                 SS304 commercial kitchen equipment trusted by
@@ -84,7 +67,7 @@ text-white/80
 
               {/* Buttons */}
 
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
 
                 <Button>
                   Explore Products
@@ -106,7 +89,7 @@ text-white/80
         </div>
 
       </div>
- 
+
 
     </section>
   );
