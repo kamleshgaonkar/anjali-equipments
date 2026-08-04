@@ -8,6 +8,7 @@ export default function ContactPage() {
       <PageHero
   eyebrow="Contact Us"
   title="Get in Touch"
+  description="Feel free to reach out to us for any questions or inquiries."
   background="/hero/hero.jpg"
 />
 

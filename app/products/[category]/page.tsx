@@ -26,15 +26,15 @@ export default async function ProductCategoryPage({
   return (
  
     <>
-    <PageHero
-      eyebrow={category.title}
-      title={category.name}
-      description={category.description}
-      background="/hero/hero.jpg"
-    />
+   <PageHero
+  eyebrow="PRODUCT CATEGORY"
+  title={category.name}
+  description={category.description}
+  background="/hero/hero.jpg"
+/>
 
     <main className="mx-auto max-w-7xl px-6 py-20">
-      
+      {/*
       <div className="max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
           {category.name}
@@ -44,7 +44,7 @@ export default async function ProductCategoryPage({
           {category.description}
         </p>
       </div>
-
+      */}
       {products.length === 0 ? (
         <div className="mt-16 rounded-xl border border-dashed p-12 text-center">
           <h2 className="text-2xl font-semibold">

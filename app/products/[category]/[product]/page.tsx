@@ -6,7 +6,6 @@ import {
   getRelatedProducts,
 } from "@/lib/products";
 
-import ProductBreadcrumb from "@/components/products/ProductBreadcrumb";
 import ProductGallery from "@/components/products/ProductGallery";
 import ProductFeatures from "@/components/products/ProductFeatures";
 import ProductSpecifications from "@/components/products/ProductSpecifications";

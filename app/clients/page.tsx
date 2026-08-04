@@ -105,6 +105,7 @@ export default function ClientsPage() {
       <PageHero
   eyebrow="Our Clients"
   title="Trusted By Leading Brands Across India"
+  description="We are trusted by leading brands across India for our quality products and services."
   background="/hero/hero.jpg"
 />
 
