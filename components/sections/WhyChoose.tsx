@@ -53,8 +53,8 @@ export default function WhyChooseUs() {
             Why Choose Us
           </p>
 
-          <h2 className="mt-5 section-title text-5xl text-slate-900">
-            Precision Engineering.
+          <h2 className="mt-5 section-title text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight text-slate-900">
+            Precision Engineering. 
             Trusted Manufacturing.
           </h2>
 

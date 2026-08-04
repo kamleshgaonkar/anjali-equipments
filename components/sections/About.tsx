@@ -15,9 +15,10 @@ export default function About() {
             About Us
           </span>
 
-          <h2 className="mt-5 text-5xl font-bold leading-tight text-slate-900">
+          <h2 className="mt-5 section-title text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight text-slate-900">
+
             Engineering Commercial Kitchen
-            <br />
+            
             Solutions Since 2010
           </h2>
         </div>

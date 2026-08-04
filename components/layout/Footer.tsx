@@ -11,7 +11,6 @@ const companyLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Products", href: "/products" },
-  { name: "Industries", href: "/industries" },
   { name: "Projects", href: "/projects" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
@@ -131,7 +130,7 @@ export default function Footer() {
                 />
 
                 <span className="text-slate-400">
-                  +91 XXXXX XXXXX
+                +91 86570 03003
                 </span>
 
               </div>
@@ -164,7 +163,7 @@ export default function Footer() {
 
             </div>
 
-            {/* CTA */}
+            {/* CTA 
 
             <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-6">
 
@@ -187,7 +186,7 @@ export default function Footer() {
 
               </Link>
 
-            </div>
+            </div>*/}
 
           </div>
 

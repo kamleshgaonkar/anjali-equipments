@@ -25,7 +25,7 @@ export default function Hero() {
 
         <div className="container-custom h-full">
 
-          <div className="flex h-full items-center">
+        <div className="flex h-full items-end lg:items-center pb-24 lg:pb-0">
 
             {/* Left Content */}
             <div className="w-full max-w-[680px]">
@@ -44,7 +44,16 @@ export default function Hero() {
 
               {/* Heading */}
 
-              <h1 className="text-6xl font-semibold leading-[0.95] tracking-tight text-white lg:text-7xl">
+              <h1 className="
+text-5xl
+sm:text-6xl
+lg:text-7xl
+font-semibold
+leading-[0.95]
+tracking-tight
+text-white
+max-w-3xl
+">
 
                 Engineering
                 <br />
@@ -56,7 +65,15 @@ export default function Hero() {
 
               {/* Body */}
 
-              <p className="mt-8 max-w-xl text-lg leading-8 text-white/75">
+              <p className="
+mt-7
+max-w-[340px]
+lg:max-w-xl
+text-base
+lg:text-lg
+leading-8
+text-white/80
+">
 
                 Designing, manufacturing and installing premium
                 SS304 commercial kitchen equipment trusted by
@@ -67,7 +84,7 @@ export default function Hero() {
 
               {/* Buttons */}
 
-              <div className="mt-12 flex flex-wrap gap-5">
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
 
                 <Button>
                   Explore Products

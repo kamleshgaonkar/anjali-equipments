@@ -9,7 +9,7 @@ export default function FloatingContact() {
 
       {/* WhatsApp */}
       <Link
-        href="https://wa.me/919821664343"
+        href="https://wa.me/918657003003"
         target="_blank"
         aria-label="WhatsApp"
         className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
@@ -19,7 +19,7 @@ export default function FloatingContact() {
 
       {/* Call */}
       <Link
-        href="tel:+919821664343"
+        href="tel:+918657003003"
         aria-label="Call"
         className="flex h-14 w-14 items-center justify-center rounded-full bg-red-600 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-red-700 hover:shadow-xl"
       >
