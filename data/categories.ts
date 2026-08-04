@@ -59,7 +59,7 @@ export const categories: Category[] = [
     id: 7,
     name: "Food Holding & Serving",
     slug: "food-holding-serving",
-    image: "/categories/food-holding-serving.jpg",
+    image: "/categories/food-holding-serving.png",
     description:
       "Bain maries, pickup counters, service counters and display units.",
   },
