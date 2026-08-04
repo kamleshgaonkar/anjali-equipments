@@ -5,7 +5,7 @@ import { MessageCircle, Phone } from "lucide-react";
 
 export default function FloatingContact() {
   return (
-    <div className="fixed bottom-5 right-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:right-6 sm:gap-4">
+    <div className="fixed bottom-5 left-4 z-50 flex flex-col gap-3 sm:bottom-6 sm:left-auto sm:right-6 sm:gap-4">
 
       {/* WhatsApp */}
       <Link
