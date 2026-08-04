@@ -3,7 +3,7 @@ import About from "@/components/sections/About";
 import Categories from "@/components/sections/Categories";
 import WhyChoose from "@/components/sections/WhyChoose";
 import Clients from "@/components/sections/Clients";
-
+import CTA from "@/components/sections/CTA";
 export default function Home() {
   return (
     <>
@@ -12,6 +12,7 @@ export default function Home() {
   <Categories />
   <WhyChoose />
   <Clients />
+  <CTA />
 </>
   );
 }

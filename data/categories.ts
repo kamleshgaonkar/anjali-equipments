@@ -19,7 +19,7 @@ export const categories: Category[] = [
     id: 2,
     name: "Refrigeration",
     slug: "refrigeration",
-    image: "/categories/refrigeration.jpg",
+    image: "/categories/refrigeration.png",
     description:
       "Commercial refrigerators, freezers and cold storage equipment.",
   },
@@ -35,7 +35,7 @@ export const categories: Category[] = [
     id: 4,
     name: "Storage & Handling",
     slug: "storage-handling",
-    image: "/categories/storage-handling.jpg",
+    image: "/categories/storage-handling.png",
     description:
       "Storage racks, shelving, cupboards, trolleys and handling equipment.",
   },
@@ -83,7 +83,7 @@ export const categories: Category[] = [
     id: 10,
     name: "Other",
     slug: "other",
-    image: "/categories/other.jpg",
+    image: "/categories/others.avif",
     description:
       "Specialized and custom commercial kitchen equipment.",
   },

@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import CTA from "@/components/sections/CTA";
 export const metadata = {
   title: "Our Clients | Anjali Equipments",
   description:
@@ -165,26 +165,7 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24">
-        <div className="mx-auto max-w-5xl rounded-3xl bg-red-700 px-8 py-16 text-center">
-          <h2 className="section-title text-white">
-            Planning a Commercial Kitchen?
-          </h2>
-
-          <p className="body-lg mx-auto mt-5 max-w-2xl text-red-100">
-            Let our experts help you design and manufacture the perfect kitchen
-            solution for your business.
-          </p>
-
-          <Link
-            href="/contact"
-            className="mt-8 inline-block rounded-xl bg-white px-8 py-4 font-semibold text-red-700 transition hover:bg-slate-100"
-          >
-            Request a Quote
-          </Link>
-        </div>
-      </section>
+      <CTA />
     </>
   );
 }

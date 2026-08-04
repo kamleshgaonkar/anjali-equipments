@@ -10,13 +10,26 @@ export default function ContactPage() {
             </h2>
   
             <div className="space-y-5 text-slate-600">
-              <p><strong>Phone:</strong> +91 98216 64343</p>
+              <p><strong>Phone:</strong> +91 86570 03003</p>
               <p><strong>Email:</strong> info@anjaliequipments.com</p>
               <p>
-                <strong>Address:</strong><br />
-                Dashrath Singh Estate,<br />
+                <strong>Head Office:</strong><br />
+                Plot - B, A wing, 201, <br />
+                Govardhan Compelex, Caves Road <br />
                 Jogeshwari East,<br />
-                Mumbai - 400060
+                Mumbai - 400060, Maharashtra.
+              </p>
+              <p>
+                <strong>Registerd Office:</strong><br />
+                01, Dashrath Singh Estate,<br />
+                Jogeshwari East,<br />
+                Mumbai - 400060, Maharashtra.
+              </p>
+              <p>
+                <strong>Factory:</strong><br />
+                Gala No. 01, Umar Compound, <br />
+                Nalasopara Phata, <br />
+                Mumbai - 401 208, Maharashtra.
               </p>
             </div>
           </div>

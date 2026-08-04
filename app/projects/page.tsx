@@ -1,5 +1,8 @@
+import CTA from "@/components/sections/CTA";
+
 export default function ProjectsPage() {
     return (
+      <section>
       <main className="mx-auto max-w-7xl px-6 py-20">
         <h1 className="text-5xl font-bold">
           Our Projects
@@ -32,5 +35,7 @@ export default function ProjectsPage() {
           ))}
         </div>
       </main>
+      <CTA />
+      </section>
     );
   }

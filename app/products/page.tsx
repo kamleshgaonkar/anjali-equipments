@@ -1,10 +1,12 @@
 import CategoryCard from "@/components/products/CategoryCard";
 import { getAllCategories } from "@/lib/products";
+import CTA from "@/components/sections/CTA";
 
 export default function ProductsPage() {
   const categories = getAllCategories();
 
   return (
+    <section>
     <main className="mx-auto max-w-7xl px-6 py-20">
       <div className="max-w-3xl">
         <h1 className="text-5xl font-bold tracking-tight text-slate-900">
@@ -26,6 +28,9 @@ export default function ProductsPage() {
           />
         ))}
       </section>
+      
     </main>
+    <CTA />
+    </section>
   );
 }

@@ -1,5 +1,8 @@
+import CTA from "@/components/sections/CTA";
+
 export default function BlogPage() {
     return (
+      <section>
       <main className="mx-auto max-w-7xl px-6 py-20">
         <h1 className="text-5xl font-bold">
           Blogs & Articles
@@ -25,6 +28,8 @@ export default function BlogPage() {
             </div>
           ))}
         </div>
-      </main>
+       
+      </main> <CTA />
+      </section>
     );
   }
