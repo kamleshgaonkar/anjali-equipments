@@ -105,11 +105,11 @@ export default function Categories() {
               PRODUCT CATEGORIES
             </span>
 
-            <h2 className="mt-5 text-5xl font-semibold text-white">
+            <h2 className="mt-5 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
               Commercial Kitchen Equipment
             </h2>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/70">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
               Discover our extensive range of premium stainless steel
               commercial kitchen equipment engineered for performance,
               durability and hygiene.
@@ -123,8 +123,10 @@ export default function Categories() {
   {/* Left Arrow */}
 
   <button
+  type="button"
+  aria-label="Previous category"
   onClick={scrollPrev}
-  className="absolute left-4 lg:left-6 top-1/2 z-20 -translate-y-1/2 h-12 w-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white transition-all duration-300 hover:bg-red-600 flex items-center justify-center"
+  className="absolute left-2 top-[140px] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all duration-300 hover:bg-red-600 sm:left-4 sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 lg:left-6"
 >
   <ChevronLeft size={22} />
 </button>
@@ -132,8 +134,10 @@ export default function Categories() {
   {/* Right Arrow */}
 
   <button
+  type="button"
+  aria-label="Next category"
   onClick={scrollNext}
-  className="absolute right-4 lg:right-6 top-1/2 z-20 -translate-y-1/2 h-12 w-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white transition-all duration-300 hover:bg-red-600 flex items-center justify-center"
+  className="absolute right-2 top-[140px] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all duration-300 hover:bg-red-600 sm:right-4 sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 lg:right-6"
 >
   <ChevronRight size={22} />
 </button>
@@ -150,7 +154,7 @@ export default function Categories() {
 
         <div
           key={category.slug}
-          className="min-w-0 flex-[0_0_88%] sm:flex-[0_0_48%] lg:flex-[0_0_25%] xl:flex-[0_0_20%] px-4"
+          className="min-w-0 flex-[0_0_85%] px-3 sm:flex-[0_0_48%] sm:px-4 lg:flex-[0_0_25%] xl:flex-[0_0_20%]"
         >
 
           <Link
@@ -160,7 +164,7 @@ export default function Categories() {
 
             <article className="overflow-hidden rounded-xl">
 
-              <div className="relative h-[480px] overflow-hidden">
+              <div className="relative h-[320px] overflow-hidden sm:h-[400px] lg:h-[480px]">
 
                 <Image
                   src={category.image}

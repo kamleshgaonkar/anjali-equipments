@@ -62,7 +62,7 @@ export default async function ProductPage({ params }: Props) {
             {category.name}
           </p>
 
-          <h1 className="text-5xl font-bold">
+          <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
             {product.name}
           </h1>
 

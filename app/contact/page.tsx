@@ -1,7 +1,7 @@
 export default function ContactPage() {
     return (
-      <main className="mx-auto max-w-7xl px-6 py-20">
-        <h1 className="text-5xl font-bold">Contact Us</h1>
+      <main className="mx-auto max-w-7xl px-6 py-16 pb-32 sm:py-20">
+        <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Contact Us</h1>
   
         <div className="mt-12 grid gap-12 lg:grid-cols-2">
           <div>
@@ -34,7 +34,7 @@ export default function ContactPage() {
             </div>
           </div>
   
-          <form className="space-y-5">
+          <form className="space-y-5 pr-14 sm:pr-0">
             <input
               className="w-full rounded-lg border p-4"
               placeholder="Name"
@@ -52,7 +52,7 @@ export default function ContactPage() {
   
             <textarea
               rows={6}
-              className="w-full rounded-lg border p-4"
+              className="mb-4 w-full rounded-lg border p-4"
               placeholder="Message"
             />
   

@@ -9,7 +9,7 @@ export default function ProductsPage() {
     <section>
     <main className="mx-auto max-w-7xl px-6 py-20">
       <div className="max-w-3xl">
-        <h1 className="text-5xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
           Commercial Kitchen Equipment
         </h1>
 

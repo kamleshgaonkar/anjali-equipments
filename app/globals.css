@@ -26,6 +26,7 @@
 }
 body {
   font-family: var(--font-blinker);
+  overflow-x: hidden;
 }
 
 h1,

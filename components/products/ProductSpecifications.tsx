@@ -19,7 +19,7 @@ export default function ProductSpecifications({
         {specifications.map((spec, index) => (
           <div
             key={spec.label}
-            className={`flex items-center justify-between px-6 py-5 ${
+            className={`flex flex-col gap-1 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5 ${
               index !== specifications.length - 1
                 ? "border-b border-slate-200"
                 : ""
@@ -29,7 +29,7 @@ export default function ProductSpecifications({
               {spec.label}
             </span>
 
-            <span className="font-semibold text-slate-900">
+            <span className="break-words font-semibold text-slate-900 sm:text-right">
               {spec.value}
             </span>
           </div>

@@ -35,13 +35,13 @@ export default function ProductGallery({
       {/* Thumbnails */}
 
       {images.length > 1 && (
-        <div className="mt-5 flex gap-4">
+        <div className="mt-5 flex gap-3 overflow-x-auto pb-1 sm:gap-4">
           {images.map((img, index) => (
             <button
               key={index}
               type="button"
               onClick={() => setSelectedImage(img)}
-              className={`overflow-hidden rounded-xl border-2 transition ${
+              className={`shrink-0 overflow-hidden rounded-xl border-2 transition ${
                 selectedImage === img
                   ? "border-red-700"
                   : "border-slate-200 hover:border-red-300"
@@ -52,7 +52,7 @@ export default function ProductGallery({
   alt={name}
   width={90}
   height={90}
-  className="h-[90px] w-[90px] object-cover"
+  className="h-16 w-16 object-cover sm:h-[90px] sm:w-[90px]"
 />
             </button>
           ))}

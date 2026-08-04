@@ -31,7 +31,7 @@ export default function Navbar() {
               width={220}
               height={48}
               priority
-              className="h-auto w-[180px] lg:w-[250px]"
+              className="h-auto w-[160px] sm:w-[180px] lg:w-[250px]"
             />
           </Link>
 
@@ -61,10 +61,13 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
 
           <button
+            type="button"
+            aria-label="Open menu"
+            aria-expanded={open}
             onClick={() => setOpen(true)}
-            className="rounded-lg p-2 lg:hidden"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 lg:hidden"
           >
-            <Menu size={30} />
+            <Menu size={28} />
           </button>
         </div>
       </header>
@@ -75,6 +78,7 @@ export default function Navbar() {
         className={`fixed inset-0 z-[100] bg-white transition-transform duration-300 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
+        aria-hidden={!open}
       >
         <div className="flex h-20 items-center justify-between border-b px-5">
           <Image
@@ -82,20 +86,26 @@ export default function Navbar() {
             alt="Anjali Equipments"
             width={180}
             height={40}
+            className="h-auto w-[160px]"
           />
 
-          <button onClick={() => setOpen(false)}>
-            <X size={30} />
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2"
+          >
+            <X size={28} />
           </button>
         </div>
 
-        <nav className="flex flex-col px-6 py-8">
+        <nav className="flex flex-col overflow-y-auto px-6 py-6">
           {links.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="border-b border-slate-100 py-5 text-xl font-medium"
+              className="border-b border-slate-100 py-4 text-lg font-medium sm:py-5 sm:text-xl"
             >
               {link.name}
             </Link>
