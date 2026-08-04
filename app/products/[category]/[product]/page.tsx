@@ -11,7 +11,8 @@ import ProductGallery from "@/components/products/ProductGallery";
 import ProductFeatures from "@/components/products/ProductFeatures";
 import ProductSpecifications from "@/components/products/ProductSpecifications";
 import RelatedProducts from "@/components/products/RelatedProducts";
-import ProductCTA from "@/components/products/ProductCTA";
+import PageHero from "@/components/layout/PageHero";
+import CTA from "@/components/sections/CTA";
 
 type Props = {
   params: Promise<{
@@ -41,12 +42,19 @@ export default async function ProductPage({ params }: Props) {
   );
 
   return (
+<section>
+{/* Hero */}  
+       
+     <PageHero
+     eyebrow={category.name}
+     title={product.name}
+     description={product.description}
+     background="/hero/hero.jpg"
+   />
+
+
     <main className="mx-auto max-w-7xl px-6 py-20">
-      <ProductBreadcrumb
-        categoryName={category.name}
-        categorySlug={categorySlug}
-        productName={product.name}
-      />
+   
 
 <div className="grid items-start gap-16 xl:grid-cols-[minmax(0,650px)_1fr]">
 <div className="w-full max-w-[650px]">
@@ -57,19 +65,7 @@ export default async function ProductPage({ params }: Props) {
   />
 </div>
 
-        <div>
-          <p className="mb-4 inline-flex rounded-full bg-red-50 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-red-700">
-            {category.name}
-          </p>
-
-          <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
-            {product.name}
-          </h1>
-
-          <p className="mt-8 text-lg leading-8 text-slate-600">
-            {product.description}
-          </p>
-
+        <div>            
           <ProductFeatures
             features={product.features}
           />
@@ -84,7 +80,10 @@ export default async function ProductPage({ params }: Props) {
         products={relatedProducts}
       />
 
-      <ProductCTA />
-    </main>
+
+    
+      </main>
+      <CTA />
+    </section>
   );
 }

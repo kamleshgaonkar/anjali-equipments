@@ -1,5 +1,7 @@
 import Link from "next/link";
+import PageHero from "@/components/layout/PageHero";
 import CTA from "@/components/sections/CTA";
+
 export const metadata = {
   title: "Our Clients | Anjali Equipments",
   description:
@@ -99,23 +101,12 @@ export default function ClientsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-slate-50 py-24">
-        <div className="container-custom text-center">
-          <p className="eyebrow mb-3 text-red-700">
-            Our Clients
-          </p>
-
-          <h1 className="hero-title text-slate-900">
-            Trusted By Leading Brands Across India
-          </h1>
-
-          <p className="body-lg mx-auto mt-6 max-w-3xl text-slate-600">
-            From luxury hotels and restaurants to hospitals and industrial
-            kitchens, Anjali Equipments has delivered reliable commercial
-            kitchen solutions to businesses across multiple industries.
-          </p>
-        </div>
-      </section>
+       
+      <PageHero
+  eyebrow="Our Clients"
+  title="Trusted By Leading Brands Across India"
+  background="/hero/hero.jpg"
+/>
 
       {/* Client Categories */}
       <section className="py-20">

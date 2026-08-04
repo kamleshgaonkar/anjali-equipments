@@ -39,11 +39,7 @@ export default function Manufacturing() {
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-slate-600">
-            At Anjali Equipments, every product is manufactured in our modern
-            facility using advanced CNC machinery, premium stainless steel and
-            skilled craftsmanship. Our streamlined production process ensures
-            consistent quality, precision engineering and reliable performance
-            for every commercial kitchen solution we deliver.
+          At Anjali Equipments, every commercial kitchen solution is manufactured in-house using premium SS304 stainless steel. From CNC laser cutting and hydraulic press brake bending to precision TIG welding and final installation, our advanced manufacturing process ensures exceptional quality, durability and long-term performance.
           </p>
         </div>
 
@@ -92,7 +88,7 @@ export default function Manufacturing() {
               </span>
 
               <h3 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-                CNC Fiber Laser Cutting
+              CNC Laser Cutting Machine
               </h3>
 
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
@@ -137,9 +133,9 @@ export default function Manufacturing() {
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="relative h-[280px] overflow-hidden rounded-3xl sm:h-[360px] lg:h-[450px]">
-              <Image
-                src="/images/manufacturing/factory.png"
-                alt="Manufacturing Facility"
+            <Image
+                src="/images/manufacturing/team.png"
+                alt="Fabrication Team"
                 fill
                 className="object-cover"
               />
@@ -147,50 +143,21 @@ export default function Manufacturing() {
 
             <div>
               <span className="text-sm font-semibold uppercase tracking-widest text-red-600">
-                Production Facility
+              Skilled Workforce
               </span>
 
               <h3 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-                Modern Manufacturing Infrastructure
+              Craftsmanship That Builds Confidence
               </h3>
 
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Spread across an 8,000+ sq. ft. manufacturing facility, our
-                production unit is designed to efficiently handle projects of
-                every scale while maintaining strict quality control at every
-                stage of manufacturing.
-              </p>
-            </div>
-          </div>
-
-          {/* Row 4 */}
-
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div className="order-2 lg:order-1">
-              <span className="text-sm font-semibold uppercase tracking-widest text-red-600">
-                Skilled Workforce
-              </span>
-
-              <h3 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-                Craftsmanship That Builds Confidence
-              </h3>
-
-              <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Behind every product is a dedicated team of skilled fabricators
+              Behind every product is a dedicated team of skilled fabricators
                 and technicians who ensure every weld, bend and finish meets the
                 highest standards of quality, durability and performance.
               </p>
             </div>
-
-            <div className="order-1 relative h-[280px] overflow-hidden rounded-3xl sm:h-[360px] lg:order-2 lg:h-[450px]">
-              <Image
-                src="/images/manufacturing/team.png"
-                alt="Fabrication Team"
-                fill
-                className="object-cover"
-              />
-            </div>
           </div>
+ 
 
         </div>
       </div>

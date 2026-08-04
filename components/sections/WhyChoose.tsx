@@ -53,17 +53,11 @@ export default function WhyChooseUs() {
           </p>
 
           <h2 className="mt-5 text-3xl font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-4xl lg:text-6xl lg:leading-[0.95]">
-            Precision Engineering.{" "}
-            Trusted Manufacturing.
+          Built with Precision, Powered by Technology
           </h2>
 
           <p className="mt-6 text-base leading-7 text-slate-600 sm:mt-8 sm:text-lg sm:leading-8">
-            From CNC laser cutting and hydraulic press brake bending
-            to precision TIG welding and final installation,
-            every commercial kitchen solution is manufactured
-            in-house using premium SS304 stainless steel to
-            deliver exceptional quality, durability and
-            long-term performance.
+          At Anjali Equipments, every commercial kitchen solution is manufactured in-house using premium SS304 stainless steel. From CNC laser cutting and hydraulic press brake bending to precision TIG welding and final installation, our advanced manufacturing process ensures exceptional quality, durability and long-term performance.
           </p>
 
         </div>

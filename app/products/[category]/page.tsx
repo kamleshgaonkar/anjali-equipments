@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-
+import PageHero from "@/components/layout/PageHero";
 import { getCategory, getProductsByCategory } from "@/lib/products";
 
 type Props = {
@@ -24,7 +24,17 @@ export default async function ProductCategoryPage({
   const products = getProductsByCategory(categorySlug);
 
   return (
+ 
+    <>
+    <PageHero
+      eyebrow={category.title}
+      title={category.name}
+      description={category.description}
+      background="/hero/hero.jpg"
+    />
+
     <main className="mx-auto max-w-7xl px-6 py-20">
+      
       <div className="max-w-3xl">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
           {category.name}
@@ -79,6 +89,6 @@ export default async function ProductCategoryPage({
           ))}
         </div>
       )}
-    </main>
+    </main></>
   );
 }

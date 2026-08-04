@@ -1,13 +1,21 @@
+import PageHero from "@/components/layout/PageHero";
+
+
+
 export default function ContactPage() {
     return (
-      <main className="mx-auto max-w-7xl px-6 py-16 pb-32 sm:py-20">
-        <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">Contact Us</h1>
-  
+      <section>
+      <PageHero
+  eyebrow="Contact Us"
+  title="Get in Touch"
+  background="/hero/hero.jpg"
+/>
+
+<main className="mx-auto max-w-7xl px-6 py-16 pb-32 sm:py-20">
+        
+      
         <div className="mt-12 grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="mb-6 text-2xl font-bold">
-              Get in Touch
-            </h2>
   
             <div className="space-y-5 text-slate-600">
               <p><strong>Phone:</strong> +91 86570 03003</p>
@@ -35,6 +43,10 @@ export default function ContactPage() {
           </div>
   
           <form className="space-y-5 pr-14 sm:pr-0">
+          
+          <h2 className="mb-6 text-2xl font-bold">
+          Let's build your commercial kitchen together.
+            </h2>
             <input
               className="w-full rounded-lg border p-4"
               placeholder="Name"
@@ -61,6 +73,6 @@ export default function ContactPage() {
             </button>
           </form>
         </div>
-      </main>
+      </main></section>
     );
   }
