@@ -10,8 +10,7 @@ export default function AboutPage() {
       
 <PageHero
   eyebrow="ABOUT US"
-  title="Engineering Commercial Kitchens with Precision"
-  description="Since 2010, Anjali Equipments has been designing, manufacturing and installing premium SS304 commercial kitchen equipment for hotels, restaurants, cafés, hospitals and institutional kitchens across India."
+  title="Engineering Commercial Kitchens"
   background="/hero/hero.jpg"
 />
 

@@ -3,8 +3,8 @@ import Breadcrumb from "./Breadcrumb";
 interface Props {
   eyebrow: string;
   title: string;
-  description: string;
   background: string;
+  description?: string;
 }
 
 export default function PageHero({
@@ -27,7 +27,7 @@ export default function PageHero({
       <div className="absolute inset-0 bg-black/70" />
 
       {/* Content */}
-      <div className="relative container-custom flex min-h-[260px] items-center py-20">
+      <div className="relative container-custom flex min-h-[160px] items-center py-12 lg:py-16">
 
         <div className="max-w-3xl">
 
@@ -35,12 +35,18 @@ export default function PageHero({
             {eyebrow}
           </span>
 
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-6xl">
+          <h1 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight text-white">
             {title}
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
-            {description}
+            
+{description && (
+  <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">
+    {description}
+  </p>
+)}
+
           </p>
 
           <Breadcrumb />
