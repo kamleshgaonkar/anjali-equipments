@@ -11,7 +11,7 @@ export const storageHandlingProducts: Product[] = [
     slug: "storage-rack",
 
     category: "storage-handling",
-
+    group: "Storage Handling Equipment", 
     image: "/products/storage-handling/storage-rack/main.webp",
 
     gallery: [

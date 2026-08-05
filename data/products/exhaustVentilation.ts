@@ -11,7 +11,7 @@ export const exhaustVentilationProducts: Product[] = [
     slug: "kitchen-exhaust-hood",
 
     category: "exhaust-ventilation",
-
+    group: "Exhaust Ventilation", 
     image: "/products/exhaust-ventilation/kitchen-exhaust-hood/main.webp",
 
     gallery: [

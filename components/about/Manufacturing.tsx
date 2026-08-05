@@ -8,18 +8,18 @@ const stats = [
   },
   {
     number: "2",
-    title: "Advanced CNC",
-    description: "Precision Machines",
+    title: "CNC Machines",
+    description: "Precision Manufacturing",
   },
   {
-    number: "100%",
-    title: "Premium SS",
-    description: "Fabrication Excellence",
+    number: "SS304",
+    title: "Food-Grade Steel",
+    description: "Premium Stainless Steel",
   },
   {
-    number: "Quality",
-    title: "Driven",
-    description: "Manufacturing Process",
+    number: "Precision TIG",
+    title: "Welding & Finishing",
+    description: " ",
   },
 ];
 

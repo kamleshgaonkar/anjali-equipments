@@ -11,7 +11,7 @@ export const foodPreparationProducts: Product[] = [
     slug: "work-table",
 
     category: "food-preparation",
-
+    group: "Food Preparation Equipment", 
     image: "/products/food-preparation/work-table/main.webp",
 
     gallery: [

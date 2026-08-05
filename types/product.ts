@@ -13,6 +13,7 @@ export interface ProductSpecification {
     slug: string;
   
     category: string;
+    group: string;
   
     image: string;
   

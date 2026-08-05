@@ -43,27 +43,14 @@ export default function About() {
           <div>
 
             <p className="text-lg leading-9 text-slate-600">
-              Since 2010, Anjali Equipments has been delivering premium
-              commercial kitchen equipment and turnkey kitchen solutions
-              across India. From concept planning and custom manufacturing
-              to installation and after-sales support, we help hotels,
-              restaurants, cafés, hospitals and institutional kitchens
-              build efficient, hygienic and high-performance workspaces.
-
-              <br />
-              <br />
-
-              Every product is manufactured using premium SS304 food-grade
-              stainless steel, ensuring durability, precision engineering
-              and long-lasting performance for demanding commercial
-              environments.
+            Since 2010, Anjali Equipments has been manufacturing premium SS304 commercial kitchen equipment for hotels, restaurants, hospitals, institutions and food service businesses across India. From precision manufacturing and custom fabrication to installation and dependable after-sales support, we deliver complete commercial kitchen solutions built for quality, durability and long-term performance.
             </p>
 
             <Link
               href="/about"
               className="mt-10 inline-flex items-center rounded-lg bg-red-700 px-8 py-4 font-semibold text-white transition hover:bg-red-800"
             >
-              Learn More
+              About Anjali Equipments
             </Link>
 
           </div>

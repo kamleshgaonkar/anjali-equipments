@@ -11,7 +11,7 @@ export const barProducts: Product[] = [
     slug: "bar-counter",
 
     category: "bar",
-
+    group: "Bar Equipment",
     image: "/products/bar/bar-counter/main.webp",
 
     gallery: [

@@ -1,37 +1,71 @@
-import CategoryCard from "@/components/products/CategoryCard";
-import { getAllCategories } from "@/lib/products";
+"use client";
+
+import {
+  getAllCategories,
+  getProductsByCategory,
+} from "@/lib/products";
+
+
+import { useState } from "react";
+
+import ProductDrawer from "@/components/products/ProductDrawer";
+import { Product } from "@/types/product";
+
 import CTA from "@/components/sections/CTA";
 import PageHero from "@/components/layout/PageHero";
+import CategorySection from "@/components/products/CategorySection";
+
 export default function ProductsPage() {
   const categories = getAllCategories();
-
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  
+  const openProduct = (product: Product) => {
+    setSelectedProduct(product);
+  
+    if (!drawerOpen) {
+      setDrawerOpen(true);
+    }
+  };
+  
+  const closeDrawer = () => {
+    setDrawerOpen(false);
+  };
   return (
-    <section>
- {/* Hero */}
-       
- <PageHero
-  eyebrow="Products"
-  title="Commercial Kitchen Equipment"
-  description="Explore our complete range of commercial kitchen equipment
-          designed for hotels, restaurants, cloud kitchens, hospitals
-          and institutions."
-  background="/hero/hero.jpg"
-/>
-    
-    <main className="mx-auto max-w-7xl px-6 py-20">
-     
+    <>
+      <PageHero
+        eyebrow="Products"
+        title="View All Product Categories"
+        background="/hero/hero.jpg"
+      />
 
-      <section className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {categories.map((category) => (
-          <CategoryCard
-            key={category.slug}
-            {...category}
-          />
-        ))}
-      </section>
-      
-    </main>
-    <CTA />
-    </section>
+      <main className="bg-white">
+
+      {categories.map((category, index) => (
+  <section
+    key={category.slug}
+    className={`${
+      index % 2 === 0
+        ? "bg-white"
+        : "border-y border-slate-200/60 bg-slate-50"
+    }`}
+  >
+    <CategorySection
+      category={category}
+      products={getProductsByCategory(category.slug)}
+      onProductClick={openProduct}
+    />
+  </section>
+))}
+
+      </main>
+      <ProductDrawer
+  product={selectedProduct}
+  open={drawerOpen}
+  onClose={closeDrawer}
+/>
+      <CTA />
+
+    </>
   );
 }

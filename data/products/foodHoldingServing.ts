@@ -11,7 +11,7 @@ export const foodHoldingServingProducts: Product[] = [
     slug: "hot-bain-marie-counter",
 
     category: "food-holding-serving",
-
+    group: "Food Holding & Serving Equipment", 
     image: "/products/food-holding-serving/hot-bain-marie-counter/main.webp",
 
     gallery: [

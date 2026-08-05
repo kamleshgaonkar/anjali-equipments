@@ -13,6 +13,10 @@ export function getAllProducts() {
   return products;
 }
 
+export function getProductById(id: string) {
+  return products.find((product) => product.id === id);
+}
+
 export function getFeaturedProducts() {
   return products.filter((product) => product.featured);
 }
@@ -43,6 +47,25 @@ export function getRelatedProducts(
       product.category === categorySlug &&
       product.id !== currentProductId
   );
+}
+export function getGroupedProductsByCategory(categorySlug: string) {
+  const categoryProducts = products.filter(
+    (product) => product.category === categorySlug
+  );
+
+  return categoryProducts.reduce<
+    Record<string, typeof categoryProducts>
+  >((groups, product) => {
+    const group = product.group ?? "Products";
+
+    if (!groups[group]) {
+      groups[group] = [];
+    }
+    
+    groups[group].push(product);
+
+    return groups;
+  }, {});
 }
 
 export function searchProducts(search: string) {

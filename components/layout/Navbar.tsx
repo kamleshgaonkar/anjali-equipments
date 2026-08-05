@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   const [open, setOpen] = useState(false);
-  
+  const [scrolled, setScrolled] = useState(false);
+
+  const isHomePage = pathname === "/";
+  const isWhite = !isHomePage || scrolled;
+
   const links = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
@@ -15,37 +22,86 @@ export default function Navbar() {
     { name: "Clients", href: "/clients" },
     /*
     { name: "Projects", href: "/projects" },
-     
     { name: "Blog", href: "/blog" },
-     */
+    */
     { name: "Contact", href: "/contact" },
   ];
 
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
+
+    onScroll();
+
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-6">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color] duration-300 ease-out ${
+          isWhite
+            ? "border-b border-slate-200 bg-white shadow-lg"
+            : "border-b border-white/10 bg-transparent backdrop-blur-sm"
+        }`}
+      >
+        <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6 lg:px-8">
           {/* Logo */}
+          <Link
+            href="/"
+            className="relative flex h-14 w-[220px] items-center"
+          >
+            {/* White Logo */}
+            <Image
+              src="/logo/anjali-equipments-white-logo.svg"
+              alt="Anjali Equipments"
+              width={220}
+              height={48}
+              priority
+              className={`absolute left-0 top-1/2 h-auto w-full -translate-y-1/2 transition-opacity duration-300 ${
+                isWhite
+                  ? "pointer-events-none opacity-0"
+                  : "opacity-100"
+              }`}
+            />
 
-          <Link href="/" className="flex items-center">
+            {/* Dark Logo */}
             <Image
               src="/logo/anjali-equipments-logo.svg"
               alt="Anjali Equipments"
               width={220}
               height={48}
               priority
-              className="h-auto w-[160px] sm:w-[180px] lg:w-[250px]"
+              className={`absolute left-0 top-1/2 h-auto w-full -translate-y-1/2 transition-opacity duration-300 ${
+                isWhite
+                  ? "opacity-100"
+                  : "pointer-events-none opacity-0"
+              }`}
             />
           </Link>
 
           {/* Desktop Menu */}
-
-          <nav className="hidden items-center gap-10 lg:flex">
+          <nav className="hidden items-center gap-12 lg:flex xl:gap-14">
             {links.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="font-medium transition hover:text-red-700"
+                className={`text-[15px] font-medium tracking-wide transition-colors duration-300 hover:text-red-600 ${
+                  isWhite ? "text-slate-900" : "text-white"
+                }`}
               >
                 {link.name}
               </Link>
@@ -53,22 +109,22 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-
           <Link
             href="/contact"
-            className="hidden rounded-xl bg-red-700 px-6 py-3 font-semibold text-white transition hover:bg-red-800 lg:block"
+            className="hidden rounded-xl bg-red-700 px-7 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-800 lg:block"
           >
             Get Quote
           </Link>
 
           {/* Mobile Menu Button */}
-
           <button
             type="button"
             aria-label="Open menu"
             aria-expanded={open}
             onClick={() => setOpen(true)}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 lg:hidden"
+            className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 transition-colors duration-300 lg:hidden ${
+              isWhite ? "text-slate-900" : "text-white"
+            }`}
           >
             <Menu size={28} />
           </button>
@@ -76,7 +132,6 @@ export default function Navbar() {
       </header>
 
       {/* Mobile Menu */}
-
       <div
         className={`fixed inset-0 z-[100] bg-white transition-transform duration-300 ${
           open ? "translate-x-0" : "translate-x-full"
@@ -96,7 +151,7 @@ export default function Navbar() {
             type="button"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 text-slate-900"
           >
             <X size={28} />
           </button>
@@ -108,7 +163,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="border-b border-slate-100 py-4 text-lg font-medium sm:py-5 sm:text-xl"
+              className="border-b border-slate-100 py-4 text-lg font-medium text-slate-900 sm:py-5 sm:text-xl"
             >
               {link.name}
             </Link>

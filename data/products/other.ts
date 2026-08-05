@@ -11,7 +11,7 @@ export const otherProducts: Product[] = [
     slug: "pickup-counter",
 
     category: "other",
-
+    group: "Other Equipment", 
     image: "/products/other/pickup-counter/main.webp",
 
     gallery: [

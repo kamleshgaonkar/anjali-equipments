@@ -6,6 +6,13 @@ import {
   MapPin,
 } from "lucide-react";
 
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+} from "react-icons/fa6";
+
 const companyLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
@@ -26,7 +33,7 @@ const productLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 text-white">
+    <footer className="bg-[#FFFFFF] text-gray-600">
 
       <div className="mx-auto max-w-7xl px-6 py-20">
 
@@ -36,22 +43,81 @@ export default function Footer() {
 
           <div className="lg:col-span-5">
 
-            <Image
-              src="/logo/anjali-equipments-white-logo.svg"
-              alt="Anjali Equipments"
-              width={180}
-              height={60}
-              className="h-auto"
-            />
+<Image
+  src="/logo/anjali-equipments-logo.svg"
+  alt="Anjali Equipments"
+  width={180}
+  height={60}
+  className="h-auto"
+/>
 
-            <p className="mt-6 max-w-md leading-8 text-slate-400">
-              Anjali Equipments manufactures premium stainless steel
-              commercial kitchen equipment for hotels, restaurants,
-              hospitals, cloud kitchens and institutional kitchens
-              across India.
-            </p>
+<p className="mt-6 max-w-md leading-8">
+  Anjali Equipments manufactures premium stainless steel commercial kitchen
+  equipment for hotels, restaurants, hospitals, cloud kitchens and
+  institutional kitchens across India.
+</p>
 
-          </div>
+{/* GSTIN */}
+
+<div className="mt-8">
+
+  <p className="text-xs uppercase tracking-[0.25em]">
+    GSTIN
+  </p>
+
+  <p className="mt-2 font-medium">
+  27CZNPS0856A1Z7
+  </p>
+
+</div>
+
+{/* Social Media */}
+
+<div className="mt-8">
+
+  <p className="mb-4 text-xs uppercase tracking-[0.25em]">
+    Follow Us
+  </p>
+
+  <div className="flex items-center gap-5">
+
+  <Link
+    href="https://facebook.com"
+    target="_blank"
+    className="text-gray-400 transition-all duration-300 hover:text-[#1877F2] hover:scale-110"
+  >
+    <FaFacebookF size={18} />
+  </Link>
+
+  <Link
+    href="https://instagram.com"
+    target="_blank"
+    className="text-gray-400 transition-all duration-300 hover:text-[#E4405F] hover:scale-110"
+  >
+    <FaInstagram size={18} />
+  </Link>
+
+  <Link
+    href="https://linkedin.com"
+    target="_blank"
+    className="text-gray-400 transition-all duration-300 hover:text-[#0A66C2] hover:scale-110"
+  >
+    <FaLinkedinIn size={18} />
+  </Link>
+
+  <Link
+    href="https://youtube.com"
+    target="_blank"
+    className="text-gray-400 transition-all duration-300 hover:text-[#FF0000] hover:scale-110"
+  >
+    <FaYoutube size={18} />
+  </Link>
+
+</div>
+
+</div>
+
+</div>
 
           {/* Company Links */}
 
@@ -69,7 +135,7 @@ export default function Footer() {
 
                   <Link
                     href={item.href}
-                    className="text-slate-400 transition hover:text-red-500"
+                    className="transition hover:text-red-500"
                   >
                     {item.name}
                   </Link>
@@ -98,7 +164,7 @@ export default function Footer() {
 
                   <Link
                     href="/products"
-                    className="text-slate-400 transition hover:text-red-500"
+                    className="transition hover:text-red-500"
                   >
                     {item}
                   </Link>
@@ -112,126 +178,88 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
+{/* Contact */}
 
-          <div className="lg:col-span-3">
+<div className="lg:col-span-3">
 
-            <h3 className="mb-6 text-lg font-semibold">
-              Contact
-            </h3>
+  <h3 className="mb-6 text-lg font-semibold">
+    Contact
+  </h3>
 
-            <div className="space-y-5">
+  <div className="space-y-5">
 
-              <div className="flex items-start gap-3">
+    <div className="flex items-start gap-3">
 
-                <Phone
-                  size={18}
-                  className="mt-1 text-red-500"
-                />
+      <Phone
+        size={18}
+        className="mt-1 text-red-500"
+      />
 
-                <span className="text-slate-400">
-                +91 86570 03003
-                </span>
+      <span>
+        +91 86570 03003
+      </span>
 
-              </div>
+    </div>
 
-              <div className="flex items-start gap-3">
+    <div className="flex items-start gap-3">
 
-                <Mail
-                  size={18}
-                  className="mt-1 text-red-500"
-                />
+      <Mail
+        size={18}
+        className="mt-1 text-red-500"
+      />
 
-                <span className="text-slate-400 break-all">
-                  info@anjaliequipments.com
-                </span>
+      <span className="break-all">
+        info@anjaliequipments.com
+      </span>
 
-              </div>
+    </div>
 
-              <div className="flex items-start gap-3">
+    <div className="flex items-start gap-3">
 
-                <MapPin
-                  size={18}
-                  className="mt-1 text-red-500"
-                />
+      <MapPin
+        size={18}
+        className="mt-1 text-red-500"
+      />
 
-                <span className="text-slate-400">
-                  Mumbai, Maharashtra, India
-                </span>
+      <span>
+        Plot B, A Wing 201,<br />
+        Govardhan Complex, Caves Road,<br />
+        Jogeshwari East,<br />
+        Mumbai 400060,<br />
+        Maharashtra, India.
+      </span>
 
-              </div>
+    </div>
 
-            </div>
+  </div>
 
-            {/* CTA 
+</div>
 
-            <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900 p-6">
+</div>
 
-              <h4 className="text-xl font-semibold">
-                Need a Commercial Kitchen?
-              </h4>
+</div>
 
-              <p className="mt-3 text-sm leading-7 text-slate-400">
-                Talk to our experts and get the right kitchen
-                equipment solution for your business.
-              </p>
+{/* Bottom */}
 
-              <Link
-                href="/contact"
-                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-red-700 px-6 py-3 font-semibold transition hover:bg-red-800"
-              >
-                Request Quote
+<div className="border-t border-gray-200 pb-28 sm:pb-6">
 
-                <ArrowRight size={18} />
+  <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm md:flex-row">
 
-              </Link>
+    <p>
+      © 2026 Anjali Equipments. All Rights Reserved.
+    </p>
 
-            </div>*/}
+    <p>
+      Designed & Developed by{" "}
+      <span className="font-semibold text-gray-600">
+        Creashna
+      </span>
+    </p>
 
-          </div>
+  </div>
 
-        </div>
+</div>
 
-      </div>
-
-      {/* Bottom */}
-
-      <div className="border-t border-slate-800 pb-28 sm:pb-6">
-
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm text-slate-500 md:flex-row">
-
-          <p>
-            © 2026 Anjali Equipments. All Rights Reserved.
-          </p>
-
-          <div className="flex gap-6">
-
-            <Link
-              href="/privacy-policy"
-              className="hover:text-white"
-            >
-              Privacy Policy
-            </Link>
-
-            <Link
-              href="/terms-and-conditions"
-              className="hover:text-white"
-            >
-              Terms & Conditions
-            </Link>
-
-          </div>
-
-          <p>
-            Designed & Developed by{" "}
-            <span className="font-semibold text-white">
-              Creashna
-            </span>
-          </p>
-
-        </div>
-
-      </div>
-
-    </footer>
+</footer>
   );
 }

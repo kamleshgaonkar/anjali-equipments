@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
  
@@ -71,28 +72,52 @@ const categories = [
     slug: "other",
   },
 ];
-
 export default function Categories() {
+  const autoScroll = useRef(
+    AutoScroll({
+      playOnInit: true,
+      speed: 0.8,
+      stopOnInteraction: false,
+      stopOnMouseEnter: true,
+    })
+  );
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
       align: "start",
-      skipSnaps: false,
+      dragFree: true,
+      skipSnaps: true,
     },
-    [
-      Autoplay({
-        delay: 4000,
-        stopOnInteraction: false,
-        stopOnMouseEnter: false,
-      }),
-    ]
+    [autoScroll.current]
   );
 
-  const scrollPrev = () => emblaApi?.scrollPrev();
-  const scrollNext = () => emblaApi?.scrollNext();
+  const scrollPrev = () => {
+    autoScroll.current.stop();
+    emblaApi?.scrollPrev();
+
+    setTimeout(() => {
+      autoScroll.current.play();
+    }, 600);
+  };
+
+  const scrollNext = () => {
+    autoScroll.current.stop();
+    emblaApi?.scrollNext();
+
+    setTimeout(() => {
+      autoScroll.current.play();
+    }, 600);
+  };
 
   return (
+     
+
+    
     <section className="relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#202020] to-[#151515]">
+<div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-[#151515] to-transparent" />
+
+<div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-[#151515] to-transparent" />
    <div className="py-24">
 
         <div className="w-full">
@@ -145,9 +170,10 @@ export default function Categories() {
   {/* Embla */}
 
   <div
-    className="overflow-hidden"
-    ref={emblaRef}
-  >
+  ref={emblaRef}
+  className="overflow-hidden"
+
+>
     <div className="flex px-4 lg:px-6">
 
       {categories.map((category) => (
@@ -164,35 +190,36 @@ export default function Categories() {
 
             <article className="overflow-hidden rounded-xl">
 
-              <div className="relative h-[320px] overflow-hidden sm:h-[400px] lg:h-[480px]">
+              <div className="relative h-[320px] overflow-hidden sm:h-[400px] lg:h-[450px]">
 
                 <Image
                   src={category.image}
                   alt={category.title}
                   fill
                   quality={100}
+                  priority={false}
                   unoptimized
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-700 group-hover:scale-125"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-                <span className="absolute bottom-6 left-6 rounded-full bg-white px-5 py-2 text-sm font-semibold text-black">
+                <span className="absolute bottom-6 left-6 rounded-full bg-transparent border border-white/20 px-5 py-2 text-sm font-semibold text-white">
                   {category.count}
                 </span>
 
               </div>
 
-              <div className="pt-5">
-
-                <h3 className="text-[23px] font-light tracking-[0.06em] leading-[1.3] text-white">
-                  {category.title}
-                </h3>
-
-              </div>
+             
 
             </article>
+            <div className="pt-5">
 
+<h3 className="text-[23px] font-light tracking-[0.06em] leading-[1.3] text-white">
+  {category.title}
+</h3>
+
+</div>
           </Link>
 
         </div>

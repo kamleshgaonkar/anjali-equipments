@@ -11,7 +11,7 @@ export const bakeryProducts: Product[] = [
     slug: "bakery-work-table",
 
     category: "bakery",
-
+    group: "Bakery Equipment",
     image: "/products/bakery/bakery-work-table/main.webp",
 
     gallery: [

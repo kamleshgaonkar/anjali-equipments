@@ -1,9 +1,15 @@
+export interface CategoryGroup {
+  title: string;
+  productIds: string[];
+}
+
 export interface Category {
   id: number;
   name: string;
   slug: string;
   image: string;
   description: string;
+  groups?: CategoryGroup[];
 }
 
 export const categories: Category[] = [
@@ -14,7 +20,9 @@ export const categories: Category[] = [
     image: "/categories/cooking.jpg",
     description:
       "Commercial cooking ranges, ovens, fryers, griddles and cooking equipment.",
+    
   },
+
   {
     id: 2,
     name: "Refrigeration",
@@ -23,6 +31,7 @@ export const categories: Category[] = [
     description:
       "Commercial refrigerators, freezers and cold storage equipment.",
   },
+
   {
     id: 3,
     name: "Food Preparation",
@@ -38,6 +47,7 @@ export const categories: Category[] = [
     image: "/categories/storage-handling.png",
     description:
       "Storage racks, shelving, cupboards, trolleys and handling equipment.",
+      
   },
   {
     id: 5,
@@ -46,6 +56,7 @@ export const categories: Category[] = [
     image: "/categories/washing.jpg",
     description:
       "Wash units, sinks, dishwashing and cleaning equipment.",
+      
   },
   {
     id: 6,
@@ -54,6 +65,7 @@ export const categories: Category[] = [
     image: "/categories/exhaust-ventilation.jpg",
     description:
       "Kitchen hoods, ducting, fresh air and exhaust systems.",
+     
   },
   {
     id: 7,
@@ -62,6 +74,7 @@ export const categories: Category[] = [
     image: "/categories/food-holding-serving.png",
     description:
       "Bain maries, pickup counters, service counters and display units.",
+      
   },
   {
     id: 8,
@@ -70,6 +83,7 @@ export const categories: Category[] = [
     image: "/categories/bar.jpg",
     description:
       "Bar counters, bottle coolers, cocktail stations and bar equipment.",
+     
   },
   {
     id: 9,
@@ -78,6 +92,7 @@ export const categories: Category[] = [
     image: "/categories/bakery.jpg",
     description:
       "Bakery ovens, proofers and bakery preparation equipment.",
+      
   },
   {
     id: 10,
@@ -86,5 +101,6 @@ export const categories: Category[] = [
     image: "/categories/others.avif",
     description:
       "Specialized and custom commercial kitchen equipment.",
+      
   },
 ];

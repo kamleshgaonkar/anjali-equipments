@@ -11,7 +11,7 @@ export const washingProducts: Product[] = [
     slug: "single-sink-unit",
 
     category: "washing",
-
+    group: "Washing Equipment", 
     image: "/products/washing/single-sink-unit/main.webp",
 
     gallery: [

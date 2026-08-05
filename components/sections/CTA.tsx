@@ -1,102 +1,119 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Factory,
+  Truck,
+  Wrench,
+} from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="bg-slate-50 py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      className="relative overflow-hidden bg-cover bg-center py-24"
+      style={{
+        backgroundImage: "url('/images/cta-bg.jpg')",
+      }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#171717]/95 via-[#000000]/75 to-[#171717]/90" />
+      <div className="relative mx-auto max-w-7xl px-6">
 
         {/* Heading */}
 
         <div className="mx-auto max-w-4xl text-center">
 
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-red-600 sm:text-sm sm:tracking-[0.25em]">
-            COMPLETE COMMERCIAL KITCHEN SOLUTIONS
-          </span>
-
-          <h2 className="mt-5 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
-          Let’s Cook Up Something Great!
+       
+          <h2 className="mt-6 text-4xl font-bold leading-tight text-white lg:text-6xl">
+          Engineering Commercial Kitchen Excellence.
           </h2>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-            Looking for more than just one product? Our experts help you design,
-            manufacture and install complete commercial kitchen solutions for
-            hotels, restaurants, cloud kitchens, hospitals, educational
-            institutions and industrial canteens.
-          </p>
  
-
         </div>
 
         {/* Buttons */}
 
-        <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+        <div className="mt-12 flex flex-col justify-center gap-5 sm:flex-row">
 
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-700 px-8 py-4 font-semibold text-white transition hover:bg-red-800"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-8 py-4 font-semibold text-white transition duration-300 hover:bg-red-700"
           >
             Request Quote
             <ArrowRight size={18} />
           </Link>
 
           <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-xl border-2 border-red-700 px-8 py-4 font-semibold text-red-700 transition hover:bg-red-700 hover:text-white"
+            href="/projects"
+            className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-8 py-4 font-semibold text-white backdrop-blur-md transition duration-300 hover:bg-white hover:text-slate-900"
           >
-            Discuss Your Project
+            View Our Projects
           </Link>
 
         </div>
 
-        {/* Trust Badges
+        
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+    {/* Features */}
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center transition hover:-translate-y-1 hover:shadow-lg">
+<div className="mt-20 grid gap-10 md:grid-cols-3">
 
-            <div className="text-5xl">🏭</div>
+{/* Feature 1 */}
 
-            <h3 className="mt-4 text-xl font-semibold text-slate-900">
-              Custom Manufacturing
-            </h3>
+<div>
+  <Factory
+    size={30}
+    strokeWidth={1.6}
+    className="text-red-500"
+  />
 
-            <p className="mt-2 text-slate-600 leading-7">
-              Equipment built to your exact dimensions and kitchen layout.
-            </p>
+  <h3 className="mt-5 text-2xl font-semibold text-white">
+    Custom Manufacturing
+  </h3>
 
-          </div>
+  <p className="mt-3 max-w-sm leading-5 text-white/70">
+    Equipment manufactured to your exact kitchen layout using premium
+    SS304 stainless steel.
+  </p>
+</div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center transition hover:-translate-y-1 hover:shadow-lg">
+{/* Feature 2 */}
 
-            <div className="text-5xl">🚚</div>
+<div>
+  <Truck
+    size={30}
+    strokeWidth={1.6}
+    className="text-red-500"
+  />
 
-            <h3 className="mt-4 text-xl font-semibold text-slate-900">
-              PAN India Delivery
-            </h3>
+  <h3 className="mt-5 text-2xl font-semibold text-white">
+    PAN India Delivery
+  </h3>
 
-            <p className="mt-2 text-slate-600 leading-7">
-              Safe and reliable delivery for commercial kitchen projects.
-            </p>
+  <p className="mt-3 max-w-sm leading-5 text-white/70">
+    Reliable transportation, professional installation and timely
+    project execution across India.
+  </p>
+</div>
 
-          </div>
+{/* Feature 3 */}
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center transition hover:-translate-y-1 hover:shadow-lg">
+<div>
+  <Wrench
+    size={30}
+    strokeWidth={1.6}
+    className="text-red-500"
+  />
 
-            <div className="text-5xl">🛠️</div>
+<h3 className="mt-5 text-2xl font-semibold text-white">
+Installation & Support
+  </h3>
 
-            <h3 className="mt-4 text-xl font-semibold text-slate-900">
-              Installation Support
-            </h3>
+  <p className="mt-3 max-w-sm leading-5 text-white/70">
+    Expert installation, commissioning and dependable after-sales
+    support for long-term performance.
+  </p>
+</div>
 
-            <p className="mt-2 text-slate-600 leading-7">
-              Professional installation and after-sales service support.
-            </p>
-
-          </div>
-
-        </div> */}
-
+</div>
       </div>
     </section>
   );

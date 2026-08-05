@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react";
 
 const labels: Record<string, string> = {
     about: "About Us",
-    products: "Products",
+    products: "Products Categories",
     contact: "Contact",
     projects: "Projects",
   
@@ -37,7 +37,7 @@ export default function Breadcrumb() {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="mt-8"
+      className="mt-3"
     >
       <ol className="flex flex-wrap items-center gap-2 text-sm">
 

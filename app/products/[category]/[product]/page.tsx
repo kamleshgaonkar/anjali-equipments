@@ -47,7 +47,6 @@ export default async function ProductPage({ params }: Props) {
      <PageHero
      eyebrow={category.name}
      title={product.name}
-     description={product.description}
      background="/hero/hero.jpg"
    />
 

@@ -31,7 +31,7 @@ export default function OurStory() {
             </span>
 
             <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-slate-900 lg:text-5xl">
-            Manufacturing Excellence Since 2010
+            Engineering Commercial Kitchen Solutions Since 2010
             </h2>
 
             <p className="mt-8 text-lg leading-8 text-slate-600">

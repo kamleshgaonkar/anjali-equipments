@@ -29,7 +29,6 @@ export default async function ProductCategoryPage({
    <PageHero
   eyebrow="PRODUCT CATEGORY"
   title={category.name}
-  description={category.description}
   background="/hero/hero.jpg"
 />
 

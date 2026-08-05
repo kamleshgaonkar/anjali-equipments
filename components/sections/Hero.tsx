@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[calc(100svh-80px)] overflow-hidden lg:h-[calc(85vh-80px)] lg:min-h-0">
+    <section className="relative min-h-svh overflow-hidden lg:h-[100vh] lg:min-h-0">
 
       {/* Background Video */}
       <video
@@ -25,7 +25,7 @@ export default function Hero() {
 
         <div className="container-custom h-full">
 
-          <div className="flex min-h-[calc(100svh-80px)] items-end pb-36 pt-10 sm:pb-28 lg:min-h-0 lg:h-full lg:items-center lg:pb-0 lg:pt-0">
+          <div className="flex min-h-svh items-end pb-36 pt-28 sm:pb-28 lg:min-h-0 lg:h-full lg:items-center lg:pb-0 lg:pt-20">
 
             {/* Left Content */}
             <div className="w-full max-w-[680px] pr-16 sm:pr-0">
