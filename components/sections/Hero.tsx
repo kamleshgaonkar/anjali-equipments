@@ -79,21 +79,25 @@ lg:text-7xl
 
               {/* Buttons */}
 
-              <div className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-10 lg:flex-row lg:items-start lg:gap-4">
-  <div className="w-full max-w-[340px] lg:w-auto lg:max-w-none">
-    <Button className="w-full">
-      Explore Products
-    </Button>
-  </div>
+             {/* Buttons */}
 
-  <div className="w-full max-w-[340px] lg:w-auto lg:max-w-none">
-    <Link
-      href="/projects"
-      className="flex w-full items-center justify-center rounded-lg border border-white/30 px-8 py-4 font-medium text-white transition-all duration-300 hover:bg-white hover:text-slate-900"
-    >
-      View Projects
-    </Link>
-  </div>
+<div className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-10 lg:flex-row lg:items-start lg:gap-4">
+
+<div className="w-full max-w-[340px] lg:w-auto lg:max-w-none">
+  <Button className="w-full lg:w-auto">
+    Explore Products
+  </Button>
+</div>
+
+<div className="w-full max-w-[340px] lg:w-auto lg:max-w-none">
+  <Link
+    href="/projects"
+    className="flex w-full items-center justify-center rounded-xl border border-white/30 px-7 py-4 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-slate-900 lg:w-auto"
+  >
+    View Projects
+  </Link>
+</div>
+
 </div>
 
             </div>
