@@ -25,14 +25,14 @@ export default function Hero() {
 
         <div className="container-custom h-full">
 
-          <div className="flex min-h-svh items-end pb-36 pt-28 sm:pb-28 lg:min-h-0 lg:h-full lg:items-center lg:pb-0 lg:pt-20">
+        <div className="flex min-h-svh items-center justify-center pt-24 pb-20 lg:h-full lg:min-h-0 lg:items-center lg:justify-start lg:pt-20 lg:pb-0">
 
             {/* Left Content */}
-            <div className="w-full max-w-[680px] pr-16 sm:pr-0">
+            <div className="w-full max-w-[680px] text-center lg:text-left">
 
               {/* Eyebrow */}
 
-              <div className="mb-6 flex items-center gap-4 sm:mb-8">
+              <div className="mb-6 flex items-center justify-center gap-4 sm:mb-8 lg:justify-start">
 
                 <span className="h-px w-10 bg-red-600" />
 
@@ -44,7 +44,19 @@ export default function Hero() {
 
               {/* Heading */}
 
-              <h1 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl sm:leading-[0.95] lg:text-7xl">
+              <h1 className="
+mx-auto
+max-w-3xl
+text-5xl
+font-semibold
+leading-[0.98]
+tracking-tight
+text-white
+sm:text-6xl
+lg:mx-0
+lg:text-left
+lg:text-7xl
+">
 
                 Engineering
                 <br />
@@ -56,7 +68,7 @@ export default function Hero() {
 
               {/* Body */}
 
-              <p className="mt-6 max-w-xl text-base leading-7 text-white/80 sm:mt-7 sm:leading-8 lg:text-lg">
+              <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/80 sm:mt-7 sm:leading-8 lg:mx-0 lg:text-left lg:text-lg">
 
                 Designing, manufacturing and installing premium
                 SS304 commercial kitchen equipment trusted by
@@ -67,20 +79,22 @@ export default function Hero() {
 
               {/* Buttons */}
 
-              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
+              <div className="mt-8 flex w-full flex-col items-center gap-3 sm:mt-10 lg:flex-row lg:items-start lg:gap-4">
+  <div className="w-full max-w-[340px] lg:w-auto lg:max-w-none">
+    <Button className="w-full">
+      Explore Products
+    </Button>
+  </div>
 
-                <Button>
-                  Explore Products
-                </Button>
-
-                <Link
-                  href="/projects"
-                  className="inline-flex items-center justify-center rounded-lg border border-white/30 px-8 py-4 font-medium text-white transition-all duration-300 hover:bg-white hover:text-slate-900"
-                >
-                  View Projects
-                </Link>
-
-              </div>
+  <div className="w-full max-w-[340px] lg:w-auto lg:max-w-none">
+    <Link
+      href="/projects"
+      className="flex w-full items-center justify-center rounded-lg border border-white/30 px-8 py-4 font-medium text-white transition-all duration-300 hover:bg-white hover:text-slate-900"
+    >
+      View Projects
+    </Link>
+  </div>
+</div>
 
             </div>
 
