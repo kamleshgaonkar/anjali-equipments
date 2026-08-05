@@ -47,7 +47,7 @@ export default function Hero() {
               <h1 className="
 mx-auto
 max-w-3xl
-text-5xl
+text-4xl
 font-semibold
 leading-[0.98]
 tracking-tight
