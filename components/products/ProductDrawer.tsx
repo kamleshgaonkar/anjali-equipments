@@ -2,10 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  PhoneCall,
+  MessageCircle,
+} from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Product } from "@/types/product";
 import { motion, AnimatePresence } from "framer-motion";
+ 
 
 interface ProductDrawerProps {
   product: Product | null;
@@ -20,8 +27,8 @@ export default function ProductDrawer({
 }: ProductDrawerProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-  });
-  
+  }); 
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   
   const images = product
@@ -49,6 +56,32 @@ export default function ProductDrawer({
       emblaApi.off("select", onSelect);
     };
   }, [emblaApi, product]);
+
+  const whatsappNumber = "918657003003";
+
+const whatsappMessage = product
+  ? encodeURIComponent(
+      `Hello Anjali Equipments,
+
+I am interested in the following product.
+
+*Product:* ${product.name}
+*Model:* ${product.model}
+
+Please share:
+
+• Best Price
+• Delivery Time
+• Product Brochure
+
+Product Link:
+${typeof window !== "undefined" ? window.location.href : ""}
+
+Thank you.`
+    )
+  : "";
+
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   return (
     <>
       {/* Overlay */}
@@ -138,7 +171,7 @@ export default function ProductDrawer({
 
         <div
           key={index}
-          className="relative min-w-0 flex-[0_0_100%] aspect-[5/4]"
+          className="relative min-w-0 flex-[0_0_100%] aspect-[3/2]"
         >
 
           <Image
@@ -265,13 +298,29 @@ export default function ProductDrawer({
 
             </div>
             <div className="border-t border-slate-200 bg-white p-6">
-  <button
-    className="w-full rounded-xl bg-red-700 px-6 py-4 text-lg font-semibold text-white transition hover:bg-red-800"
-  >
-    Get Quote
-  </button>
-</div>
 
+            <div className="grid grid-cols-2 gap-3">
+{/* Get Best Price */}
+<a
+  href={whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1EBE5D]"
+>
+  <MessageCircle size={20} />
+  <span>WhatsApp Best Price</span>
+</a>
+
+  {/* Talk to an Expert */}
+  <a
+    href="tel:+918657003003"
+    className="flex items-center justify-center gap-2 rounded-xl border-2 border-red-600 bg-white px-5 py-4 font-semibold text-red-600 transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-600 hover:text-white"
+  >
+    <PhoneCall size={20} />
+    <span>Talk to an Expert</span>
+  </a>
+</div>
+</div>
           </motion.div>
             )}
 </AnimatePresence>

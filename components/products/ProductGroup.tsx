@@ -4,14 +4,19 @@ import ProductItem from "./ProductItem";
 interface ProductGroupProps {
   title: string;
   products: Product[];
-  onProductClick: (product: Product) => void;   
+  onProductClick: (product: Product) => void;
+  onProductHover: (image: string) => void;
+  onProductLeave: () => void;
+  onMouseMove: (pos: { x: number; y: number }) => void;
 }
-
 export default function ProductGroup({
   title,
   products,
   onProductClick,
-}: ProductGroupProps) {
+  onProductHover,
+  onProductLeave,
+  onMouseMove,
+}: ProductGroupProps){
   if (!products.length) return null;
 
   return (
@@ -36,9 +41,12 @@ export default function ProductGroup({
         {products.map((product) => (
 
 <ProductItem
-key={product.id}
-product={product}
-onClick={() => onProductClick(product)}
+  key={product.id}
+  product={product}
+  onClick={() => onProductClick(product)}
+  onHover={() => onProductHover(product.image)}
+  onLeave={onProductLeave}
+  onMouseMove={onMouseMove}
 />
 
         ))}

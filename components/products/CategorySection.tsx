@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 import ProductGroup from "./ProductGroup";
@@ -5,11 +8,19 @@ import ProductGroup from "./ProductGroup";
 import { Category } from "@/data/categories";
 import { Product } from "@/types/product";
 
+interface ProductGroupProps {
+  title: string;
+  products: Product[];
+  onProductClick: (product: Product) => void;
+  onProductHover: (image: string) => void;
+  onProductLeave: () => void;
+  onMouseMove: (pos: { x: number; y: number }) => void;
+}
 interface CategorySectionProps {
-    category: Category;
-    products: Product[];
-    onProductClick: (product: Product) => void;
-  }
+  category: Category;
+  products: Product[];
+  onProductClick: (product: Product) => void;
+}
 
 export default function CategorySection({
   category,
@@ -41,8 +52,9 @@ acc[groupName].products.push(product);
         }
       >
     )
-  );
-
+  ); 
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   return (
     <section className="py-20">
       <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:grid-cols-12">
@@ -62,13 +74,13 @@ acc[groupName].products.push(product);
             </p>
 
             <div className="mt-10 overflow-hidden rounded-3xl">
-              <Image
-                src={category.image}
-                alt={category.name}
-                width={700}
-                height={900}
-                className="h-auto w-full object-cover transition duration-700 hover:scale-105"
-              />
+            <Image
+  src={category.image}
+  alt={category.name}
+  width={700}
+  height={900}
+  className="h-auto w-full object-cover transition duration-700 hover:scale-105"
+/>
             </div>
           </div>
         </div>
@@ -80,15 +92,51 @@ acc[groupName].products.push(product);
     key={group.title}
     className={index === 0 ? "mt-10" : ""}
   >
-    <ProductGroup
-      title={group.title}
-      products={group.products}
-      onProductClick={onProductClick}
-    />
+  <ProductGroup
+    title={group.title}
+    products={group.products}
+    onProductClick={onProductClick}
+    onProductHover={setHoveredImage}
+    onMouseMove={setMousePosition}
+    onProductLeave={() => setHoveredImage(null)}
+/>
+
   </div>
 ))}
         </div>
       </div>
+      {hoveredImage && (
+    <div
+    className="
+    fixed
+    z-50
+    pointer-events-none
+    overflow-hidden
+    rounded-[18px]
+    border
+    border-slate-200
+    bg-white
+    shadow-[0_25px_70px_rgba(0,0,0,0.12)]
+    animate-in
+    fade-in
+    zoom-in-95
+    duration-150
+    "
+        style={{
+          left: mousePosition.x + 35,
+          top: mousePosition.y - 120,
+          width: 260,
+          height: 260,
+      }}
+    >
+        <Image
+            src={hoveredImage}
+            alt=""
+            fill
+            className="object-cover"
+        />
+    </div>
+)}
     </section>
   );
 }

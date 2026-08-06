@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Blinker } from "next/font/google";
+import { Oxanium } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingContact from "@/components/layout/FloatingContact";
 
-const blinker = Blinker({
+const oxanium = Oxanium({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800"],
-  variable: "--font-blinker",
-  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-oxanium",
 });
 
 export const metadata: Metadata = {
@@ -25,11 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-  
-        className={`${blinker.variable} ${blinker.className} bg-white text-slate-900`}
+     <body className={`${oxanium.variable}`}>
       
-      >
+      
         <Navbar />
 
         {children}

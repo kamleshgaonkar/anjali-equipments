@@ -9,12 +9,7 @@ export const metadata = {
 };
 
 const clientCategories = [
-  {
-    title: "Airport Hotels & Restaurants",
-    folder: "airport-hotels-restaurants",
-    logos: ["tajsats"],
-  },
-
+  
   {
     title: "Hotels, Resorts & Hospitality",
     folder: "hotels-resorts",
@@ -84,6 +79,13 @@ const clientCategories = [
     folder: "entertainment-clubs",
     logos: ["inox", "ministry-of-dance", "miraj-cinemas"],
   },
+
+  {
+    title: "Airport Hotels & Restaurants",
+    folder: "airport-hotels-restaurants",
+    logos: ["tajsats"],
+  },
+
 ];
 
 const industries = [

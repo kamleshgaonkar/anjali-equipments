@@ -99,7 +99,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[15px] font-medium tracking-wide transition-colors duration-300 hover:text-red-600 ${
+                className={`text-[17px] font-medium tracking-wide transition-colors duration-300 hover:text-red-600 ${
                   isWhite ? "text-slate-900" : "text-white"
                 }`}
               >
