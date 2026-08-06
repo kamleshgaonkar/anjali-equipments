@@ -152,7 +152,7 @@ export default function Footer() {
 
           <div className="lg:col-span-2">
 
-            <h3 className="mb-6 text-lg font-semibold">
+          <h3 className="mb-6 font-heading text-xl font-semibold text-slate-900">
               Products
             </h3>
 
@@ -240,7 +240,7 @@ export default function Footer() {
 
 {/* Bottom */}
 
-<div className="mt-16 border-t border-slate-200 pb-28 sm:pb-6">
+<div className=" border-t border-slate-200 pb-28 sm:pb-6">
 
   <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm md:flex-row">
 
