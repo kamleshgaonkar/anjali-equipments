@@ -105,9 +105,7 @@ export default function ClientsPage() {
       {/* Hero */}
        
       <PageHero
-  eyebrow="Our Clients"
-  title="Trusted By Leading Brands Across India"
-  background="/hero/hero.jpg"
+       title="Our Clients"
 />
 
       {/* Client Categories */}

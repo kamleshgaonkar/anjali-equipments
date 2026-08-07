@@ -60,7 +60,7 @@ import {
               Our Purpose
             </span>
   
-            <h2 className="mt-4 text-4xl font-bold text-slate-900">
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.2]">
               Mission, Vision & Values
             </h2>
           </div>

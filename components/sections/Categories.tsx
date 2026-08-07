@@ -130,7 +130,7 @@ export default function Categories() {
               PRODUCT CATEGORIES
             </span>
 
-            <h2 className="mt-5 text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl lg:leading-[1.2]">
               Commercial Kitchen Equipment
             </h2>
 

@@ -21,9 +21,7 @@ export default function ContactPage() {
   return (
     <section>
       <PageHero
-        eyebrow="Contact Us"
-        title="Get in Touch"
-        background="/hero/hero.jpg"
+        title="Contact Us"
       />
 
       <main className="mx-auto max-w-7xl px-6 py-16 pb-32 sm:py-20">

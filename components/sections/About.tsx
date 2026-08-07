@@ -10,15 +10,13 @@ export default function About() {
 
         {/* Heading */}
 
-        <div className="mb-20 max-w-4xl">
+        <div className="mb-10 max-w-4xl">
           <span className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
             About Us
           </span>
 
-          <h2 className="mt-5 text-3xl font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-4xl lg:text-6xl lg:leading-[0.95]">
-
-            Engineering Commercial Kitchen
-            
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.2]">
+            Engineering Commercial Kitchen            
             Solutions Since 2010
           </h2>
         </div>

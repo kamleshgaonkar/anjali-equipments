@@ -9,10 +9,8 @@ export default function AboutPage() {
     <>
       
 <PageHero
-  eyebrow="ABOUT US"
-  title="Engineering Commercial Kitchens"
-  background="/hero/hero.jpg"
-/>
+  title="About Us"
+  />
 
       <OurStory />
       <Manufacturing />

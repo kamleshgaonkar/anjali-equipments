@@ -30,7 +30,7 @@ export default function OurStory() {
               ABOUT ANJALI EQUIPMENTS
             </span>
 
-            <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-slate-900 lg:text-5xl">
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.2]">
             Engineering Commercial Kitchen Solutions Since 2010
             </h2>
 
@@ -71,7 +71,7 @@ export default function OurStory() {
               OUR FOUNDER
             </span>
 
-            <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-slate-900 lg:text-5xl">
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.2]">
               Built on Vision.
               <br />
               Driven by Commitment.

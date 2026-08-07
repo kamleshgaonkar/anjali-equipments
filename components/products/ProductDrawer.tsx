@@ -30,7 +30,19 @@ export default function ProductDrawer({
   }); 
 
   const [selectedIndex, setSelectedIndex] = useState(0);
-  
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const check = () => {
+    setIsMobile(window.innerWidth < 1024);
+  };
+
+  check();
+
+  window.addEventListener("resize", check);
+
+  return () => window.removeEventListener("resize", check);
+}, []);
   const images = product
     ? [product.image, ...(product.gallery ?? [])]
     : [];
@@ -85,14 +97,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   return (
     <>
       {/* Overlay */}
-
-      <div
-        className={`fixed inset-0 z-90 bg-black/50 transition-opacity duration-300 ${
-          open
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      />
+ 
         <AnimatePresence>
         {open && (
           <motion.div
@@ -111,15 +116,32 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
       <AnimatePresence>
   {open && (
     <motion.aside
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      transition={{
-        type: "spring",
-        stiffness: 320,
-        damping: 32,
-      }}
-      className="fixed right-0 top-0 z-[100] h-screen w-full bg-white shadow-2xl md:w-[520px] lg:w-[55vw] xl:w-[50vw] max-w-[900px]"
+    initial={{
+      x: isMobile ? 0 : "100%",
+      y: isMobile ? "100%" : 0,
+    }}
+    animate={{
+      x: 0,
+      y: 0,
+    }}
+    exit={{
+      x: isMobile ? 0 : "100%",
+      y: isMobile ? "100%" : 0,
+    }}
+    drag={isMobile ? "y" : false}
+    dragDirectionLock
+    dragMomentum={false}
+    dragElastic={0.22}
+    dragConstraints={{ top: 0, bottom: 0 }}
+    onDragEnd={(_, info) => {
+      if (
+        info.offset.y > 100 ||
+        info.velocity.y > 650
+      ) {
+        onClose();
+      }
+    }}
+     className="fixed inset-0 z-[100] bg-white shadow-2xl md:left-auto md:w-[520px] lg:w-[55vw] xl:w-[50vw] max-w-[900px]"
     >
         <AnimatePresence mode="wait">
         {product && (
@@ -131,6 +153,12 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
           transition={{ duration: 0.25 }}
           className="flex h-full flex-col"
         >
+        
+          {isMobile && (
+            <div className="flex justify-center py-3">
+              <div className="h-1.5 w-12 rounded-full bg-slate-300" />
+            </div>
+          )}
 
             {/* Header */}
 
@@ -147,11 +175,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   </div>
 
   <button
-    onClick={onClose}
-    className="rounded-full border border-slate-200 bg-slate-50 p-3 transition hover:bg-slate-100"
-  >
-    <X size={20} />
-  </button>
+  onClick={onClose}
+  className="rounded-full border border-slate-200 bg-slate-50 p-3 transition hover:bg-slate-100"
+>
+  <X size={20} />
+</button>
 
 </div>
 
@@ -161,11 +189,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
             <div className="relative">
 
-  <div
-    ref={emblaRef}
-    className="overflow-hidden"
-  >
-    <div className="flex">
+            <div
+  ref={emblaRef}
+  className="overflow-hidden"
+>
+  <div className="flex">
 
       {images.map((image, index) => (
 
@@ -297,9 +325,9 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
               </div>
 
             </div>
-            <div className="border-t border-slate-200 bg-white p-6">
+            <div className="border-t border-slate-200 bg-white p-2">
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2">
 {/* Get Best Price */}
 <a
   href={whatsappUrl}
@@ -308,7 +336,7 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1EBE5D]"
 >
   <MessageCircle size={20} />
-  <span>WhatsApp Best Price</span>
+  <span>Get Best Price</span>
 </a>
 
   {/* Talk to an Expert */}

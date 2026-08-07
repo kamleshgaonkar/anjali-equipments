@@ -33,10 +33,8 @@ export default function ProductsPage() {
   };
   return (
     <>
-      <PageHero
-        eyebrow="Products"
-        title="View All Product Categories"
-        background="/hero/hero.jpg"
+      <PageHero 
+        title="Products"
       />
 
       <main className="bg-white">
