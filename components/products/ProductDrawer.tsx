@@ -30,19 +30,7 @@ export default function ProductDrawer({
   }); 
 
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-useEffect(() => {
-  const check = () => {
-    setIsMobile(window.innerWidth < 1024);
-  };
-
-  check();
-
-  window.addEventListener("resize", check);
-
-  return () => window.removeEventListener("resize", check);
-}, []);
+  
   const images = product
     ? [product.image, ...(product.gallery ?? [])]
     : [];
@@ -68,7 +56,21 @@ useEffect(() => {
       emblaApi.off("select", onSelect);
     };
   }, [emblaApi, product]);
-
+  useEffect(() => {
+    if (!open) return;
+  
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, onClose]);
   const whatsappNumber = "918657003003";
 
 const whatsappMessage = product
@@ -97,7 +99,14 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   return (
     <>
       {/* Overlay */}
- 
+
+      <div
+        className={`fixed inset-0 z-90 bg-black/50 transition-opacity duration-300 ${
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      />
         <AnimatePresence>
         {open && (
           <motion.div
@@ -116,32 +125,15 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
       <AnimatePresence>
   {open && (
     <motion.aside
-    initial={{
-      x: isMobile ? 0 : "100%",
-      y: isMobile ? "100%" : 0,
-    }}
-    animate={{
-      x: 0,
-      y: 0,
-    }}
-    exit={{
-      x: isMobile ? 0 : "100%",
-      y: isMobile ? "100%" : 0,
-    }}
-    drag={isMobile ? "y" : false}
-    dragDirectionLock
-    dragMomentum={false}
-    dragElastic={0.22}
-    dragConstraints={{ top: 0, bottom: 0 }}
-    onDragEnd={(_, info) => {
-      if (
-        info.offset.y > 100 ||
-        info.velocity.y > 650
-      ) {
-        onClose();
-      }
-    }}
-     className="fixed inset-0 z-[100] bg-white shadow-2xl md:left-auto md:w-[520px] lg:w-[55vw] xl:w-[50vw] max-w-[900px]"
+      initial={{ x: "100%" }}
+      animate={{ x: 0 }}
+      exit={{ x: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 320,
+        damping: 32,
+      }}
+      className="fixed right-0 top-0 z-[100] h-screen w-full bg-white shadow-2xl md:w-[520px] lg:w-[55vw] xl:w-[50vw] max-w-[900px]"
     >
         <AnimatePresence mode="wait">
         {product && (
@@ -153,12 +145,6 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
           transition={{ duration: 0.25 }}
           className="flex h-full flex-col"
         >
-        
-          {isMobile && (
-            <div className="flex justify-center py-3">
-              <div className="h-1.5 w-12 rounded-full bg-slate-300" />
-            </div>
-          )}
 
             {/* Header */}
 
@@ -175,11 +161,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   </div>
 
   <button
-  onClick={onClose}
-  className="rounded-full border border-slate-200 bg-slate-50 p-3 transition hover:bg-slate-100"
->
-  <X size={20} />
-</button>
+    onClick={onClose}
+    className="rounded-full border border-slate-200 bg-slate-50 p-3 transition hover:bg-slate-100"
+  >
+    <X size={20} />
+  </button>
 
 </div>
 
@@ -189,11 +175,11 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
             <div className="relative">
 
-            <div
-  ref={emblaRef}
-  className="overflow-hidden"
->
-  <div className="flex">
+  <div
+    ref={emblaRef}
+    className="overflow-hidden"
+  >
+    <div className="flex">
 
       {images.map((image, index) => (
 
@@ -218,22 +204,24 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   {/* Previous */}
 
+  {images.length > 1 && (
   <button
     onClick={() => emblaApi?.scrollPrev()}
     className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition hover:bg-white"
   >
     <ChevronLeft size={22} />
   </button>
+)}
 
   {/* Next */}
-
+  {images.length > 1 && (
   <button
     onClick={() => emblaApi?.scrollNext()}
     className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition hover:bg-white"
   >
     <ChevronRight size={22} />
   </button>
-
+)}
   {/* Dots */}
 
   <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">

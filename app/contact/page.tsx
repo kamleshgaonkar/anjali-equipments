@@ -57,10 +57,11 @@ export default function ContactPage() {
                 <a
                   href="https://maps.app.goo.gl/Ghq65n7QhpWiURrC6"
                   target="_blank"
-                  className="mt-5 inline-flex items-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-white"
-                >
-                  <MapPin size={18} />
-                  Get Directions
+                  rel="noopener noreferrer"
+  className="inline-flex mt-3 items-center gap-2 font-regular text-red-600 transition hover:gap-3"
+>
+  Open in Google Maps
+  <span>→</span>
                 </a>
 
               </div>
@@ -86,10 +87,11 @@ export default function ContactPage() {
                 <a
                   href="https://maps.app.goo.gl/Shk21zE75QD7NEN97"
                   target="_blank"
-                  className="mt-5 inline-flex items-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-white"
-                >
-                  <MapPin size={18} />
-                  Get Directions
+                  rel="noopener noreferrer"
+                  className="inline-flex mt-3 items-center gap-2 font-regular text-red-600 transition hover:gap-3"
+                  >
+                  Open in Google Maps
+                  <span>→</span>
                 </a>
 
               </div>

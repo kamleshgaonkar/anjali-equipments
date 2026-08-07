@@ -78,10 +78,7 @@ export const cookingProducts: Product[] = [
       description: "",
       features: [],
       specifications: [
-        {
-          label: "Material",
-          value: "SS304",
-        },
+        
         {
           label: "Height",
           value: "850 mm",
