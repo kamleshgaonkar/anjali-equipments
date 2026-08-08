@@ -327,7 +327,7 @@ Thank you.`
   className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-green-500 bg-white px-5 py-4 font-semibold text-green-700 transition-all duration-300 hover:bg-green-50"
 >
   <MessageCircle size={20} />
-  WhatsApp
+  Get Best Price
 </a>
 
 </div>
