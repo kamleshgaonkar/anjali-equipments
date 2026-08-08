@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import QuoteBadge from "@/components/quote/QuoteBadge";
 import Image from "next/image";
 import Link from "next/link";
+import MobileQuoteButton from "@/components/quote/MobileQuoteButton";
 import { useQuote } from "@/hooks/useQuote";
 import {
   Menu,
@@ -208,36 +209,36 @@ export default function Navbar() {
 
     {/* Mobile Menu Button */}
 
-    <button
-      type="button"
-      aria-label="Open menu"
-      aria-expanded={open}
-      onClick={() => setOpen(true)}
-      className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 transition-colors duration-300 lg:hidden ${
-        isWhite
-          ? "text-slate-900"
-          : "text-white"
-      }`}
-    >
-      <Menu size={28} />
-    </button>
+    <div className="flex items-center gap-2 lg:hidden">
+  <MobileQuoteButton />
+
+  <button
+    type="button"
+    aria-label="Open menu"
+    aria-expanded={open}
+    onClick={() => setOpen(true)}
+    className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 transition-colors duration-300 ${
+      isWhite
+        ? "text-slate-900"
+        : "text-white"
+    }`}
+  >
+    <Menu size={28} />
+  </button>
+</div>
 
   </div>
 </header>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-[100] bg-white transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
-        aria-hidden={!open}
-      >
-       <div className="border-b border-slate-200 bg-white px-6 py-6">
-
-<div className="flex items-start justify-between">
-
-  <div>
-
+  className={`fixed inset-0 z-[100] h-dvh overflow-y-auto bg-white transition-transform duration-300 ${
+    open ? "translate-x-0" : "translate-x-full"
+  }`}
+  aria-hidden={!open}
+>
+  {/* Header */}
+  <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-6 py-5">
     <Image
       src="/logo/anjali-equipments-logo.svg"
       alt="Anjali Equipments"
@@ -245,139 +246,123 @@ export default function Navbar() {
       height={48}
       className="h-auto w-[180px]"
     />
- 
-  </div>
 
-  <button
-    onClick={() => setOpen(false)}
-    className="rounded-full border border-slate-200 p-2 transition hover:bg-slate-100"
-  >
-    <X size={24} />
-  </button>
-
-</div>
-
-</div>
-
-<nav className="flex flex-1 flex-col overflow-y-auto px-5 py-6">
-{links.map((link) => {
-  const Icon = link.icon;
-
-  return (
-    <Link
-      key={link.name}
-      href={link.href}
+    <button
+      type="button"
       onClick={() => setOpen(false)}
-      className={`mb-2 flex items-center gap-4 rounded-xl border-l-4 px-4 py-4 transition-all duration-300 ${
-        pathname === link.href
-          ? "border-red-600 bg-red-50 text-red-600"
-          : "border-transparent text-slate-800 hover:bg-slate-100"
-      }`}
+      aria-label="Close menu"
+      className="rounded-full border border-slate-200 p-2 transition hover:bg-slate-100"
     >
-      <Icon size={22} />
-
-      <span className="text-lg font-medium">
-        {link.name}
-      </span>
-    </Link>
-  );
-})}
-
-<div className="mt-8 space-y-3">
-
-  <a
-    href="tel:+918657003003"
-    className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-red-600 hover:shadow-md"
-  >
-    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-600">
-      <Phone size={22} />
-    </div>
-
-    <div>
-      <p className="text-xs uppercase tracking-wider text-slate-500">
-        Call Us
-      </p>
-
-      <p className="font-semibold text-slate-900">
-        +91 86570 03003
-      </p>
-    </div>
-  </a>
-
-  <a
-    href="https://wa.me/918657003003"
-    target="_blank"
-    className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-green-500 hover:shadow-md"
-  >
-    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-green-600">
-      <MessageCircle size={22} />
-    </div>
-
-    <div>
-      <p className="text-xs uppercase tracking-wider text-slate-500">
-        WhatsApp
-      </p>
-
-      <p className="font-semibold text-slate-900">
-        Chat with our team
-      </p>
-    </div>
-  </a>
-
-</div>
-
-<div className="mt-8">
-
-  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-    Follow Us
-  </p>
-
-  <div className="flex gap-3">
-
-    {socialLinks.map((social, index) => {
-      const Icon = social.icon;
-
-      return (
-        <a
-          key={index}
-          href={social.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:border-red-600 hover:text-red-600 hover:shadow-lg"
-        >
-          <Icon size={18} />
-        </a>
-      );
-    })}
-
+      <X size={24} />
+    </button>
   </div>
 
-</div>
-<Link
-  href="/contact"
-  onClick={() => setOpen(false)}
-  className="mt-8 flex h-14 items-center justify-center rounded-xl bg-red-700 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-800"
->
-  Request a Free Quote
-</Link>
+  {/* Menu Content */}
+  <div className="px-6 py-6">
 
-<div className="mt-10 border-t border-slate-200 pt-6 text-center">
+    {/* Navigation */}
+    <nav className="space-y-2">
+      {links.map((link) => {
+        const Icon = link.icon;
 
-  <p className="font-semibold text-slate-900">
-    Anjali Equipments
-  </p>
+        return (
+          <Link
+            key={link.name}
+            href={link.href}
+            onClick={() => setOpen(false)}
+            className={`flex items-center gap-4 rounded-xl border-l-4 px-4 py-4 transition-all ${
+              pathname === link.href
+                ? "border-red-600 bg-red-50 text-red-600"
+                : "border-transparent text-slate-800 hover:bg-slate-100"
+            }`}
+          >
+            <Icon size={21} />
 
-  <p className="mt-1 text-sm text-slate-500">
-    Commercial Kitchen Equipment Manufacturer
-  </p>
+            <span className="text-lg font-medium">
+              {link.name}
+            </span>
+          </Link>
+        );
+      })}
+    </nav>
 
-  <p className="mt-4 text-xs text-slate-400">
-    © {new Date().getFullYear()} All Rights Reserved
-  </p>
+    {/* Contact */}
+    <div className="mt-8 space-y-4">
 
-</div>
-        </nav>
+      <a
+        href="tel:+918657003003"
+        className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-red-600 hover:shadow-md"
+      >
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600">
+          <Phone size={22} />
+        </div>
+
+        <div>
+          <p className="text-xs uppercase tracking-wider text-slate-500">
+            Call Us
+          </p>
+
+          <p className="font-semibold text-slate-900">
+            +91 86570 03003
+          </p>
+        </div>
+      </a>
+
+      <a
+        href="https://wa.me/918657003003"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-green-500 hover:shadow-md"
+      >
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-600">
+          <MessageCircle size={22} />
+        </div>
+
+        <div>
+          <p className="text-xs uppercase tracking-wider text-slate-500">
+            WhatsApp
+          </p>
+
+          <p className="font-semibold text-slate-900">
+            Chat with our team
+          </p>
+        </div>
+      </a>
+
+    </div>
+
+    {/* Social Media */}
+    <div className="mt-8 border-t border-slate-200 pt-6">
+
+      <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        Follow Us
+      </p>
+
+      <div className="flex gap-3">
+        {socialLinks.map((social, index) => {
+          const Icon = social.icon;
+
+          return (
+            <a
+              key={index}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:border-red-600 hover:text-red-600 hover:shadow-lg"
+            >
+              <Icon size={18} />
+            </a>
+          );
+        })}
       </div>
+
+    </div>
+
+    {/* Bottom spacing */}
+    <div className="h-8" />
+
+  </div>
+</div>
     </>
   );
 }
