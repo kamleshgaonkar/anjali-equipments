@@ -1,15 +1,9 @@
-export interface CategoryGroup {
-  title: string;
-  productIds: string[];
-}
-
 export interface Category {
   id: number;
   name: string;
   slug: string;
   image: string;
   description: string;
-  groups?: CategoryGroup[];
 }
 
 export const categories: Category[] = [
@@ -19,88 +13,78 @@ export const categories: Category[] = [
     slug: "cooking",
     image: "/categories/cooking.jpg",
     description:
-      "Commercial cooking ranges, ovens, fryers, griddles and cooking equipment.",
-    
+      "Commercial cooking ranges, Chinese cooking equipment, fryers, griddles and specialty cooking solutions.",
   },
-
   {
     id: 2,
     name: "Refrigeration",
     slug: "refrigeration",
-    image: "/categories/refrigeration.png",
+    image: "/categories/refrigeration.jpg",
     description:
-      "Commercial refrigerators, freezers and cold storage equipment.",
+      "Commercial refrigerators, freezers, cold rooms and refrigerated preparation equipment.",
   },
-
   {
     id: 3,
-    name: "Food Preparation",
-    slug: "food-preparation",
-    image: "/categories/food-preparation.jpg",
+    name: "Preparation",
+    slug: "preparation",
+    image: "/categories/preparation.jpg",
     description:
-      "Work tables, sinks, preparation tables, cutting stations and preparation equipment.",
+      "Work tables, sink units, preparation stations, trolleys and food preparation equipment.",
   },
   {
     id: 4,
-    name: "Storage & Handling",
-    slug: "storage-handling",
-    image: "/categories/storage-handling.png",
-    description:
-      "Storage racks, shelving, cupboards, trolleys and handling equipment.",
-      
-  },
-  {
-    id: 5,
     name: "Washing",
     slug: "washing",
     image: "/categories/washing.jpg",
     description:
-      "Wash units, sinks, dishwashing and cleaning equipment.",
-      
+      "Commercial sinks, dishwashing tables and cleaning equipment.",
+  },
+  {
+    id: 5,
+    name: "Storage",
+    slug: "storage",
+    image: "/categories/storage.jpg",
+    description:
+      "Shelving, cabinets, storage racks and stainless steel storage solutions.",
   },
   {
     id: 6,
-    name: "Exhaust & Ventilation",
-    slug: "exhaust-ventilation",
-    image: "/categories/exhaust-ventilation.jpg",
+    name: "Serving",
+    slug: "serving",
+    image: "/categories/serving.jpg",
     description:
-      "Kitchen hoods, ducting, fresh air and exhaust systems.",
-     
+      "Bain maries, service counters, display counters and food serving equipment.",
   },
   {
     id: 7,
-    name: "Food Holding & Serving",
-    slug: "food-holding-serving",
-    image: "/categories/food-holding-serving.png",
-    description:
-      "Bain maries, pickup counters, service counters and display units.",
-      
-  },
-  {
-    id: 8,
-    name: "Bar",
-    slug: "bar",
-    image: "/categories/bar.jpg",
-    description:
-      "Bar counters, bottle coolers, cocktail stations and bar equipment.",
-     
-  },
-  {
-    id: 9,
     name: "Bakery",
     slug: "bakery",
     image: "/categories/bakery.jpg",
     description:
-      "Bakery ovens, proofers and bakery preparation equipment.",
-      
+      "Commercial bakery ovens, mixers, dough processing and bakery equipment.",
+  },
+  {
+    id: 8,
+    name: "Bulk Cooking",
+    slug: "bulk-cooking",
+    image: "/categories/bulk-cooking.jpg",
+    description:
+      "Steam cooking equipment, boilers and large-capacity cooking solutions.",
+  },
+  {
+    id: 9,
+    name: "Exhaust & Ventilation",
+    slug: "exhaust",
+    image: "/categories/exhaust.jpg",
+    description:
+      "Kitchen exhaust hoods, ducting and ventilation systems.",
   },
   {
     id: 10,
-    name: "Other",
-    slug: "other",
-    image: "/categories/others.avif",
+    name: "Bar Equipment",
+    slug: "bar-equipment",
+    image: "/categories/bar-equipment.jpg",
     description:
-      "Specialized and custom commercial kitchen equipment.",
-      
+      "Commercial bar counters, bottle coolers and cocktail stations.",
   },
 ];

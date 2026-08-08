@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 import ProductGroup from "./ProductGroup";
 
 import { Category } from "@/data/categories";
@@ -73,15 +73,25 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
               {category.description}
             </p>
 
-            <div className="mt-10 overflow-hidden rounded-3xl">
-            <Image
-  src={category.image}
-  alt={category.name}
-  width={700}
-  height={900}
-  className="h-auto w-full object-cover transition duration-700 hover:scale-105"
-/>
-            </div>
+            <div className="mt-10">
+  <div className="overflow-hidden rounded-3xl">
+    <Image
+      src={category.image}
+      alt={category.name}
+      width={700}
+      height={900}
+      className="h-auto w-full object-cover transition duration-700 hover:scale-105"
+    />
+  </div>
+
+  <Link
+    href={`/products/${category.slug}`}
+    className="mt-6 inline-flex items-center gap-3 rounded-xl bg-red-600 px-7 py-4 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-red-700 hover:shadow-xl"
+  >
+    Explore {category.name}
+    <span className="text-lg">→</span>
+  </Link>
+</div>
           </div>
         </div>
 

@@ -5,10 +5,12 @@ import { Product } from "@/types/product";
 
 interface RelatedProductsProps {
   products: Product[];
+  currentCategory?: string;
 }
 
 export default function RelatedProducts({
   products,
+  currentCategory,
 }: RelatedProductsProps) {
   if (!products.length) return null;
 

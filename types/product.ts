@@ -5,37 +5,33 @@ export interface ProductSpecification {
   
   export interface Product {
     id: string;
-  
-    model: string;
-  
+    model?: string;
     name: string;
-  
     slug: string;
   
     category: string;
     group: string;
   
     image: string;
-  
     gallery?: string[];
   
-    shortDescription: string;
+    shortDescription?: string;
+    description?: string;
+    features?: string[];
   
-    description: string;
+    specifications?: {
+      label: string;
+      value: string;
+    }[];
   
-    features: string[];
-  
-    specifications: ProductSpecification[];
-  
-    material: "SS304" | "SS202";
-  
-    customSizes: boolean;
-  
+    material?: string;
+    customSizes?: boolean;
     warranty?: string;
+  
+    origin?: string;
   
     featured?: boolean;
   
     seoTitle?: string;
-  
     seoDescription?: string;
   }

@@ -1,93 +1,72 @@
+"use client";
+
+
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import PageHero from "@/components/layout/PageHero";
-import { getCategory, getProductsByCategory } from "@/lib/products";
 
+import { catalog } from "@/data/products/catalog";
+import PageHero from "@/components/layout/PageHero"; 
 type Props = {
   params: Promise<{
     category: string;
   }>;
 };
 
-export default async function ProductCategoryPage({
-  params,
-}: Props) {
-  const { category: categorySlug } = await params;
+export default async function CategoryPage({ params }: Props) {
+  const { category } = await params;
 
-  const category = getCategory(categorySlug);
+  const currentCategory = catalog.find(
+    (item) => item.slug === category
+  );
 
-  if (!category) {
+  if (!currentCategory) {
     notFound();
   }
 
-  const products = getProductsByCategory(categorySlug);
-
   return (
- 
-    <>
-   <PageHero
-  eyebrow="PRODUCT CATEGORY"
-  title={category.name}
-  background="/hero/hero.jpg"
-/>
+    
+    <main className="bg-white">
+      <PageHero
+      title="Products"
+    />
 
-    <main className="mx-auto max-w-7xl px-6 py-20">
-      {/*
-      <div className="max-w-3xl">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-          {category.name}
-        </h1>
+      <section className="py-20">
+        <div className="container-custom">
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {currentCategory.groups.map((group) => (
+              <Link
+                key={group.slug}
+                href={`/products/${currentCategory.slug}/${group.slug}`}
+                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                  <Image
+                    src={group.image}
+                    alt={group.title}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
 
-        <p className="mt-5 text-lg text-slate-600">
-          {category.description}
-        </p>
-      </div>
-      */}
-      {products.length === 0 ? (
-        <div className="mt-16 rounded-xl border border-dashed p-12 text-center">
-          <h2 className="text-2xl font-semibold">
-            Products Coming Soon
-          </h2>
+                <div className="p-8">
+                  <h2 className="text-2xl font-semibold text-slate-900">
+                    {group.title}
+                  </h2>
 
-          <p className="mt-3 text-slate-600">
-            We are currently updating this category.
-          </p>
+                  <p className="mt-4 text-slate-600">
+                    {group.description}
+                  </p>
+
+                  <span className="mt-8 inline-flex items-center font-semibold text-red-600">
+                    Explore Products →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
-      ) : (
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {products.map((product) => (
-            <Link
-              key={product.id}
-              href={`/products/${categorySlug}/${product.slug}`}
-              className="group overflow-hidden rounded-2xl border bg-white transition hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="relative aspect-[4/3] bg-slate-100">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover transition duration-300 group-hover:scale-105"
-                />
-              </div>
-
-              <div className="p-6">
-                <h2 className="text-xl font-semibold">
-                  {product.name}
-                </h2>
-
-                <p className="mt-3 line-clamp-2 text-sm text-slate-600">
-                  {product.shortDescription}
-                </p>
-
-                <span className="mt-5 inline-flex font-medium text-blue-600">
-                  View Details →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
-    </main></>
+      </section>
+    </main>
   );
 }

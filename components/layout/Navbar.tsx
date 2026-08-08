@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-
+import QuoteBadge from "@/components/quote/QuoteBadge";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useQuote } from "@/hooks/useQuote";
 import {
   Menu,
   X,
@@ -15,6 +15,7 @@ import {
   Handshake,
   Phone,
   MessageCircle,
+  FileText,
 } from "lucide-react";
 
 import {
@@ -26,7 +27,7 @@ import {
 
 export default function Navbar() {
   const pathname = usePathname();
-
+  const { totalItems } = useQuote();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -193,11 +194,17 @@ export default function Navbar() {
     {/* Desktop CTA */}
 
     <Link
-      href="/contact"
-      className="hidden rounded-xl bg-red-700 px-7 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-800 lg:block"
-    >
-     Request a Free Quote
-    </Link>
+  href={totalItems > 0 ? "/quote" : "/contact"}
+  className="hidden items-center gap-2 rounded-xl bg-red-700 px-7 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-800 lg:flex"
+>
+  {totalItems > 0 && <FileText size={18} />}
+
+  {totalItems > 0
+    ? `Quote Request • ${totalItems} ${
+        totalItems === 1 ? "Item" : "Items"
+      }`
+    : "Request a Free Quote"}
+</Link>
 
     {/* Mobile Menu Button */}
 

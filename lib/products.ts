@@ -22,8 +22,14 @@ export function getFeaturedProducts() {
 }
 
 export function getProductsByCategory(categorySlug: string) {
+  const category = categories.find(
+    (c) => c.slug === categorySlug
+  );
+
+  if (!category) return [];
+
   return products.filter(
-    (product) => product.category === categorySlug
+    (product) => product.category === category.name
   );
 }
 
@@ -31,9 +37,15 @@ export function getProduct(
   categorySlug: string,
   productSlug: string
 ) {
+  const category = categories.find(
+    (c) => c.slug === categorySlug
+  );
+
+  if (!category) return undefined;
+
   return products.find(
     (product) =>
-      product.category === categorySlug &&
+      product.category === category.name &&
       product.slug === productSlug
   );
 }
@@ -42,15 +54,27 @@ export function getRelatedProducts(
   categorySlug: string,
   currentProductId: string
 ) {
+  const category = categories.find(
+    (c) => c.slug === categorySlug
+  );
+
+  if (!category) return [];
+
   return products.filter(
     (product) =>
-      product.category === categorySlug &&
+      product.category === category.name &&
       product.id !== currentProductId
   );
 }
 export function getGroupedProductsByCategory(categorySlug: string) {
+  const category = categories.find(
+    (c) => c.slug === categorySlug
+  );
+
+  if (!category) return {};
+
   const categoryProducts = products.filter(
-    (product) => product.category === categorySlug
+    (product) => product.category === category.name
   );
 
   return categoryProducts.reduce<
@@ -61,7 +85,7 @@ export function getGroupedProductsByCategory(categorySlug: string) {
     if (!groups[group]) {
       groups[group] = [];
     }
-    
+
     groups[group].push(product);
 
     return groups;
@@ -74,7 +98,7 @@ export function searchProducts(search: string) {
   return products.filter(
     (product) =>
       product.name.toLowerCase().includes(query) ||
-      product.shortDescription.toLowerCase().includes(query) ||
-      product.description.toLowerCase().includes(query)
+      product.shortDescription?.toLowerCase().includes(query) ||
+      product.description?.toLowerCase().includes(query)
   );
 }

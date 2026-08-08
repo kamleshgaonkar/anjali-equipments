@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Oxanium } from "next/font/google";
 import "./globals.css";
-
+import { QuoteProvider } from "@/context/QuoteContext";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingContact from "@/components/layout/FloatingContact";
@@ -26,11 +26,11 @@ export default function RootLayout({
     <html lang="en">
      <body className={`${oxanium.variable}`}>
       
-      
+      <QuoteProvider> 
         <Navbar />
 
         {children}
-
+      </QuoteProvider>
         <Footer />
 
         <FloatingContact />

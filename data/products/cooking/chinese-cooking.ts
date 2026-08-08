@@ -1,0 +1,55 @@
+import { Product } from "@/types/product";
+import { manufacturedDefaults } from "../helpers";
+
+export const chineseCooking: Product[] = [
+  {
+    ...manufacturedDefaults,
+    id: "AE-CK-009",
+    model: "AE-CK-009",
+    name: "Single Chinese Range",
+    slug: "single-chinese-range",
+    category: "Cooking",
+    group: "Chinese Cooking",
+    image: "/products/cooking/single-chinese-range/hero.webp",
+  },
+  {
+    ...manufacturedDefaults,
+    id: "AE-CK-010",
+    model: "AE-CK-010",
+    name: "Double Chinese Range",
+    slug: "double-chinese-range",
+    category: "Cooking",
+    group: "Chinese Cooking",
+    image: "/products/cooking/double-chinese-range/hero.webp",
+  },
+  {
+    ...manufacturedDefaults,
+    id: "AE-CK-011",
+    model: "AE-CK-011",
+    name: "Triple Chinese Range",
+    slug: "triple-chinese-range",
+    category: "Cooking",
+    group: "Chinese Cooking",
+    image: "/products/cooking/triple-chinese-range/hero.webp",
+  },
+  {
+    ...manufacturedDefaults,
+    id: "AE-CK-012",
+    model: "AE-CK-012",
+    name: "Wok Range",
+    slug: "wok-range",
+    category: "Cooking",
+    group: "Chinese Cooking",
+    image: "/products/cooking/wok-range/hero.webp",
+  },
+  {
+    ...manufacturedDefaults,
+    id: "AE-CK-013",
+    model: "AE-CK-013",
+    name: "Stock Pot Burner",
+    slug: "stock-pot-burner",
+    category: "Cooking",
+    group: "Chinese Cooking",
+    image: "/products/cooking/stock-pot-burner/hero.webp",
+  },
+];
