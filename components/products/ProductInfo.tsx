@@ -1,4 +1,4 @@
-import { BadgeCheck } from "lucide-react";
+import { BadgeCheck, MessageCircle } from "lucide-react";
 import { Product } from "@/types/product";
 import QuoteButton from "@/components/quote/QuoteButton";
 
@@ -92,10 +92,33 @@ export default function ProductInfo({
 
 </div>
 
-      {/* Quote CTA */}
-      <div className="mt-10">
-        <QuoteButton product={product} />
-      </div>
+{/* Quote + WhatsApp */}
+<div className="mt-10 flex flex-wrap gap-4">
+
+  <QuoteButton product={product} />
+
+  <a
+    href={`https://wa.me/918657003003?text=${encodeURIComponent(
+      `Hello Anjali Equipments,
+
+I am interested in:
+
+Product: ${product.name}
+Model: ${product.model}
+
+Please share the price and further details.
+
+Thank you.`
+    )}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center gap-2 rounded-xl border border-green-500 bg-white px-7 py-4 font-semibold text-green-700 transition-all duration-300 hover:bg-green-50"
+  >
+    <MessageCircle size={20} />
+    WhatsApp
+  </a>
+
+</div>
 
     </div>
   );

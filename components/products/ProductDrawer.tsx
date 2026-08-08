@@ -7,6 +7,7 @@ import {
   ChevronLeft,
   ChevronRight,
   BadgeCheck,
+  MessageCircle,
 } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Product } from "@/types/product";
@@ -302,7 +303,34 @@ export default function ProductDrawer({
 
                   {/* Quote Button */}
 
-                  <QuoteButton product={product} />
+                  {/* Quote + WhatsApp */}
+
+<div className="flex flex-wrap gap-3">
+
+<QuoteButton product={product} />
+
+<a
+  href={`https://wa.me/918657003003?text=${encodeURIComponent(
+    `Hello Anjali Equipments,
+
+I am interested in:
+
+Product: ${product.name}
+Model: ${product.model}
+
+Please share the price and further details.
+
+Thank you.`
+  )}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-green-500 bg-white px-5 py-4 font-semibold text-green-700 transition-all duration-300 hover:bg-green-50"
+>
+  <MessageCircle size={20} />
+  WhatsApp
+</a>
+
+</div>
 
                   {/* Description */}
 
