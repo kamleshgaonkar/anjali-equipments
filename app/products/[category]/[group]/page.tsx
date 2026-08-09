@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { getAllProducts } from "@/lib/products";
 import { catalog } from "@/data/products/catalog";
 import PageHero from "@/components/layout/PageHero";
+import MobileProductCard from "@/components/products/MobileProductCard";
+
 type Props = {
   params: Promise<{
     category: string;
@@ -39,13 +41,23 @@ export default async function GroupPage({ params }: Props) {
 
   return (
     <main className="bg-white">
-     <PageHero
-      title="Products"
-    />
+      <PageHero title="Products" />
 
-      <section className="py-20">
+      <section className="py-10 md:py-20">
         <div className="container-custom">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {/* Mobile: compact horizontal cards */}
+          <div className="space-y-3 md:hidden">
+            {products.map((product) => (
+              <MobileProductCard
+                key={product.id}
+                product={product}
+                href={`/products/${category}/${group}/${product.slug}`}
+              />
+            ))}
+          </div>
+
+          {/* Desktop: existing grid cards */}
+          <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => (
               <Link
                 key={product.id}
@@ -53,14 +65,14 @@ export default async function GroupPage({ params }: Props) {
                 className="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               >
                 <div className="relative aspect-[4/3] bg-slate-100">
-                {product.image && (
-  <Image
-    src={product.image}
-    alt={product.name}
-    fill
-    className="object-cover transition duration-500 group-hover:scale-105"
-  />
-)}  
+                  {product.image && (
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  )}
                 </div>
 
                 <div className="p-6">
@@ -68,7 +80,7 @@ export default async function GroupPage({ params }: Props) {
                     {product.name}
                   </h2>
 
-                  <p className="mt-3 text-slate-600 line-clamp-2">
+                  <p className="mt-3 line-clamp-2 text-slate-600">
                     {product.shortDescription}
                   </p>
 
