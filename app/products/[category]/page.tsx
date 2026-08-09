@@ -1,17 +1,25 @@
-"use client";
-
-
-import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { catalog } from "@/data/products/catalog";
-import PageHero from "@/components/layout/PageHero"; 
+import { getGroupedProductsByCategory } from "@/lib/products";
+import PageHero from "@/components/layout/PageHero";
+import CategorySubcategoryCatalogue, {
+  type CatalogueSubcategory,
+} from "@/components/products/CategorySubcategoryCatalogue";
+
 type Props = {
   params: Promise<{
     category: string;
   }>;
 };
+
+function toSlug(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 export default async function CategoryPage({ params }: Props) {
   const { category } = await params;
@@ -24,47 +32,65 @@ export default async function CategoryPage({ params }: Props) {
     notFound();
   }
 
+  const groupedProducts = getGroupedProductsByCategory(
+    currentCategory.slug
+  );
+
+  const groupEntries = Object.entries(groupedProducts);
+
+  const subcategoriesByTitle = new Map<string, CatalogueSubcategory>(
+    groupEntries.map(([groupTitle, products]) => {
+      const catalogGroup = currentCategory.groups.find(
+        (group) => group.title === groupTitle
+      );
+
+      return [
+        groupTitle,
+        {
+          title: groupTitle,
+          slug: catalogGroup?.slug ?? toSlug(groupTitle),
+          description: catalogGroup?.description ?? "",
+          image:
+            products.find((product) => Boolean(product.image))?.image ||
+            catalogGroup?.image ||
+            currentCategory.heroImage,
+          products,
+        },
+      ];
+    })
+  );
+
+  // Prefer catalog order, then any remaining groups from product data
+  const orderedTitles = [
+    ...currentCategory.groups
+      .map((group) => group.title)
+      .filter((title) => subcategoriesByTitle.has(title)),
+    ...groupEntries
+      .map(([title]) => title)
+      .filter(
+        (title) =>
+          !currentCategory.groups.some((group) => group.title === title)
+      ),
+  ];
+
+  const subcategories = orderedTitles
+    .map((title) => subcategoriesByTitle.get(title))
+    .filter((item): item is CatalogueSubcategory => Boolean(item));
+
   return (
-    
     <main className="bg-white">
       <PageHero
-      title="Products"
-    />
+        eyebrow="Products"
+        title={currentCategory.title}
+        background={currentCategory.heroImage}
+      />
 
-      <section className="py-20">
+      <section className="py-10 md:py-16">
         <div className="container-custom">
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {currentCategory.groups.map((group) => (
-              <Link
-                key={group.slug}
-                href={`/products/${currentCategory.slug}/${group.slug}`}
-                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                  <Image
-                    src={group.image}
-                    alt={group.title}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
-                </div>
-
-                <div className="p-8">
-                  <h2 className="text-2xl font-semibold text-slate-900">
-                    {group.title}
-                  </h2>
-
-                  <p className="mt-4 text-slate-600">
-                    {group.description}
-                  </p>
-
-                  <span className="mt-8 inline-flex items-center font-semibold text-red-600">
-                    Explore Products →
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <CategorySubcategoryCatalogue
+            categorySlug={currentCategory.slug}
+            subcategories={subcategories}
+          />
         </div>
       </section>
     </main>
