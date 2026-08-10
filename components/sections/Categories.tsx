@@ -8,66 +8,56 @@ import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
- 
+
 
 const categories = [
   {
     title: "Cooking",
-    count: "24 Products",
     image: "/categories/cooking.jpg",
     slug: "cooking",
   },
   {
     title: "Refrigeration",
-    count: "12 Products",
     image: "/categories/refrigeration.png",
     slug: "refrigeration",
   },
   {
     title: "Food Preparation",
-    count: "18 Products",
     image: "/categories/food-preparation.jpg",
     slug: "food-preparation",
   },
   {
     title: "Storage & Handling",
-    count: "8 Products",
     image: "/categories/storage-handling.png",
     slug: "storage-handling",
   },
   {
     title: "Washing",
-    count: "10 Products",
     image: "/categories/washing.jpg",
     slug: "washing",
   },
   {
     title: "Exhaust & Ventilation",
-    count: "8 Products",
     image: "/categories/exhaust-ventilation.jpg",
     slug: "exhaust-ventilation",
   },
   {
     title: "Food Holding & Serving",
-    count: "15 Products",
     image: "/categories/Food-Holding-&-Serving.jpg",
     slug: "food-holding-serving",
   },
   {
     title: "Bar",
-    count: "8 Products",
     image: "/categories/bar.jpg",
     slug: "bar",
   },
   {
     title: "Bakery",
-    count: "10 Products",
     image: "/categories/bakery.jpg",
     slug: "bakery",
   },
   {
     title: "Other Equipment",
-    count: "Various Products",
     image: "/categories/others.avif",
     slug: "other",
   },
@@ -111,14 +101,14 @@ export default function Categories() {
   };
 
   return (
-     
 
-    
+
+
     <section className="relative overflow-hidden bg-gradient-to-b from-[#1B1B1B] via-[#202020] to-[#151515]">
-<div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-[#151515] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-[#151515] to-transparent" />
 
-<div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-[#151515] to-transparent" />
-   <div className="py-24">
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-[#151515] to-transparent" />
+      <div className="py-24">
 
         <div className="w-full">
 
@@ -145,92 +135,90 @@ export default function Categories() {
           {/* Horizontal Slider */}
           <div className="relative mt-16">
 
-  {/* Left Arrow */}
+            {/* Left Arrow */}
 
-  <button
-  type="button"
-  aria-label="Previous category"
-  onClick={scrollPrev}
-  className="absolute left-2 top-[140px] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all duration-300 hover:bg-red-600 sm:left-4 sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 lg:left-6"
->
-  <ChevronLeft size={22} />
-</button>
+            <button
+              type="button"
+              aria-label="Previous category"
+              onClick={scrollPrev}
+              className="absolute left-2 top-[140px] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all duration-300 hover:bg-red-600 sm:left-4 sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 lg:left-6"
+            >
+              <ChevronLeft size={22} />
+            </button>
 
-  {/* Right Arrow */}
+            {/* Right Arrow */}
 
-  <button
-  type="button"
-  aria-label="Next category"
-  onClick={scrollNext}
-  className="absolute right-2 top-[140px] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all duration-300 hover:bg-red-600 sm:right-4 sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 lg:right-6"
->
-  <ChevronRight size={22} />
-</button>
+            <button
+              type="button"
+              aria-label="Next category"
+              onClick={scrollNext}
+              className="absolute right-2 top-[140px] z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all duration-300 hover:bg-red-600 sm:right-4 sm:top-1/2 sm:h-12 sm:w-12 sm:-translate-y-1/2 lg:right-6"
+            >
+              <ChevronRight size={22} />
+            </button>
 
-  {/* Embla */}
+            {/* Embla */}
 
-  <div
-  ref={emblaRef}
-  className="overflow-hidden"
+            <div
+              ref={emblaRef}
+              className="overflow-hidden"
 
->
-    <div className="flex px-4 lg:px-6">
+            >
+              <div className="flex px-4 lg:px-6">
 
-      {categories.map((category) => (
+                {categories.map((category) => (
 
-        <div
-          key={category.slug}
-          className="min-w-0 flex-[0_0_85%] px-3 sm:flex-[0_0_48%] sm:px-4 lg:flex-[0_0_25%] xl:flex-[0_0_20%]"
-        >
+                  <div
+                    key={category.slug}
+                    className="min-w-0 flex-[0_0_85%] px-3 sm:flex-[0_0_48%] sm:px-4 lg:flex-[0_0_25%] xl:flex-[0_0_20%]"
+                  >
 
-          <Link
-            href={`/products/${category.slug}`}
-            className="group block"
-          >
+                    <Link
+                      href={`/products/${category.slug}`}
+                      className="group block"
+                    >
 
-            <article className="overflow-hidden rounded-xl">
+                      <article className="overflow-hidden rounded-xl">
 
-              <div className="relative h-[320px] overflow-hidden sm:h-[400px] lg:h-[450px]">
+                        <div className="relative h-[320px] overflow-hidden sm:h-[400px] lg:h-[450px]">
 
-                <Image
-                  src={category.image}
-                  alt={category.title}
-                  fill
-                  quality={100}
-                  priority={false}
-                  unoptimized
-                  className="object-cover transition-transform duration-700 group-hover:scale-125"
-                />
+                          <Image
+                            src={category.image}
+                            alt={category.title}
+                            fill
+                            quality={100}
+                            priority={false}
+                            unoptimized
+                            className="object-cover transition-transform duration-700 group-hover:scale-125"
+                          />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 
-                <span className="absolute bottom-6 left-6 rounded-full bg-transparent border border-white/20 px-5 py-2 text-sm font-semibold text-white">
-                  {category.count}
-                </span>
+
+
+                        </div>
+
+
+
+                      </article>
+                      <div className="pt-5">
+
+                        <h3 className="text-[23px] font-light tracking-[0.06em] leading-[1.3] text-white">
+                          {category.title}
+                        </h3>
+
+                      </div>
+                    </Link>
+
+                  </div>
+
+                ))}
 
               </div>
 
-             
+            </div>
 
-            </article>
-            <div className="pt-5">
-
-<h3 className="text-[23px] font-light tracking-[0.06em] leading-[1.3] text-white">
-  {category.title}
-</h3>
-
-</div>
-          </Link>
-
-        </div>
-
-      ))}
-
-    </div>
-
-  </div>
-
-</div>
+          </div>
 
         </div>
 

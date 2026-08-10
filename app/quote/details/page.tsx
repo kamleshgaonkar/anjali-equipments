@@ -80,7 +80,7 @@ export default function QuoteDetailsPage() {
 
     <>
       <PageHero
-       title="Quote Request"
+       title="Quote Request Details"
         background="/hero/products.jpg"
       />
 

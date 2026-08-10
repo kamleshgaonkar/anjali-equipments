@@ -6,16 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useQuote } from "@/hooks/useQuote";
 import {
-  Menu,
-  X,
-  House,
-  Building2,
-  CookingPot,
-  Handshake,
-  Phone,
-  MessageCircle,
-  ClipboardList,
-} from "lucide-react";
+    Menu,
+    X,
+    House,
+    Building2,
+    CookingPot,
+    Handshake,
+    Phone,
+    MessageCircle,
+    ClipboardList,
+    BriefcaseBusiness,
+  } from "lucide-react";
 
 import {
   FaInstagram,
@@ -32,7 +33,6 @@ export default function Navbar() {
 
   const isHomePage = pathname === "/";
   const isWhite = !isHomePage || scrolled;
-
   const links = [
     {
       name: "Home",
@@ -48,6 +48,11 @@ export default function Navbar() {
       name: "Products",
       href: "/products",
       icon: CookingPot,
+    },
+    {
+      name: "Projects",
+      href: "/projects",
+      icon: BriefcaseBusiness,
     },
     {
       name: "Clients",
@@ -116,7 +121,7 @@ export default function Navbar() {
   }`}
 />
 <header
-  className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+  className={`fixed inset-x-0 top-0 z-[100] transition-all duration-300 ${
     isWhite
       ? "border-b border-slate-200 bg-white shadow-lg"
       : "border-b border-white/10 bg-transparent backdrop-blur-sm"
@@ -300,7 +305,7 @@ export default function Navbar() {
   </div>
 
   {/* Menu Content */}
-  <div className="px-5 py-6">
+  <div className="h-[calc(100dvh-81px)] overflow-y-auto overscroll-contain px-5 py-6">
 
     {/* Navigation */}
     <nav className="space-y-2">
