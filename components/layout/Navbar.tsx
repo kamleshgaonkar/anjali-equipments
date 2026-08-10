@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import QuoteBadge from "@/components/quote/QuoteBadge";
 import Image from "next/image";
 import Link from "next/link";
-import MobileQuoteButton from "@/components/quote/MobileQuoteButton";
 import { useQuote } from "@/hooks/useQuote";
 import {
   Menu,
@@ -16,7 +14,7 @@ import {
   Handshake,
   Phone,
   MessageCircle,
-  FileText,
+  ClipboardList,
 } from "lucide-react";
 
 import {
@@ -194,24 +192,62 @@ export default function Navbar() {
 
     {/* Desktop CTA */}
 
-    <Link
-  href={totalItems > 0 ? "/quote" : "/contact"}
-  className="hidden items-center gap-2 rounded-xl bg-red-700 px-7 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-800 lg:flex"
+   {/* Quote Icon */}
+<Link
+  href="/quote"
+  aria-label={
+    totalItems > 0
+      ? `View quote request, ${totalItems} ${
+          totalItems === 1 ? "item" : "items"
+        }`
+      : "View quote request"
+  }
+  title="Quote Request"
+  className={`relative hidden h-11 w-11 items-center justify-center rounded-full transition-colors duration-300 lg:flex ${
+    isWhite
+      ? "text-slate-900 hover:bg-slate-100"
+      : "text-white hover:bg-white/10"
+  }`}
 >
-  {totalItems > 0 && <FileText size={18} />}
+  <ClipboardList size={25} strokeWidth={1.8} />
 
-  {totalItems > 0
-    ? `Quote Request • ${totalItems} ${
-        totalItems === 1 ? "Item" : "Items"
-      }`
-    : "Request a Free Quote"}
+  {totalItems > 0 && (
+    <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold leading-none text-white ring-2 ring-white">
+      {totalItems}
+    </span>
+  )}
 </Link>
 
-    {/* Mobile Menu Button */}
+{/* Mobile Actions */}
+<div className="flex items-center gap-1 lg:hidden">
 
-    <div className="flex items-center gap-2 lg:hidden">
-  <MobileQuoteButton />
+  {/* Quote Icon */}
+  <Link
+    href="/quote"
+    aria-label={
+      totalItems > 0
+        ? `View quote request, ${totalItems} ${
+            totalItems === 1 ? "item" : "items"
+          }`
+        : "View quote request"
+    }
+    title="Quote Request"
+    className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-300 ${
+      isWhite
+        ? "text-slate-900 hover:bg-slate-100"
+        : "text-white hover:bg-white/10"
+    }`}
+  >
+    <ClipboardList size={25} strokeWidth={1.8} />
 
+    {totalItems > 0 && (
+      <span className="absolute -right-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-600 px-1 text-[10px] font-bold leading-none text-white ring-2 ring-white">
+        {totalItems}
+      </span>
+    )}
+  </Link>
+
+  {/* Hamburger */}
   <button
     type="button"
     aria-label="Open menu"
@@ -225,27 +261,32 @@ export default function Navbar() {
   >
     <Menu size={28} />
   </button>
+
 </div>
 
-  </div>
-</header>
-
-      {/* Mobile Menu */}
-      <div
+{/* Mobile Menu */}
+<div
   className={`fixed inset-0 z-[100] h-dvh overflow-y-auto bg-white transition-transform duration-300 ${
     open ? "translate-x-0" : "translate-x-full"
   }`}
   aria-hidden={!open}
 >
-  {/* Header */}
-  <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-6 py-5">
-    <Image
-      src="/logo/anjali-equipments-logo.svg"
-      alt="Anjali Equipments"
-      width={220}
-      height={48}
-      className="h-auto w-[180px]"
-    />
+  {/* Mobile Menu Header */}
+  <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+
+    <Link
+      href="/"
+      onClick={() => setOpen(false)}
+      className="relative flex h-12 w-[200px] items-center"
+    >
+      <Image
+        src="/logo/anjali-equipments-logo.svg"
+        alt="Anjali Equipments"
+        width={200}
+        height={44}
+        className="h-auto w-full"
+      />
+    </Link>
 
     <button
       type="button"
@@ -255,10 +296,11 @@ export default function Navbar() {
     >
       <X size={24} />
     </button>
+
   </div>
 
   {/* Menu Content */}
-  <div className="px-6 py-6">
+  <div className="px-5 py-6">
 
     {/* Navigation */}
     <nav className="space-y-2">
@@ -285,6 +327,37 @@ export default function Navbar() {
         );
       })}
     </nav>
+
+    {/* Quote Request */}
+    <Link
+      href="/quote"
+      onClick={() => setOpen(false)}
+      className="mt-6 flex items-center justify-between rounded-2xl bg-red-700 p-4 text-white"
+    >
+      <div className="flex items-center gap-3">
+        <ClipboardList size={22} />
+
+        <div>
+          <p className="font-semibold">
+            Quote Request
+          </p>
+
+          <p className="text-sm text-red-100">
+            {totalItems > 0
+              ? `${totalItems} ${
+                  totalItems === 1 ? "product" : "products"
+                } selected`
+              : "No products selected"}
+          </p>
+        </div>
+      </div>
+
+      {totalItems > 0 && (
+        <span className="flex h-8 min-w-8 items-center justify-center rounded-full bg-white px-2 text-sm font-bold text-red-700">
+          {totalItems}
+        </span>
+      )}
+    </Link>
 
     {/* Contact */}
     <div className="mt-8 space-y-4">
@@ -357,12 +430,16 @@ export default function Navbar() {
       </div>
 
     </div>
-
     {/* Bottom spacing */}
     <div className="h-8" />
 
   </div>
 </div>
-    </>
-  );
+
+</div>
+
+</header>
+
+</>
+);
 }

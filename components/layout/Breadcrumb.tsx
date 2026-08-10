@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react";
 
 const labels: Record<string, string> = {
     about: "About Us",
-    products: "Products Categories",
+    products: "Products",
     contact: "Contact",
     projects: "Projects",
   
@@ -20,6 +20,13 @@ const labels: Record<string, string> = {
     bakery: "Bakery",
     bar: "Bar",
     other: "Other Equipment",
+
+    "cooking-ranges": "Cooking Ranges",
+    "chinese-cooking": "Chinese Cooking",
+    "chapati-equipment": "Chapati Equipment",
+    "griddles-grills": "Griddles & Grills",
+    fryers: "Fryers",
+    "steam-cooking": "Steam Cooking",
   };
 
 export default function Breadcrumb() {

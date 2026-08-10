@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
-
+import QuoteProgress from "@/components/quote/QuoteProgress";
 export default function QuoteSuccessPage() {
   return (
     <main className="container-custom flex min-h-[70vh] items-center justify-center py-20">
