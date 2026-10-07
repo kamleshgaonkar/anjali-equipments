@@ -159,21 +159,21 @@ h6 {
     padding-right: 3rem;
   }
 }
-
-@keyframes loading-bar {
+@keyframes navigation-loader {
   0% {
     transform: translateX(-100%);
   }
 
   50% {
-    transform: translateX(150%);
+    transform: translateX(100%);
   }
 
   100% {
-    transform: translateX(400%);
+    transform: translateX(300%);
   }
 }
 
-.animate-loading-bar {
-  animation: loading-bar 1s ease-in-out infinite;
+.navigation-loader-bar {
+  width: 35%;
+  animation: navigation-loader 0.9s ease-in-out infinite;
 }
