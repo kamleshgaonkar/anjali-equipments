@@ -251,11 +251,16 @@ export default function Footer() {
     </p>
 
     <p>
-      Designed & Developed by{" "}
-      <span className="font-semibold text-gray-600">
-        Creashna
-      </span>
-    </p>
+  Designed & Developed by{" "}
+  <a
+    href="https://creashna.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-semibold text-gray-600 transition hover:text-red-600"
+  >
+    Creashna
+  </a>
+</p>
   </div>
 </div>
 

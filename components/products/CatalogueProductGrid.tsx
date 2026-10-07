@@ -28,7 +28,7 @@ export default function CatalogueProductGrid({
   return (
     <div
       className="
-        grid grid-cols-1 items-start gap-4
+        grid grid-cols-2 items-start gap-3
         min-[640px]:grid-cols-2 min-[640px]:gap-[18px]
         min-[900px]:grid-cols-3 min-[900px]:gap-5
         min-[1200px]:grid-cols-4 min-[1200px]:gap-5
