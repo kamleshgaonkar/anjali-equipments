@@ -16,7 +16,7 @@ export default function CTA() {
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#171717]/95 via-[#000000]/75 to-[#171717]/90" />
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative container-custom px-6">
 
         {/* Heading */}
 
@@ -49,71 +49,66 @@ export default function CTA() {
           </Link>
 
         </div>
-
         
 
-    {/* Features */}
+        <div className="mt-20 grid gap-10 md:grid-cols-3">
+          
+            <div>
+              <Factory
+                size={30}
+                strokeWidth={1.6}
+                className="text-red-500"
+              />
 
-<div className="mt-20 grid gap-10 md:grid-cols-3">
+              <h3 className="mt-5 text-2xl font-semibold text-white">
+                Custom Manufacturing
+              </h3>
 
-{/* Feature 1 */}
+              <p className="mt-3 max-w-sm leading-5 text-white/70">
+                Equipment manufactured to your exact kitchen layout using premium
+                SS304 stainless steel.
+              </p>
+            </div>
+          
 
-<div>
-  <Factory
-    size={30}
-    strokeWidth={1.6}
-    className="text-red-500"
-  />
+          
+            <div>
+              <Truck
+                size={30}
+                strokeWidth={1.6}
+                className="text-red-500"
+              />
 
-  <h3 className="mt-5 text-2xl font-semibold text-white">
-    Custom Manufacturing
-  </h3>
+              <h3 className="mt-5 text-2xl font-semibold text-white">
+                PAN India Delivery
+              </h3>
 
-  <p className="mt-3 max-w-sm leading-5 text-white/70">
-    Equipment manufactured to your exact kitchen layout using premium
-    SS304 stainless steel.
-  </p>
-</div>
+              <p className="mt-3 max-w-sm leading-5 text-white/70">
+                Reliable transportation, professional installation and timely
+                project execution across India.
+              </p>
+            </div>
+          
 
-{/* Feature 2 */}
+          
+            <div>
+              <Wrench
+                size={30}
+                strokeWidth={1.6}
+                className="text-red-500"
+              />
 
-<div>
-  <Truck
-    size={30}
-    strokeWidth={1.6}
-    className="text-red-500"
-  />
+              <h3 className="mt-5 text-2xl font-semibold text-white">
+                Installation & Support
+              </h3>
 
-  <h3 className="mt-5 text-2xl font-semibold text-white">
-    PAN India Delivery
-  </h3>
-
-  <p className="mt-3 max-w-sm leading-5 text-white/70">
-    Reliable transportation, professional installation and timely
-    project execution across India.
-  </p>
-</div>
-
-{/* Feature 3 */}
-
-<div>
-  <Wrench
-    size={30}
-    strokeWidth={1.6}
-    className="text-red-500"
-  />
-
-<h3 className="mt-5 text-2xl font-semibold text-white">
-Installation & Support
-  </h3>
-
-  <p className="mt-3 max-w-sm leading-5 text-white/70">
-    Expert installation, commissioning and dependable after-sales
-    support for long-term performance.
-  </p>
-</div>
-
-</div>
+              <p className="mt-3 max-w-sm leading-5 text-white/70">
+                Expert installation, commissioning and dependable after-sales
+                support for long-term performance.
+              </p>
+            </div>
+          
+        </div>
       </div>
     </section>
   );

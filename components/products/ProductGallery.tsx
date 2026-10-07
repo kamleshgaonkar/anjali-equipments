@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import { ImageIcon } from "lucide-react";
 
 interface ProductGalleryProps {
   name: string;
@@ -22,59 +23,70 @@ export default function ProductGallery({
 
   const [selectedImage, setSelectedImage] = useState(images[0] ?? null);
 
+  useEffect(() => {
+    setSelectedImage(images[0] ?? null);
+  }, [images]);
+
   if (!selectedImage) {
     return (
-      <div className="flex aspect-square items-center justify-center rounded-3xl border border-slate-200 bg-slate-50 text-slate-500">
-        Product image coming soon.
+      <div className="flex aspect-square flex-col items-center justify-center gap-3 bg-[#f5f5f4] text-center">
+        <ImageIcon
+          size={32}
+          strokeWidth={1.25}
+          className="text-stone-300"
+          aria-hidden
+        />
+        <div>
+          <p className="text-sm font-medium text-stone-400">Product Image</p>
+          <p className="mt-0.5 text-xs text-stone-400">Coming Soon</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-
-      {/* Main Image */}
-
-      <div className="aspect-square overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-5">
+    <div className="space-y-4">
+      <div className="relative aspect-square overflow-hidden bg-[#f5f5f4]">
         <Image
           src={selectedImage}
           alt={name}
-          width={900}
-          height={900}
+          fill
           priority
-          className="mx-auto h-auto w-full object-contain"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-contain p-8 md:p-10"
         />
       </div>
 
-      {/* Gallery */}
+      {images.length > 1 ? (
+        <div className="flex flex-wrap gap-3">
+          {images.map((img, index) => {
+            const isActive = selectedImage === img;
 
-      {images.length > 1 && (
-        <div className="flex flex-wrap gap-4">
-
-          {images.map((img, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => setSelectedImage(img)}
-              className={`overflow-hidden rounded-2xl border-2 transition-all duration-300 ${
-                selectedImage === img
-                  ? "scale-105 border-red-700 shadow-lg"
-                  : "border-slate-200 hover:border-red-400"
-              }`}
-            >
-              <Image
-                src={img}
-                alt={`${name} ${index + 1}`}
-                width={110}
-                height={110}
-                className="h-24 w-24 object-cover lg:h-28 lg:w-28"
-              />
-            </button>
-          ))}
-
+            return (
+              <button
+                key={`${img}-${index}`}
+                type="button"
+                onClick={() => setSelectedImage(img)}
+                aria-label={`View image ${index + 1}`}
+                aria-pressed={isActive}
+                className={`relative h-20 w-20 overflow-hidden bg-[#f5f5f4] transition ${
+                  isActive
+                    ? "ring-2 ring-[#8b191c] ring-offset-2"
+                    : "ring-1 ring-stone-200 hover:ring-stone-300"
+                }`}
+              >
+                <Image
+                  src={img}
+                  alt=""
+                  fill
+                  sizes="80px"
+                  className="object-contain p-2"
+                />
+              </button>
+            );
+          })}
         </div>
-      )}
-
+      ) : null}
     </div>
   );
 }

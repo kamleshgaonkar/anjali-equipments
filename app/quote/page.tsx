@@ -1,9 +1,9 @@
 "use client";
 
+import { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import QuoteProgress from "@/components/quote/QuoteProgress";
-import { useQuote } from "@/hooks/useQuote";
+import { useRouter } from "next/navigation";
 import {
   Trash2,
   Minus,
@@ -11,25 +11,106 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import { useQuote } from "@/hooks/useQuote";
+
 export default function QuotePage() {
+  const router = useRouter();
+
   const {
     items,
-    totalItems,
     increaseQuantity,
     decreaseQuantity,
     removeItem,
+    clearQuote,
   } = useQuote();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    setError("");
+
+    if (items.length === 0) {
+      setError(
+        "Your quotation is empty. Please add at least one product before submitting."
+      );
+      return;
+    }
+
+    const formData = new FormData(event.currentTarget);
+
+    const payload = {
+      contactPerson: String(
+        formData.get("contactPerson") || ""
+      ).trim(),
+
+      email: String(
+        formData.get("email") || ""
+      ).trim(),
+
+      phone: String(
+        formData.get("phone") || ""
+      ).trim(),
+
+      requirements: String(
+        formData.get("requirements") || ""
+      ).trim(),
+
+      products: items.map((item) => ({
+        id: item.id,
+        name: item.name,
+        model: item.model,
+        quantity: item.quantity,
+      })),
+    };
+
+    try {
+      setIsSubmitting(true);
+
+      const response = await fetch("/api/quote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message ||
+            "Unable to submit your quotation request."
+        );
+      }
+
+      clearQuote();
+
+      router.push("/quote/success");
+    } catch (error) {
+      console.error("Quote submission error:", error);
+
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again."
+      );
+
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <main className="min-h-screen bg-white">
+      <div className="container-custom px-5 pb-10 pt-28 md:px-8 lg:pb-14 lg:pt-32">      
 
-      {/* Progress */}
-      <QuoteProgress currentStep={1} />
+        {/* ================================================== */}
+        {/* PAGE HEADING */}
+        {/* ================================================== */}
 
-      <div className="mx-auto max-w-7xl px-5 py-8 md:px-8 lg:py-10">
-
-        {/* Heading */}
-        <div className="mb-8">
+        <div className="mb-10"> 
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-700">
             Commercial Kitchen Equipment
           </p>
@@ -38,12 +119,16 @@ export default function QuotePage() {
             Your Quote Request
           </h1>
 
-          <p className="mt-3 text-base leading-7 text-slate-600">
-            Review the equipment you have selected for your quotation.
+          <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+            Review your selected equipment and share your details.
+            Our team will get in touch with you regarding your quotation.
           </p>
         </div>
 
-        {/* Empty Quote */}
+        {/* ================================================== */}
+        {/* EMPTY QUOTE */}
+        {/* ================================================== */}
+
         {items.length === 0 ? (
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-10 text-center">
 
@@ -57,16 +142,20 @@ export default function QuotePage() {
 
             <Link
               href="/products"
-              className="mt-6 inline-flex items-center justify-center rounded-xl bg-red-700 px-6 py-3 font-semibold text-white transition hover:bg-red-800"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-red-700 px-6 py-3 font-semibold text-white transition hover:bg-red-800"
             >
               Browse Products
+              <ArrowRight size={17} />
             </Link>
 
           </div>
         ) : (
 
-          /* Two Column Layout */
-          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
+          /* ================================================== */
+          /* TWO COLUMN QUOTE LAYOUT */
+          /* ================================================== */
+
+          <div className="grid items-start gap-8 lg:grid-cols-2 xl:gap-12">
 
             {/* ================================================== */}
             {/* LEFT: SELECTED PRODUCTS */}
@@ -74,7 +163,7 @@ export default function QuotePage() {
 
             <section>
 
-              <div className="mb-4 flex items-center justify-between">
+              <div className="mb-5 flex items-center justify-between">
 
                 <h2 className="text-xl font-bold text-slate-900">
                   Selected Products
@@ -99,6 +188,7 @@ export default function QuotePage() {
                     <div className="flex gap-4">
 
                       {/* Product Image */}
+
                       <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 md:h-28 md:w-28">
 
                         {item.image ? (
@@ -118,6 +208,7 @@ export default function QuotePage() {
                       </div>
 
                       {/* Product Information */}
+
                       <div className="min-w-0 flex-1">
 
                         {item.category && (
@@ -140,12 +231,13 @@ export default function QuotePage() {
                         )}
 
                         {/* Quantity + Remove */}
+
                         <div className="mt-4 flex items-center justify-between gap-4">
 
-                          {/* Quantity Controls */}
+                          {/* Quantity */}
+
                           <div className="flex items-center rounded-lg border border-slate-200 bg-white">
 
-                            {/* Decrease */}
                             <button
                               type="button"
                               onClick={() => {
@@ -160,15 +252,15 @@ export default function QuotePage() {
                               <Minus size={16} />
                             </button>
 
-                            {/* Quantity */}
                             <span className="flex h-9 min-w-10 items-center justify-center border-x border-slate-200 px-2 text-sm font-semibold text-slate-900">
                               {item.quantity}
                             </span>
 
-                            {/* Increase */}
                             <button
                               type="button"
-                              onClick={() => increaseQuantity(item.id)}
+                              onClick={() =>
+                                increaseQuantity(item.id)
+                              }
                               className="flex h-9 w-9 items-center justify-center text-slate-600 transition hover:bg-slate-50"
                               aria-label={`Increase quantity of ${item.name}`}
                             >
@@ -178,9 +270,12 @@ export default function QuotePage() {
                           </div>
 
                           {/* Remove */}
+
                           <button
                             type="button"
-                            onClick={() => removeItem(item.id)}
+                            onClick={() =>
+                              removeItem(item.id)
+                            }
                             className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-red-50 hover:text-red-600"
                             aria-label={`Remove ${item.name}`}
                           >
@@ -199,78 +294,190 @@ export default function QuotePage() {
 
               </div>
 
+              {/* Add More Products */}
+
+              <Link
+                href="/products"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-red-700 transition hover:text-red-800"
+              >
+                + Add More Products
+              </Link>
+
             </section>
 
             {/* ================================================== */}
-            {/* RIGHT: STICKY QUOTE SUMMARY */}
+            {/* RIGHT: DETAILS FORM */}
             {/* ================================================== */}
 
-            <aside className="lg:sticky lg:top-24 lg:self-start">
+            <aside className="lg:sticky lg:top-28 lg:self-start">
 
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm md:p-7"
+              >
 
-                <h2 className="text-xl font-bold text-slate-900">
-                  Quote Summary
-                </h2>
+                {/* Form Heading */}
 
-                {/* Product Count */}
-                <div className="mt-5 flex items-center justify-between border-b border-slate-200 pb-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-red-700">
+                    Request Quotation
+                  </p>
 
-                  <span className="text-sm text-slate-600">
-                    Products Selected
-                  </span>
+                  <h2 className="mt-2 text-2xl font-bold text-slate-900">
+                    Your Details
+                  </h2>
 
-                  <span className="text-2xl font-bold text-red-700">
-                    {items.length}
-                  </span>
+                  <p className="mt-2 text-sm leading-6 text-slate-500">
+                    Enter your contact details and our team will
+                    get in touch with you.
+                  </p>
+                </div>
+
+                {/* Error */}
+
+                {error && (
+                  <div className="mt-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+                    {error}
+                  </div>
+                )}
+
+                {/* Contact Fields */}
+
+                <div className="mt-7 space-y-5">
+
+                  {/* Contact Person */}
+
+                  <div>
+                    <label
+                      htmlFor="contactPerson"
+                      className="mb-2 block text-sm font-semibold text-slate-900"
+                    >
+                      Contact Person *
+                    </label>
+
+                    <input
+                      id="contactPerson"
+                      name="contactPerson"
+                      type="text"
+                      required
+                      autoComplete="name"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-red-600 focus:ring-2 focus:ring-red-100"
+                    />
+                  </div>
+
+                  {/* Email */}
+
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-sm font-semibold text-slate-900"
+                    >
+                      Email Address *
+                    </label>
+
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      autoComplete="email"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-red-600 focus:ring-2 focus:ring-red-100"
+                    />
+                  </div>
+
+                  {/* Mobile */}
+
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="mb-2 block text-sm font-semibold text-slate-900"
+                    >
+                      Mobile Number *
+                    </label>
+
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      required
+                      autoComplete="tel"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-red-600 focus:ring-2 focus:ring-red-100"
+                    />
+                  </div>
 
                 </div>
 
-                {/* Total Quantity */}
-                <div className="mt-4 flex items-center justify-between text-sm">
+                {/* Divider */}
 
-                  <span className="text-slate-600">
-                    Total Quantity
-                  </span>
+                <div className="my-7 border-t border-slate-200" />
 
-                  <span className="font-semibold text-slate-900">
-                    {totalItems}
-                  </span>
+                {/* Additional Requirements */}
+
+                <div>
+
+                  <div className="flex items-start justify-between gap-4">
+
+                    <div>
+                      <label
+                        htmlFor="requirements"
+                        className="block text-base font-bold text-slate-900"
+                      >
+                        Additional Requirements
+                      </label>
+
+                      <p className="mt-1 text-xs text-slate-400">
+                        Optional
+                      </p>
+                    </div>
+
+                    <span className="hidden max-w-[180px] text-right text-xs leading-5 text-slate-400 xl:block">
+                      Custom size, delivery, installation, etc.
+                    </span>
+
+                  </div>
+
+                  <textarea
+                    id="requirements"
+                    name="requirements"
+                    rows={3}
+                    placeholder="Anything else you'd like us to know?"
+                    className="mt-4 w-full resize-none rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-red-600 focus:ring-2 focus:ring-red-100"
+                  />
 
                 </div>
 
-                <p className="mt-5 text-sm leading-6 text-slate-500">
-                  Your selected equipment is ready. Continue to provide your
-                  contact details and request a quotation.
+                {/* Submit */}
+
+                <button
+                  type="submit"
+                  disabled={
+                    isSubmitting ||
+                    items.length === 0
+                  }
+                  className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-red-700 px-6 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-800 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isSubmitting
+                    ? "Sending Request..."
+                    : "Request Quotation"}
+
+                  {!isSubmitting && (
+                    <ArrowRight size={18} />
+                  )}
+                </button>
+
+                <p className="mt-4 text-center text-xs leading-5 text-slate-400">
+                  Our team will review your selected equipment and
+                  contact you regarding your quotation.
                 </p>
 
-                {/* Continue */}
-                <Link
-                  href="/quote/details"
-                  className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-red-700 px-5 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-800"
-                >
-                  Continue
-                  <ArrowRight size={17} />
-                </Link>
-
-                {/* Add More Products */}
-                <Link
-                  href="/products"
-                  className="mt-3 flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-red-600 hover:text-red-700"
-                >
-                  Add More Products
-                </Link>
-
-              </div>
+              </form>
 
             </aside>
 
           </div>
-
         )}
 
       </div>
-
     </main>
   );
 }

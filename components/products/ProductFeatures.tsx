@@ -1,34 +1,36 @@
+import { Check } from "lucide-react";
+
 interface ProductFeaturesProps {
-    features: string[];
-  }
-  
-  export default function ProductFeatures({
-    features,
-  }: ProductFeaturesProps) {
-    if (!features.length) return null;
-  
-    return (
-      <section className="mt-14">
-        <h2 className="text-2xl font-bold text-slate-900">
-          Features
-        </h2>
-  
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {features.map((feature) => (
-            <div
-              key={feature}
-              className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-red-200 hover:bg-red-50"
-            >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-100 font-bold text-red-700">
-                ✓
-              </div>
-  
-              <span className="font-medium text-slate-700">
-                {feature}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
+  features: string[];
+}
+
+export default function ProductFeatures({ features }: ProductFeaturesProps) {
+  if (!features.length) return null;
+
+  return (
+    <section className="border-t border-stone-200 pt-12">
+      <h2 className="text-2xl font-bold tracking-tight text-stone-900 md:text-3xl">
+        Features
+      </h2>
+
+      <ul className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2">
+        {features.map((feature) => (
+          <li
+            key={feature}
+            className="flex items-start gap-3 border-b border-stone-100 pb-4"
+          >
+            <Check
+              size={16}
+              strokeWidth={2.5}
+              className="mt-1 shrink-0 text-[#8b191c]"
+              aria-hidden
+            />
+            <span className="text-[15px] leading-6 text-stone-700">
+              {feature}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}

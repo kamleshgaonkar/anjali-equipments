@@ -8,7 +8,6 @@ import { useCallback, useEffect, useState } from "react";
 const images = [
   "/why/factory-1.png",
   "/why/factory-2.png",
-  "/why/factory-3.png",
   "/why/factory-4.png",
 ];
 

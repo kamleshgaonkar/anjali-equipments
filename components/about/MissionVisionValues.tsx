@@ -51,24 +51,29 @@ import {
   export default function MissionVisionValues() {
     return (
       <section className="bg-white py-24">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="container-custom">
   
           {/* Heading */}
   
           <div className="mb-16 text-center">
+            
             <span className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
               Our Purpose
             </span>
+            
   
+            
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-[1.2]">
               Mission, Vision & Values
             </h2>
+            
           </div>
   
           {/* Mission & Vision */}
   
           <div className="grid gap-8 lg:grid-cols-2">
   
+            
             <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-10">
   
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-100">
@@ -87,7 +92,9 @@ import {
               </p>
   
             </div>
+            
   
+            
             <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-10">
   
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-100">
@@ -106,31 +113,32 @@ import {
               </p>
   
             </div>
+            
   
           </div>
-  
-          {/* Values */}
   
           <div className="mt-20">
   
             <div className="text-center">
-  
+              
               <h3 className="text-3xl font-bold text-slate-900">
                 Our Core Values
               </h3>
+              
   
+              
               <p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">
                 These principles guide every decision we make and every commercial
                 kitchen solution we deliver.
               </p>
-  
+              
             </div>
   
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
   
               {values.map((value) => {
                 const Icon = value.icon;
-  
+
                 return (
                   <div
                     key={value.title}

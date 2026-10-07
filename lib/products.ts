@@ -1,104 +1,90 @@
-import { products } from "@/data/products";
-import { categories } from "@/data/categories";
+import type { Product } from "@/types/product";
+import type { PublicCategory } from "@/lib/catalogue/types";
+import {
+  fetchActiveCategories,
+  fetchActiveCategoryBySlug,
+  fetchActiveProductByCategoryAndSlug,
+  fetchActiveProductById,
+  fetchActiveProductByRoute,
+  fetchActiveProducts,
+  fetchActiveProductsByCategoryAndGroup,
+  fetchActiveProductsByCategorySlug,
+  fetchFeaturedProducts,
+  fetchRelatedProducts,
+  getGroupedProductsByCategorySlug,
+  searchActiveProducts,
+} from "@/lib/catalogue/queries";
 
-export function getAllCategories() {
-  return categories;
+export type { PublicCategory };
+
+export async function getAllCategories(): Promise<PublicCategory[]> {
+  return fetchActiveCategories();
 }
 
-export function getCategory(slug: string) {
-  return categories.find((category) => category.slug === slug);
+export async function getCategory(
+  slug: string
+): Promise<PublicCategory | null> {
+  return fetchActiveCategoryBySlug(slug);
 }
 
-export function getAllProducts() {
-  return products;
+export async function getAllProducts(): Promise<Product[]> {
+  return fetchActiveProducts();
 }
 
-export function getProductById(id: string) {
-  return products.find((product) => product.id === id);
+export async function getProductById(id: string): Promise<Product | null> {
+  return fetchActiveProductById(id);
 }
 
-export function getFeaturedProducts() {
-  return products.filter((product) => product.featured);
+export async function getFeaturedProducts(): Promise<Product[]> {
+  return fetchFeaturedProducts();
 }
 
-export function getProductsByCategory(categorySlug: string) {
-  const category = categories.find(
-    (c) => c.slug === categorySlug
-  );
-
-  if (!category) return [];
-
-  return products.filter(
-    (product) => product.category === category.name
-  );
+export async function getProductsByCategory(
+  categorySlug: string
+): Promise<Product[]> {
+  return fetchActiveProductsByCategorySlug(categorySlug);
 }
 
-export function getProduct(
+export async function getProductsByCategoryAndGroup(
   categorySlug: string,
-  productSlug: string
-) {
-  const category = categories.find(
-    (c) => c.slug === categorySlug
-  );
-
-  if (!category) return undefined;
-
-  return products.find(
-    (product) =>
-      product.category === category.name &&
-      product.slug === productSlug
-  );
+  groupSlug: string
+): Promise<Product[]> {
+  return fetchActiveProductsByCategoryAndGroup(categorySlug, groupSlug);
 }
 
-export function getRelatedProducts(
+/**
+ * Resolve a product for a public route.
+ * Prefer category + group + product when group is provided.
+ */
+export async function getProduct(
   categorySlug: string,
-  currentProductId: string
-) {
-  const category = categories.find(
-    (c) => c.slug === categorySlug
-  );
+  productSlug: string,
+  groupSlug?: string
+): Promise<Product | null> {
+  if (groupSlug) {
+    return fetchActiveProductByRoute(categorySlug, groupSlug, productSlug);
+  }
 
-  if (!category) return [];
-
-  return products.filter(
-    (product) =>
-      product.category === category.name &&
-      product.id !== currentProductId
-  );
-}
-export function getGroupedProductsByCategory(categorySlug: string) {
-  const category = categories.find(
-    (c) => c.slug === categorySlug
-  );
-
-  if (!category) return {};
-
-  const categoryProducts = products.filter(
-    (product) => product.category === category.name
-  );
-
-  return categoryProducts.reduce<
-    Record<string, typeof categoryProducts>
-  >((groups, product) => {
-    const group = product.group ?? "Products";
-
-    if (!groups[group]) {
-      groups[group] = [];
-    }
-
-    groups[group].push(product);
-
-    return groups;
-  }, {});
+  return fetchActiveProductByCategoryAndSlug(categorySlug, productSlug);
 }
 
-export function searchProducts(search: string) {
-  const query = search.toLowerCase().trim();
+export async function getRelatedProducts(
+  categorySlug: string,
+  currentProductId: string,
+  groupSlug?: string
+): Promise<Product[]> {
+  return fetchRelatedProducts(categorySlug, currentProductId, {
+    groupSlug,
+    limit: 4,
+  });
+}
 
-  return products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(query) ||
-      product.shortDescription?.toLowerCase().includes(query) ||
-      product.description?.toLowerCase().includes(query)
-  );
+export async function getGroupedProductsByCategory(
+  categorySlug: string
+): Promise<Record<string, Product[]>> {
+  return getGroupedProductsByCategorySlug(categorySlug);
+}
+
+export async function searchProducts(search: string): Promise<Product[]> {
+  return searchActiveProducts(search);
 }

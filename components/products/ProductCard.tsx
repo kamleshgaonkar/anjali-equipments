@@ -1,194 +1,143 @@
 "use client";
 
+import { useState } from "react";
+import type { MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Check,
+  ClipboardList,
+  ImageIcon,
+  Plus,
+  X,
+} from "lucide-react";
+
+import { useQuote } from "@/hooks/useQuote";
+import { getProductHref } from "@/lib/catalogue";
 import { Product } from "@/types/product";
-import QuoteButton from "@/components/quote/QuoteButton";
-import { toCatalogueSlug } from "@/lib/catalogue";
 
 interface ProductCardProps {
   product: Product;
   href?: string;
 }
 
-function getCardInfoRows(product: Product) {
-  const rows: { label: string; value: string }[] = [];
-  const seen = new Set<string>();
+export default function ProductCard({ product, href }: ProductCardProps) {
+  const productHref = href ?? getProductHref(product);
+  const { items, addItem, removeItem } = useQuote();
+  const [imageFailed, setImageFailed] = useState(false);
+  const [quoteHovered, setQuoteHovered] = useState(false);
 
-  const push = (
-    label: string,
-    value?: string | boolean | null
-  ) => {
-    if (value === undefined || value === null || value === "") {
-      return;
+  const exists = items.some((item) => item.id === product.id);
+  const showImage = Boolean(product.image?.trim()) && !imageFailed;
+
+  const handleQuoteAction = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (exists) {
+      removeItem(product.id);
+    } else {
+      addItem(product);
     }
-
-    const key = label.toLowerCase();
-
-    if (seen.has(key)) return;
-
-    const normalized =
-      typeof value === "boolean"
-        ? value
-          ? "Available"
-          : "Not Available"
-        : String(value).trim();
-
-    if (!normalized) return;
-
-    seen.add(key);
-    rows.push({
-      label,
-      value: normalized,
-    });
   };
 
-  push("Material", product.material);
-  push("Warranty", product.warranty);
+  const quoteLabel = exists
+    ? `Remove ${product.name} from quote`
+    : `Add ${product.name} to quote`;
 
-  if (product.customSizes !== undefined) {
-    push("Custom Size", product.customSizes);
-  }
-
-  const preferredLabels = [
-    "Capacity",
-    "Product Capacity",
-    "Burner",
-    "Fuel Type",
-    "Application",
-  ];
-
-  for (const label of preferredLabels) {
-    if (rows.length >= 4) break;
-
-    const match = product.specifications?.find(
-      (spec) =>
-        spec.label.toLowerCase() === label.toLowerCase()
-    );
-
-    if (match?.value) {
-      push(match.label, match.value);
-    }
-  }
-
-  return rows;
-}
-
-export default function ProductCard({
-  product,
-  href,
-}: ProductCardProps) {
-  const productHref =
-    href ??
-    `/products/${toCatalogueSlug(product.category)}/${toCatalogueSlug(
-      product.group
-    )}/${product.slug}`;
-
-  const infoRows = getCardInfoRows(product);
+  const quoteTitle = exists
+    ? quoteHovered
+      ? "Remove from Quote"
+      : "Added to Quote"
+    : "Add to Quote";
 
   return (
-    <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      {/* Product Image */}
+    <article
+      className="group relative w-full min-w-0 cursor-pointer bg-[#f5f5f4]"
+      style={{ aspectRatio: "235 / 320" }}
+    >
+      {/* Entire tile → product detail */}
       <Link
         href={productHref}
-        className="relative block aspect-[4/3] w-full overflow-hidden bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c] focus-visible:ring-inset"
+        className="absolute inset-0 flex cursor-pointer flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c] focus-visible:ring-inset"
       >
-        {product.image ? (
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-contain p-3 transition duration-500 hover:scale-105"
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center text-sm text-slate-400">
-            Image coming soon
-          </div>
-        )}
-      </Link>
+        {/* Image area ~68% */}
+        <div className="relative min-h-0 flex-[0.68] overflow-hidden">
+          {showImage ? (
+            <Image
+              src={product.image}
+              alt=""
+              fill
+              sizes="(max-width: 639px) 100vw, (max-width: 899px) 50vw, (max-width: 1199px) 33vw, (max-width: 1499px) 25vw, (max-width: 1799px) 20vw, 16vw"
+              className="object-contain p-5 transition-transform duration-300 ease-out group-hover:scale-[1.035] sm:p-6"
+              onError={() => setImageFailed(true)}
+            />
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
+              <ImageIcon
+                size={28}
+                strokeWidth={1.25}
+                className="text-stone-300"
+                aria-hidden
+              />
+              <div>
+                <p className="text-[12px] font-medium leading-4 text-stone-400">
+                  Product Image
+                </p>
+                <p className="mt-0.5 text-[11px] leading-4 text-stone-400">
+                  Coming Soon
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
 
-      {/* Product Information */}
-      <div className="flex flex-1 flex-col p-5">
-        <Link
-          href={productHref}
-          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c] focus-visible:ring-offset-2"
-        >
-          <h3 className="line-clamp-2 text-lg font-semibold leading-snug text-slate-900 transition-colors hover:text-[#8b191c]">
+        {/* Text ~32% — compact, close to image */}
+        <div className="flex min-h-0 flex-[0.32] flex-col items-center justify-start px-3 pb-3 pt-1 text-center">
+          <p className="text-[13px] font-medium leading-4 text-stone-600">
+            {product.group}
+          </p>
+
+          <h3 className="mt-1.5 line-clamp-2 text-[18px] font-bold leading-[1.25] tracking-tight text-stone-900 sm:text-[19px]">
             {product.name}
           </h3>
-        </Link>
-
-        {product.model ? (
-          <p className="mt-1.5 text-xs text-slate-500">
-            Model:{" "}
-            <span className="font-medium text-slate-800">
-              {product.model}
-            </span>
-          </p>
-        ) : null}
-
-        {product.shortDescription ? (
-          <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
-            {product.shortDescription}
-          </p>
-        ) : null}
-
-        {/* Product specifications */}
-        {infoRows.length > 0 ? (
-          <dl className="mt-3 space-y-1">
-            {infoRows.map((row) => (
-              <div
-                key={row.label}
-                className="flex min-w-0 gap-1 text-xs leading-4"
-              >
-                <dt className="shrink-0 text-slate-500">
-                  {row.label}:
-                </dt>
-
-                <dd className="min-w-0 truncate font-medium text-slate-900">
-                  {row.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        ) : null}
-
-        {/* CTA Buttons */}
-        <div className="mt-auto grid grid-cols-2 gap-2 pt-6">
-          {/* View Details */}
-          <Link
-            href={productHref}
-            className="inline-flex min-h-12 min-w-0 items-center justify-center whitespace-nowrap rounded-xl border border-[#8b191c] bg-white px-2 text-center text-sm font-semibold text-[#8b191c] transition-all duration-300 hover:bg-[#8b191c] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c] focus-visible:ring-offset-2 sm:px-3"
-          >
-            <span>View Details</span>
-          </Link>
-
-          {/* Add to Quote */}
-          <div
-            className="
-              min-w-0
-              [&>button]:flex
-              [&>button]:min-h-12
-              [&>button]:w-full
-              [&>button]:min-w-0
-              [&>button]:items-center
-              [&>button]:justify-center
-              [&>button]:whitespace-nowrap
-              [&>button]:rounded-xl
-              [&>button]:px-2
-              [&>button]:text-sm
-              [&>button]:font-semibold
-              sm:[&>button]:px-3
-            "
-          >
-            <QuoteButton
-              product={product}
-              variant="card"
-            />
-          </div>
         </div>
-      </div>
+      </Link>
+
+      {/*
+        Quote action states:
+        default → clipboard | hover → white + | added → ✓ | hover added → ×
+      */}
+      <button
+        type="button"
+        title={quoteTitle}
+        aria-label={quoteLabel}
+        aria-pressed={exists}
+        onClick={handleQuoteAction}
+        onMouseEnter={() => setQuoteHovered(true)}
+        onMouseLeave={() => setQuoteHovered(false)}
+        className="absolute right-2 top-2 z-10 flex h-11 w-11 cursor-pointer items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c]"
+      >
+        <span
+          className={`relative flex h-8 w-8 items-center justify-center border transition-colors duration-200 ${
+            exists || quoteHovered
+              ? "border-[#8b191c] bg-[#8b191c] text-white"
+              : "border-stone-200 bg-white text-stone-700"
+          }`}
+        >
+          {exists ? (
+            quoteHovered ? (
+              <X size={15} strokeWidth={2.25} aria-hidden />
+            ) : (
+              <Check size={15} strokeWidth={2.25} aria-hidden />
+            )
+          ) : quoteHovered ? (
+            <Plus size={16} strokeWidth={2.5} aria-hidden />
+          ) : (
+            <ClipboardList size={15} strokeWidth={1.75} aria-hidden />
+          )}
+        </span>
+      </button>
     </article>
   );
 }

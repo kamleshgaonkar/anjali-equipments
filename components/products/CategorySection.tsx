@@ -1,46 +1,47 @@
 "use client";
 
 import { useState } from "react";
+
 import Image from "next/image";
-import Link from "next/link";
+
 import ProductGroup from "./ProductGroup";
 
 import { Category } from "@/data/categories";
+import type { PublicCategory } from "@/lib/catalogue/types";
 import { Product } from "@/types/product";
 
-interface ProductGroupProps {
-  title: string;
-  products: Product[];
-  onProductClick: (product: Product) => void;
-  onProductHover: (image: string) => void;
-  onProductLeave: () => void;
-  onMouseMove: (pos: { x: number; y: number }) => void;
-}
+type CatalogueCategory = Category | PublicCategory;
+
 interface CategorySectionProps {
-  category: Category;
+  categories: CatalogueCategory[];
+  category: CatalogueCategory;
   products: Product[];
+  activeCategory: string;
+  onCategoryChange: (slug: string) => void;
   onProductClick: (product: Product) => void;
 }
 
 export default function CategorySection({
+  categories,
   category,
   products,
+  activeCategory,
+  onCategoryChange,
   onProductClick,
 }: CategorySectionProps) {
-  // Group products automatically by their "group" property
   const groups = Object.values(
     products.reduce(
       (acc, product) => {
         const groupName = product.group || "Products";
 
-if (!acc[groupName]) {
-  acc[groupName] = {
-    title: groupName,
-    products: [] as Product[],
-  };
-}
+        if (!acc[groupName]) {
+          acc[groupName] = {
+            title: groupName,
+            products: [] as Product[],
+          };
+        }
 
-acc[groupName].products.push(product);
+        acc[groupName].products.push(product);
 
         return acc;
       },
@@ -52,101 +53,214 @@ acc[groupName].products.push(product);
         }
       >
     )
-  ); 
-  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
-const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  );
+
+  const [hoveredImage, setHoveredImage] =
+    useState<string | null>(null);
+
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
+
   return (
-    <section className="py-20">
-      <div className="mx-auto grid max-w-7xl gap-20 px-6 lg:grid-cols-12">
-        {/* Left */}
-        <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-32">
-            <span className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
-              Category
-            </span>
+    <section className="py-14 lg:py-20">
 
-            <h2 className="mt-4 text-5xl font-semibold text-slate-900">
-              {category.name}
-            </h2>
+      <div className="mx-auto max-w-7xl px-6">
 
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              {category.description}
-            </p>
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
 
-            <div className="mt-10">
-  <div className="overflow-hidden rounded-3xl">
-    <Image
-      src={category.image}
-      alt={category.name}
-      width={700}
-      height={900}
-      className="h-auto w-full object-cover transition duration-700 hover:scale-105"
-    />
-  </div>
+          {/* LEFT — CATEGORY NAVIGATOR */}
 
-  <Link
-    href={`/products/${category.slug}`}
-    className="mt-6 inline-flex items-center gap-3 rounded-xl bg-red-600 px-7 py-4 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-red-700 hover:shadow-xl"
-  >
-    Explore {category.name}
-    <span className="text-lg">→</span>
-  </Link>
-</div>
+          <aside>
+            <div className="lg:sticky lg:top-28">
+
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-red-600">
+                Category
+              </span>
+
+              {/* Active category image */}
+
+              <div className="relative mt-4 h-[300px] overflow-hidden rounded-2xl bg-slate-200">
+
+                <Image
+                  key={category.slug}
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-all duration-500"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                <div className="absolute bottom-0 left-0 right-0 p-7">
+
+                  <h2 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">
+                    {category.name}
+                  </h2>
+
+                </div>
+
+              </div>
+
+              {/* Category navigation */}
+
+              <div className="mt-8 border-t border-slate-200">
+
+                {categories.map((item, index) => {
+                  const active =
+                    item.slug === activeCategory;
+
+                  return (
+                    <button
+                      key={item.slug}
+                      type="button"
+                      onClick={() =>
+                        onCategoryChange(item.slug)
+                      }
+                      className={`
+                        group
+                        flex
+                        w-full
+                        items-center
+                        justify-between
+                        border-b
+                        border-slate-200
+                        py-4
+                        text-left
+                        transition
+                        ${
+                          active
+                            ? "text-red-600"
+                            : "text-slate-600 hover:text-slate-950"
+                        }
+                      `}
+                    >
+
+                      <div className="flex items-center gap-4">
+
+                        <span
+                          className={`
+                            text-xs
+                            font-medium
+                            ${
+                              active
+                                ? "text-red-600"
+                                : "text-slate-400"
+                            }
+                          `}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <span
+                          className={`
+                            text-base
+                            ${
+                              active
+                                ? "font-semibold"
+                                : "font-medium"
+                            }
+                          `}
+                        >
+                          {item.name}
+                        </span>
+
+                      </div>
+
+                      <span
+                        className={`
+                          transition-transform
+                          ${
+                            active
+                              ? "translate-x-0 text-red-600"
+                              : "text-slate-300 group-hover:translate-x-1"
+                          }
+                        `}
+                      >
+                        →
+                      </span>
+
+                    </button>
+                  );
+                })}
+
+              </div>
+
+            </div>
+          </aside>
+
+          {/* RIGHT — PRODUCT CATALOGUE */}
+
+          <div>
+
+            <div className="mb-10">
+
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-red-600">
+              {category.name} Equipment
+              </span>
+ 
+            </div>
+
+             
+
+            <div className="space-y-16">
+
+              {groups.map((group) => (
+                <ProductGroup
+                  key={group.title}
+                  title={group.title}
+                  products={group.products}
+                  onProductClick={onProductClick}
+                  onProductHover={setHoveredImage}
+                  onMouseMove={setMousePosition}
+                  onProductLeave={() =>
+                    setHoveredImage(null)
+                  }
+                />
+              ))}
+
+            </div>
+
           </div>
+
         </div>
 
-        {/* Right */}
-        <div className="space-y-24 lg:col-span-7">
-        {groups.map((group, index) => (
-  <div
-    key={group.title}
-    className={index === 0 ? "mt-10" : ""}
-  >
-  <ProductGroup
-    title={group.title}
-    products={group.products}
-    onProductClick={onProductClick}
-    onProductHover={setHoveredImage}
-    onMouseMove={setMousePosition}
-    onProductLeave={() => setHoveredImage(null)}
-/>
-
-  </div>
-))}
-        </div>
       </div>
+
+      {/* Existing hover image — kept for now */}
+
       {hoveredImage && (
-    <div
-    className="
-    fixed
-    z-50
-    pointer-events-none
-    overflow-hidden
-    rounded-[18px]
-    border
-    border-slate-200
-    bg-white
-    shadow-[0_25px_70px_rgba(0,0,0,0.12)]
-    animate-in
-    fade-in
-    zoom-in-95
-    duration-150
-    "
-        style={{
-          left: mousePosition.x + 35,
-          top: mousePosition.y - 120,
-          width: 260,
-          height: 260,
-      }}
-    >
-        <Image
+        <div
+          className="
+            pointer-events-none
+            fixed
+            z-50
+            overflow-hidden
+            rounded-[18px]
+            border
+            border-slate-200
+            bg-white
+            shadow-[0_25px_70px_rgba(0,0,0,0.12)]
+          "
+          style={{
+            left: mousePosition.x + 35,
+            top: mousePosition.y - 120,
+            width: 260,
+            height: 260,
+          }}
+        >
+          <Image
             src={hoveredImage}
             alt=""
             fill
             className="object-cover"
-        />
-    </div>
-)}
+          />
+        </div>
+      )}
+
     </section>
   );
 }

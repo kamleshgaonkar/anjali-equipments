@@ -1,6 +1,9 @@
 import Link from "next/link";
-import PageHero from "@/components/layout/PageHero";
 import CTA from "@/components/sections/CTA";
+import {
+  HeaderOffsetSpacer,
+  StickyBreadcrumbBar,
+} from "@/components/layout/StickyBreadcrumbBar";
 
 export const metadata = {
   title: "Our Clients | Anjali Equipments",
@@ -125,20 +128,19 @@ const industries = [
 export default function ClientsPage() {
   return (
     <>
-      {/* Hero */}
-       
-      <PageHero
-       title="Our Clients"
-/>
+      <HeaderOffsetSpacer />
+      <StickyBreadcrumbBar />
 
       {/* Client Categories */}
-      <section className="py-20">
+      <section className="pb-20 pt-16 md:pt-20">
         <div className="container-custom">
           {clientCategories.map((category) => (
             <div key={category.title} className="mb-20">
-              <h2 className="section-title mb-8 text-slate-900">
+              
+              <h4 className="mb-8 text-2xl font-semibold text-slate-900">
                 {category.title}
-              </h2>
+              </h4>
+              
 
               <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
                 {category.logos.map((logo) => (
@@ -164,24 +166,28 @@ export default function ClientsPage() {
   <div className="container-custom">
 
     <div className="mb-14 text-center">
-
+      
       <span className="text-xs font-semibold uppercase tracking-[0.35em] text-red-600">
         Industries
       </span>
+      
 
+      
       <h2 className="mt-3 text-4xl font-semibold text-slate-900">
         Commercial Kitchen Solutions
         <br />
         Across Every Industry
       </h2>
+      
 
+      
       <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
         From luxury hotels and restaurants to hospitals,
         educational institutions and corporate cafeterias,
         we deliver commercial kitchen solutions designed
         around the unique needs of every industry.
       </p>
-
+      
     </div>
 
     <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
@@ -212,6 +218,7 @@ export default function ClientsPage() {
           </div>
 
         </div>
+        
 
       ))}
 

@@ -1,63 +1,50 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, MapPin } from "lucide-react";
-import type { Project } from "@/lib/projects";
-
-interface ProjectCardProps {
-  project: Project;
-}
+import { ArrowRight } from "lucide-react";
+import { PROJECT_IMAGE_FALLBACK } from "@/lib/projects/types";
+import type { PublicProjectListItem } from "@/lib/projects/types";
 
 export default function ProjectCard({
   project,
-}: ProjectCardProps) {
+}: {
+  project: PublicProjectListItem;
+}) {
+  const imageSrc = project.cover_image || PROJECT_IMAGE_FALLBACK;
+
   return (
-    <article className="group overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-500 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl">
-      <Link
-        href={`/projects/${project.slug}`}
-        className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c] focus-visible:ring-offset-2"
-      >
-        {/* Image */}
-        <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-          <Image
-            src={project.coverImage}
-            alt={project.title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition duration-700 group-hover:scale-105"
-          />
+    <Link
+      href={`/projects/${project.slug}`}
+      className="group relative min-h-[300px] cursor-pointer overflow-hidden rounded-[24px] bg-slate-900 md:min-h-[320px] xl:min-h-[340px]"
+    >
+      <Image
+        src={imageSrc}
+        alt={project.name}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, (max-width: 1536px) 33vw, 25vw"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+      />
 
-          {/* View icon */}
-          <div className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-slate-900 opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100">
-            <ArrowUpRight size={19} />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/5" />
+      <div className="absolute inset-0 bg-red-950/0 transition duration-500 group-hover:bg-red-950/10" />
+
+      <div className="relative flex h-full min-h-[330px] flex-col justify-end p-6 md:p-8">
+        <div className="flex items-end justify-between gap-6">
+          <div className="min-w-0">
+            <h3 className="max-w-md text-2xl font-bold tracking-tight text-white md:text-3xl">
+              {project.name}
+            </h3>
+            {project.location ? (
+              <p className="mt-2 text-sm font-medium text-white/70">
+                {project.location}
+              </p>
+            ) : null}
+          </div>
+
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 group-hover:border-red-600 group-hover:bg-red-700">
+            <ArrowRight size={19} />
           </div>
         </div>
-
-        {/* Content */}
-        <div className="p-5 md:p-6">
-          <div className="flex items-center gap-2 text-sm text-slate-500">
-            <MapPin size={15} className="shrink-0" />
-            <span>{project.location}</span>
-          </div>
-
-          <h2 className="mt-2 text-xl font-bold text-slate-900 transition-colors duration-300 group-hover:text-[#8b191c] md:text-2xl">
-            {project.title}
-          </h2>
-
-          <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600">
-            {project.description}
-          </p>
-
-          <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#8b191c]">
-            View Project
-            <ArrowUpRight
-              size={16}
-              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </div>
-        </div>
-      </Link>
-    </article>
+      </div>
+    </Link>
   );
 }

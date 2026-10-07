@@ -7,7 +7,7 @@ import { useQuote } from "@/hooks/useQuote";
 
 interface QuoteButtonProps {
   product: Product;
-  variant?: "default" | "compact" | "card";
+  variant?: "default" | "compact" | "card" | "detail";
   className?: string;
 }
 
@@ -70,6 +70,32 @@ export default function QuoteButton({
           </>
         ) : (
           <>Add to Quote</>
+        )}
+      </button>
+    );
+  }
+
+  if (variant === "detail") {
+    return (
+      <button
+        type="button"
+        onClick={handleClick}
+        className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c] focus-visible:ring-offset-2 ${
+          exists
+            ? "bg-green-600 text-white hover:bg-green-700"
+            : "bg-[#8b191c] text-white hover:bg-[#731417]"
+        } ${className}`}
+      >
+        {exists ? (
+          <>
+            <Check size={18} />
+            Added to Quote
+          </>
+        ) : (
+          <>
+            <Plus size={18} />
+            Add to Quote
+          </>
         )}
       </button>
     );

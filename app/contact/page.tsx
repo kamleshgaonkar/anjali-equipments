@@ -1,8 +1,11 @@
 "use client";
 
-import PageHero from "@/components/layout/PageHero";
 import { MapPin, Building2, Factory } from "lucide-react";
 import { FormEvent, useState } from "react";
+import {
+  HeaderOffsetSpacer,
+  StickyBreadcrumbBar,
+} from "@/components/layout/StickyBreadcrumbBar";
 
 export default function ContactPage() {
   const maps = {
@@ -88,53 +91,57 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="GET IN TOUCH"
-        title="Let's build your commercial kitchen together."
-      />
+      <HeaderOffsetSpacer />
+      <StickyBreadcrumbBar />
 
-      <main className="mx-auto max-w-7xl px-5 py-16 pb-32 sm:px-6 sm:py-20">
+      <main className="container-custom py-16 pb-32 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-2">
 
           {/* Contact Information */}
           <div>
-            <h2 className="mb-8 text-3xl font-bold text-slate-900">
+          
+          <h2 className="mb-8 text-3xl font-bold text-slate-900">
               Contact Information
             </h2>
+          
 
             <div className="space-y-8">
 
               {/* Head Office */}
-              <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8">
+              
+<div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8">
 
-                <div className="flex items-center gap-3">
-                  <Building2 className="text-red-600" />
+<div className="flex items-center gap-3">
+  <Building2 className="text-red-600" />
 
-                  <h3 className="text-xl font-semibold">
-                    Head Office
-                  </h3>
-                </div>
+  <h3 className="text-xl font-semibold">
+    Head Office
+  </h3>
+</div>
 
-                <p className="mt-4 leading-7 text-slate-600">
-                  Plot - B, A Wing, 201, Govardhan Complex
-                  <br />
-                  Caves Road, Jogeshwari East,
-                  <br />
-                  Mumbai, Maharashtra, India - 400 060.
-                </p>
+<p className="mt-4 leading-7 text-slate-600">
+  Plot - B, A Wing, 201, Govardhan Complex
+  <br />
+  Caves Road, Jogeshwari East,
+  <br />
+  Mumbai, Maharashtra, India - 400 060.
+</p>
 
-                <a
-                  href="https://maps.app.goo.gl/Ghq65n7QhpWiURrC6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center gap-2 font-medium text-red-600 transition hover:gap-3"
-                >
-                  Open in Google Maps
-                  <span>→</span>
-                </a>
-              </div>
+<a
+  href="https://maps.app.goo.gl/Ghq65n7QhpWiURrC6"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-3 inline-flex items-center gap-2 font-medium text-red-600 transition hover:gap-3"
+>
+  Open in Google Maps
+  <span>→</span>
+</a>
+
+</div>
+              
 
               {/* Factory */}
+              
               <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8">
 
                 <div className="flex items-center gap-3">
@@ -163,8 +170,10 @@ export default function ContactPage() {
                   <span>→</span>
                 </a>
               </div>
+              
 
               {/* Registered Office */}
+              
               <div className="rounded-2xl border border-dashed border-slate-300 p-6">
 
                 <h3 className="text-xl font-semibold">
@@ -184,6 +193,7 @@ export default function ContactPage() {
                 </p>
 
               </div>
+              
 
             </div>
           </div>
@@ -192,10 +202,13 @@ export default function ContactPage() {
           <div className="w-full lg:pt-12">
 
             <div className="w-full">
+              
               <h2 className="mb-6 text-2xl font-bold text-slate-900 sm:text-3xl">
                 Let's build your commercial kitchen together.
               </h2>
+              
 
+              
               <form
                 onSubmit={handleSubmit}
                 className="w-full space-y-5"
@@ -256,6 +269,7 @@ export default function ContactPage() {
 )}
 
               </form>
+              
             </div>
 
           </div>
@@ -266,18 +280,24 @@ export default function ContactPage() {
         <section className="mt-24">
 
           <div className="text-center">
+            
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-700">
               FIND US
             </p>
+            
 
+            
             <h2 className="mt-3 text-4xl font-bold text-slate-900">
               Our Locations
             </h2>
+            
 
+            
             <p className="mx-auto mt-4 max-w-2xl text-slate-600">
               Visit our Head Office or Factory. Select a location
               below to view it on the map.
             </p>
+            
           </div>
 
           {/* Map Buttons */}
@@ -310,6 +330,7 @@ export default function ContactPage() {
           </div>
 
           {/* Map */}
+          
           <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-sm">
 
             <div className="relative aspect-[16/9] w-full">
@@ -331,7 +352,7 @@ export default function ContactPage() {
             </div>
 
           </div>
-
+          
         </section>
       </main>
     </>

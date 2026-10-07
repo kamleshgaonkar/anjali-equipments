@@ -115,24 +115,29 @@ export default function Categories() {
           {/* Heading */}
 
           <div className="mx-auto mb-16 max-w-3xl px-6 text-center">
-
+            
             <span className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
               PRODUCT CATEGORIES
             </span>
+            
 
+            
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl lg:leading-[1.2]">
               Commercial Kitchen Equipment
             </h2>
+            
 
+            
             <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
               Discover our extensive range of premium stainless steel
               commercial kitchen equipment engineered for performance,
               durability and hygiene.
             </p>
-
+            
           </div>
 
           {/* Horizontal Slider */}
+          
           <div className="relative mt-16">
 
             {/* Left Arrow */}
@@ -219,6 +224,7 @@ export default function Categories() {
             </div>
 
           </div>
+          
 
         </div>
 

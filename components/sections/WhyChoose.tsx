@@ -74,8 +74,6 @@ export default function WhyChooseUs() {
 
           </div>
 
-          {/* Right Content */}
-
           <div>
 
             {/* Stats */}

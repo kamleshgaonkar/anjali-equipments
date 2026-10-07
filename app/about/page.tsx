@@ -1,16 +1,17 @@
-import PageHero from "@/components/layout/PageHero";
 import OurStory from "@/components/about/OurStory";
 import MissionVisionValues from "@/components/about/MissionVisionValues";
 import CTA from "@/components/sections/CTA";
 import Manufacturing from "@/components/about/Manufacturing";
+import {
+  HeaderOffsetSpacer,
+  StickyBreadcrumbBar,
+} from "@/components/layout/StickyBreadcrumbBar";
 
 export default function AboutPage() {
   return (
     <>
-      
-<PageHero
-  title="About Us"
-  />
+      <HeaderOffsetSpacer />
+      <StickyBreadcrumbBar />
 
       <OurStory />
       <Manufacturing />

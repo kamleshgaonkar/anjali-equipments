@@ -32,6 +32,7 @@ export default function Hero() {
 
               {/* Eyebrow */}
 
+              
               <div className="mb-6 flex items-center justify-center gap-4 sm:mb-8 lg:justify-start">
 
                 <span className="h-px w-10 bg-red-600" />
@@ -99,6 +100,7 @@ lg:text-7xl
 </div>
 
 </div>
+              
 
             </div>
 

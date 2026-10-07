@@ -1,83 +1,82 @@
 import ProjectCard from "@/components/projects/ProjectCard";
-import { projects } from "@/lib/projects";
-import CTA from "@/components/sections/CTA"; 
+import CTA from "@/components/sections/CTA";
+import {
+  HeaderOffsetSpacer,
+  StickyBreadcrumbBar,
+} from "@/components/layout/StickyBreadcrumbBar";
+import { fetchActiveProjects } from "@/lib/projects";
+
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Projects | Anjali Equipments",
   description:
     "Explore commercial kitchen projects delivered by Anjali Equipments.",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await fetchActiveProjects();
+
   return (
     <main className="bg-white">
+      <section className="bg-white">
+        <HeaderOffsetSpacer />
+        <StickyBreadcrumbBar />
 
-      {/* Hero */}
-      <section className="bg-slate-950">
-        <div className="mx-auto max-w-7xl px-5 pb-16 pt-32 md:px-8 md:pb-20 md:pt-40">
+        <div className="relative h-[280px] overflow-visible md:h-[320px] lg:h-[390px]">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url(/images/kitchen/kitchen-panorama.jpg)",
+            }}
+          />
+          <div className="absolute inset-0 bg-black/70" />
 
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-red-400">
-            Our Projects
-          </p>
+          <div className="relative flex h-full items-center">
+            <div className="container-custom w-full py-8 md:py-10">
+              <div className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-red-500">
+                  Our Projects
+                </p>
 
-          <h1 className="mt-4 max-w-4xl text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Commercial Kitchens.
-            <br />
-            Built for Performance.
-          </h1>
+                <h1 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-white md:mt-4 md:text-4xl lg:text-5xl lg:leading-[1.1]">
+                  Commercial Kitchens.
+                  <br />
+                  Built for Performance.
+                </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
-            A selection of commercial kitchen projects designed,
-            manufactured and delivered by Anjali Equipments.
-          </p>
-
+                <p className="mt-4 max-w-2xl text-sm leading-6 text-white/85 md:mt-5 md:text-base md:leading-7">
+                  A selection of commercial kitchen projects designed,
+                  manufactured and delivered by Anjali Equipments.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Projects */}
-      <section className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-20">
-
-        <div className="mb-10 flex items-end justify-between gap-6">
-
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-700">
-              Selected Work
-            </p>
-
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-              Our Projects
-            </h2>
-          </div>
-
-          <p className="hidden text-sm text-slate-500 sm:block">
-            {projects.length} Projects
-          </p>
-
+      <section className="bg-white">
+        <div className="container-custom py-16 lg:py-24">
+          {projects.length === 0 ? (
+            <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 px-6 py-16 text-center">
+              <h2 className="text-xl font-semibold text-slate-900">
+                Projects Coming Soon
+              </h2>
+              <p className="mt-2 text-slate-600">
+                We are currently updating our project portfolio.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
+              {projects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          )}
         </div>
-
-        {projects.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 px-6 py-16 text-center">
-            <h2 className="text-xl font-semibold text-slate-900">
-              Projects Coming Soon
-            </h2>
-
-            <p className="mt-2 text-slate-600">
-              We are currently updating our project portfolio.
-            </p>
-          </div>
-        ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard
-                key={project.slug}
-                project={project}
-              />
-            ))}
-          </div>
-        )}
-
       </section>
+
       <CTA />
-
     </main>
   );
 }

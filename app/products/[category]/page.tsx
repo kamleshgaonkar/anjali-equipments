@@ -5,7 +5,13 @@ import {
   getCatalogCategory,
 } from "@/lib/catalogue";
 import PageHero from "@/components/layout/PageHero";
-import CategorySubcategoryLanding from "@/components/products/CategorySubcategoryLanding";
+import {
+  HeaderOffsetSpacer,
+  StickyBreadcrumbBar,
+} from "@/components/layout/StickyBreadcrumbBar";
+import CategoryProductCatalogue from "@/components/products/CategoryProductCatalogue";
+
+export const dynamic = "force-dynamic";
 
 type Props = {
   params: Promise<{
@@ -13,35 +19,59 @@ type Props = {
   }>;
 };
 
+export async function generateMetadata({ params }: Props) {
+  const { category } = await params;
+  const currentCategory = await getCatalogCategory(category);
+
+  if (!currentCategory) {
+    return {
+      title: "Category Not Found | Anjali Equipments",
+    };
+  }
+
+  return {
+    title: `${currentCategory.title} | Anjali Equipments`,
+    description: currentCategory.description,
+  };
+}
+
 export default async function CategoryPage({ params }: Props) {
   const { category } = await params;
 
-  const currentCategory = getCatalogCategory(category);
+  const currentCategory = await getCatalogCategory(category);
 
   if (!currentCategory) {
     notFound();
   }
 
-  const subcategories = buildCategorySubcategories(currentCategory);
+  const subcategories = await buildCategorySubcategories(currentCategory.slug);
 
   return (
-    <main className="bg-white">
-      <PageHero
-        eyebrow="Products"
-        title={currentCategory.title}
-        background={currentCategory.heroImage}
-      />
+    <>
+      <HeaderOffsetSpacer />
+      <StickyBreadcrumbBar />
 
-      <section className="py-10 md:py-16">
-        <div className="container-custom">
-          <CategorySubcategoryLanding
-            categorySlug={currentCategory.slug}
-            categoryTitle={currentCategory.title}
-            categoryDescription={currentCategory.description}
-            subcategories={subcategories}
-          />
-        </div>
-      </section>
-    </main>
+      <main className="bg-white">
+        <PageHero
+          variant="category"
+          eyebrow="Products"
+          title={currentCategory.title}
+          description={currentCategory.description || undefined}
+          background={currentCategory.heroImage || undefined}
+        />
+
+        <section className="py-10 md:py-12">
+          <div className="container-custom">
+            <CategoryProductCatalogue
+              categorySlug={currentCategory.slug}
+              categoryTitle={currentCategory.title}
+              categoryDescription={currentCategory.description}
+              subcategories={subcategories}
+              activeSlug="all"
+            />
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

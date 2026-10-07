@@ -1,14 +1,14 @@
-import { catalog, type ProductCategory } from "@/data/products/catalog";
-import { getGroupedProductsByCategory } from "@/lib/products";
 import type { Product } from "@/types/product";
+import {
+  buildCategorySubcategoriesFromDb,
+  fetchCatalogCategory,
+} from "@/lib/catalogue/queries";
+import type {
+  CatalogueSubcategory,
+  ProductCategory,
+} from "@/lib/catalogue/types";
 
-export interface CatalogueSubcategory {
-  title: string;
-  slug: string;
-  description: string;
-  image: string;
-  products: Product[];
-}
+export type { CatalogueSubcategory, ProductCategory };
 
 export function toCatalogueSlug(value: string) {
   return value
@@ -18,50 +18,29 @@ export function toCatalogueSlug(value: string) {
     .replace(/^-+|-+$/g, "");
 }
 
-export function getCatalogCategory(categorySlug: string) {
-  return catalog.find((item) => item.slug === categorySlug);
+export async function getCatalogCategory(
+  categorySlug: string
+): Promise<ProductCategory | null> {
+  return fetchCatalogCategory(categorySlug);
 }
 
-export function buildCategorySubcategories(
-  category: ProductCategory
-): CatalogueSubcategory[] {
-  const groupedProducts = getGroupedProductsByCategory(category.slug);
-  const groupEntries = Object.entries(groupedProducts);
+export async function buildCategorySubcategories(
+  categorySlugOrCategory: string | ProductCategory
+): Promise<CatalogueSubcategory[]> {
+  const categorySlug =
+    typeof categorySlugOrCategory === "string"
+      ? categorySlugOrCategory
+      : categorySlugOrCategory.slug;
 
-  const subcategoriesByTitle = new Map<string, CatalogueSubcategory>(
-    groupEntries.map(([groupTitle, products]) => {
-      const catalogGroup = category.groups.find(
-        (group) => group.title === groupTitle
-      );
+  const subcategories = await buildCategorySubcategoriesFromDb(categorySlug);
+  return subcategories ?? [];
+}
 
-      return [
-        groupTitle,
-        {
-          title: groupTitle,
-          slug: catalogGroup?.slug ?? toCatalogueSlug(groupTitle),
-          description: catalogGroup?.description ?? "",
-          image:
-            products.find((product) => Boolean(product.image))?.image ||
-            catalogGroup?.image ||
-            category.heroImage,
-          products,
-        },
-      ];
-    })
-  );
+/** Prefer explicit slugs from Supabase-mapped products. */
+export function getProductHref(product: Product) {
+  const categorySlug =
+    product.categorySlug ?? toCatalogueSlug(product.category);
+  const groupSlug = product.groupSlug ?? toCatalogueSlug(product.group);
 
-  const orderedTitles = [
-    ...category.groups
-      .map((group) => group.title)
-      .filter((title) => subcategoriesByTitle.has(title)),
-    ...groupEntries
-      .map(([title]) => title)
-      .filter(
-        (title) => !category.groups.some((group) => group.title === title)
-      ),
-  ];
-
-  return orderedTitles
-    .map((title) => subcategoriesByTitle.get(title))
-    .filter((item): item is CatalogueSubcategory => Boolean(item));
+  return `/products/${categorySlug}/${groupSlug}/${product.slug}`;
 }

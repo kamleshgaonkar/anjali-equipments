@@ -1,4 +1,4 @@
-import { BadgeCheck, MessageCircle } from "lucide-react";
+import { ArrowRight, BadgeCheck } from "lucide-react";
 import { Product } from "@/types/product";
 import QuoteButton from "@/components/quote/QuoteButton";
 
@@ -6,120 +6,101 @@ interface ProductInfoProps {
   product: Product;
 }
 
-export default function ProductInfo({
-  product,
-}: ProductInfoProps) {
+export default function ProductInfo({ product }: ProductInfoProps) {
+  const whatsappHref = `https://wa.me/918657003003?text=${encodeURIComponent(
+    `Hello Anjali Equipments,
+
+I am interested in:
+
+Product: ${product.name}
+Model: ${product.model ?? "N/A"}
+
+Please share the price and further details.
+
+Thank you.`
+  )}`;
+
   return (
-    <div>
-      {/* Category */}
-      <span className="inline-flex rounded-full bg-red-50 px-4 py-2 text-sm font-medium text-red-700">
+    <div className="flex h-full flex-col">
+      <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#8b191c]">
         {product.group}
-      </span>
+      </p>
 
-      {/* Product Name */}
-      <h1 className="mt-6 text-4xl font-bold text-slate-900">
+      <h1 className="mt-3 text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-[2.5rem] lg:leading-[1.15]">
         {product.name}
-      </h1>
-      
-{/* Model */}
-<div className="mt-4 flex items-center gap-3 text-slate-600">
-  <span className="font-semibold">
-    Model:
-  </span>
+      </h1> 
 
-  <span>
-    {product.model}
-  </span>
-</div>
+      {product.model ? (
+        <p className="mt-4 text-sm text-stone-600">
+          <span className="font-semibold text-stone-800">Model:</span>{" "}
+          {product.model}
+        </p>
+      ) : null}
 
-{/* Short Description */}
-{product.shortDescription && (
-  <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600">
-    {product.shortDescription}
-  </p>
-)}
+      {product.shortDescription ? (
+        <p className="mt-5 max-w-xl text-base leading-7 text-stone-600">
+          {product.shortDescription}
+        </p>
+      ) : null}
 
-      {/* Manufacturer Badge */}
-      <div className="mt-6 flex items-center gap-3 rounded-2xl border border-green-200 bg-green-50 p-4">
+      <div className="mt-6 flex items-start gap-3 border border-emerald-200 bg-emerald-50/80 px-4 py-3.5">
         <BadgeCheck
-          size={22}
-          className="shrink-0 text-green-600"
+          size={20}
+          className="mt-0.5 shrink-0 text-emerald-600"
+          aria-hidden
         />
-
         <div>
-          <p className="font-semibold text-slate-900">
+          <p className="text-sm font-semibold text-stone-900">
             Manufactured by Anjali Equipments
           </p>
-
-          <p className="text-sm text-slate-600">
+          <p className="mt-0.5 text-sm text-stone-600">
             Premium Commercial Kitchen Equipment
           </p>
         </div>
       </div>
 
-    {/* Material, Warranty & Custom Size */}
-<div className="mt-8 grid grid-cols-3 gap-6">
+      <div className="mt-8 grid grid-cols-1 gap-5 border-y border-stone-200 py-6 sm:grid-cols-3 sm:gap-6">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+            Material
+          </p>
+          <p className="mt-2 text-sm font-semibold text-stone-900">
+            {product.material || "—"}
+          </p>
+        </div>
 
-<div>
-  <p className="text-sm uppercase tracking-wide text-slate-500">
-    Material
-  </p>
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+            Warranty
+          </p>
+          <p className="mt-2 text-sm font-semibold text-stone-900">
+            {product.warranty || "—"}
+          </p>
+        </div>
 
-  <p className="mt-2 font-semibold text-slate-900">
-    {product.material}
-  </p>
-</div>
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+            Custom Size
+          </p>
+          <p className="mt-2 text-sm font-semibold text-stone-900">
+            {product.customSizes ? "Available" : "Not Available"}
+          </p>
+        </div>
+      </div>
 
-<div>
-  <p className="text-sm uppercase tracking-wide text-slate-500">
-    Warranty
-  </p>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <QuoteButton product={product} variant="detail" />
 
-  <p className="mt-2 font-semibold text-slate-900">
-    {product.warranty}
-  </p>
-</div>
-
-<div>
-  <p className="text-sm uppercase tracking-wide text-slate-500">
-    Custom Size
-  </p>
-
-  <p className="mt-2 font-semibold text-slate-900">
-    {product.customSizes ? "Available" : "Not Available"}
-  </p>
-</div>
-
-</div>
-
-{/* Quote + WhatsApp */}
-<div className="mt-10 flex flex-wrap gap-4">
-
-  <QuoteButton product={product} />
-
-  <a
-    href={`https://wa.me/918657003003?text=${encodeURIComponent(
-      `Hello Anjali Equipments,
-
-I am interested in:
-
-Product: ${product.name}
-Model: ${product.model}
-
-Please share the price and further details.
-
-Thank you.`
-    )}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-flex items-center justify-center gap-2 rounded-xl border border-green-500 bg-white px-7 py-4 font-semibold text-green-700 transition-all duration-300 hover:bg-green-50"
-  >
-    <MessageCircle size={20} />
-    Get Best Price
-  </a>
-
-</div>
-
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-stone-300 bg-white px-7 py-3.5 text-sm font-semibold text-stone-800 transition hover:border-[#8b191c] hover:text-[#8b191c]"
+        >
+          Get Best Price
+          <ArrowRight size={16} aria-hidden />
+        </a>
+      </div>
     </div>
   );
 }

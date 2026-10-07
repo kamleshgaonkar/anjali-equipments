@@ -23,19 +23,38 @@ const companyLinks = [
 ];
 
 const productLinks = [
-  "Preparation Equipment",
-  "Cooking Equipment",
-  "Refrigeration Equipment",
-  "Display Counters",
-  "Bakery Equipment",
-  "Storage Equipment",
+
+  {
+    label: "Cooking Equipment",
+    href: "/products/cooking",
+  },
+  {
+    label: "Refrigeration Equipment",
+    href: "/products/refrigeration",
+  },
+  {
+    label: "Preparation Equipment",
+    href: "/products/preparation",
+  },
+  {
+    label: "Display Counters",
+    href: "/products/display-counters",
+  },
+  {
+    label: "Bakery Equipment",
+    href: "/products/bakery",
+  },
+  {
+    label: "Storage Equipment",
+    href: "/products/storage",
+  },
 ];
 
 export default function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-white shadow-[0_-8px_20px_rgba(15,23,42,0.03)] text-gray-600">
 
-      <div className="mx-auto max-w-7xl px-6 py-20">
+      <div className="container-custom py-20">
 
         <div className="grid gap-14 lg:grid-cols-12">
 
@@ -82,7 +101,7 @@ export default function Footer() {
   <div className="flex items-center gap-5">
 
   <Link
-    href="https://facebook.com"
+    href="https://www.facebook.com/anjaliequipments/"
     target="_blank"
     className="text-gray-400 transition-all duration-300 hover:text-[#1877F2] hover:scale-110"
   >
@@ -90,7 +109,7 @@ export default function Footer() {
   </Link>
 
   <Link
-    href="https://instagram.com"
+    href="https://www.instagram.com/anjaliequipments/"
     target="_blank"
     className="text-gray-400 transition-all duration-300 hover:text-[#E4405F] hover:scale-110"
   >
@@ -98,20 +117,13 @@ export default function Footer() {
   </Link>
 
   <Link
-    href="https://linkedin.com"
+    href="https://www.linkedin.com/company/anjali-equipments/"
     target="_blank"
     className="text-gray-400 transition-all duration-300 hover:text-[#0A66C2] hover:scale-110"
   >
     <FaLinkedinIn size={18} />
   </Link>
 
-  <Link
-    href="https://youtube.com"
-    target="_blank"
-    className="text-gray-400 transition-all duration-300 hover:text-[#FF0000] hover:scale-110"
-  >
-    <FaYoutube size={18} />
-  </Link>
 
 </div>
 
@@ -148,34 +160,25 @@ export default function Footer() {
 
           </div>
 
-          {/* Products */}
+        {/* Products */}
+<div className="lg:col-span-2">
+  <h3 className="mb-6 font-heading text-xl font-semibold text-slate-900">
+    Products
+  </h3>
 
-          <div className="lg:col-span-2">
-
-          <h3 className="mb-6 font-heading text-xl font-semibold text-slate-900">
-              Products
-            </h3>
-
-            <ul className="space-y-4">
-
-              {productLinks.map((item) => (
-
-                <li key={item}>
-
-                  <Link
-                    href="/products"
-                    className="transition hover:text-red-500"
-                  >
-                    {item}
-                  </Link>
-
-                </li>
-
-              ))}
-
-            </ul>
-
-          </div>
+  <ul className="space-y-4">
+    {productLinks.map((item) => (
+      <li key={item.label}>
+        <Link
+          href={item.href}
+          className="transition hover:text-red-500"
+        >
+          {item.label}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
           {/* Contact */}
 {/* Contact */}
@@ -196,7 +199,7 @@ export default function Footer() {
       />
 
       <span>
-        +91 86570 03003
+        <a href="tel:+918657003003" className="text-red-500 hover:text-red-600" target="_blank">+91 86570 03003</a>  
       </span>
 
     </div>
@@ -209,7 +212,7 @@ export default function Footer() {
       />
 
       <span className="break-all">
-        info@anjaliequipments.com
+        <a href="mailto:info@anjaliequipments.com" className="text-red-500 hover:text-red-600" target="_blank">info@anjaliequipments.com</a>  
       </span>
 
     </div>
@@ -240,10 +243,9 @@ export default function Footer() {
 
 {/* Bottom */}
 
-<div className=" border-t border-slate-200 pb-28 sm:pb-6">
-
-  <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm md:flex-row">
-
+{/* Bottom */}
+<div className="border-t border-slate-200 pb-28 sm:pb-6">
+  <div className="container-custom flex flex-col items-center justify-between gap-4 py-6 text-sm md:flex-row">
     <p>
       © 2026 Anjali Equipments. All Rights Reserved.
     </p>
@@ -254,9 +256,7 @@ export default function Footer() {
         Creashna
       </span>
     </p>
-
   </div>
-
 </div>
 
 </footer>

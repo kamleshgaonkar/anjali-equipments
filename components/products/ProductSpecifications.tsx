@@ -10,26 +10,27 @@ export default function ProductSpecifications({
   if (!specifications.length) return null;
 
   return (
-    <section className="mt-14">
-      <h2 className="text-2xl font-bold text-slate-900">
+    <section className="border-t border-stone-200 pt-12">
+      <h2 className="text-2xl font-bold tracking-tight text-stone-900 md:text-3xl">
         Specifications
       </h2>
 
-      <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+      <div className="mt-8 max-w-[52rem] overflow-hidden border border-stone-200">
         {specifications.map((spec, index) => (
           <div
-            key={spec.label}
-            className={`flex flex-col gap-1 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5 ${
+            key={`${spec.label}-${index}`}
+            className={`grid grid-cols-1 gap-1 px-4 py-3.5 sm:grid-cols-[32%_minmax(0,1fr)] sm:gap-6 sm:px-5 sm:py-4 ${
+              index % 2 === 0 ? "bg-white" : "bg-stone-50"
+            } ${
               index !== specifications.length - 1
-                ? "border-b border-slate-200"
+                ? "border-b border-stone-200"
                 : ""
-            } ${index % 2 === 0 ? "bg-white" : "bg-slate-50"}`}
+            }`}
           >
-            <span className="font-medium text-slate-600">
+            <span className="text-sm font-medium text-stone-500">
               {spec.label}
             </span>
-
-            <span className="break-words font-semibold text-slate-900 sm:text-right">
+            <span className="text-sm font-semibold text-stone-900">
               {spec.value}
             </span>
           </div>
