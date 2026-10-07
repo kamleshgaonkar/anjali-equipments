@@ -13,8 +13,8 @@ export default function RelatedProducts({ products }: RelatedProductsProps) {
   const items = products.slice(0, 6);
 
   return (
-    <section className="mt-16 border-t border-stone-200 pt-14 md:mt-20 md:pt-16">
-      <div className="mb-8 md:mb-10">
+    <section className="mt-12 border-t border-stone-200 pt-10 md:mt-20 md:pt-16">
+      <div className="mb-6 md:mb-10">
         <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#8b191c]">
           Explore More
         </p>
@@ -24,20 +24,24 @@ export default function RelatedProducts({ products }: RelatedProductsProps) {
         </h2>
       </div>
 
-      <div
-        className="grid items-start justify-start gap-4 sm:gap-5"
-        style={{
-          gridTemplateColumns:
-            "repeat(auto-fill, minmax(min(100%, 220px), 250px))",
-        }}
-      >
-        {items.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            href={getProductHref(product)}
-          />
-        ))}
+      <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:mx-0 sm:grid sm:overflow-visible sm:px-0 sm:pb-0 sm:gap-5"
+      style={{
+        gridTemplateColumns:
+          "repeat(auto-fill, minmax(min(100%, 220px), 250px))",
+        scrollbarWidth: "none",
+      }}
+    >
+       {items.map((product) => (
+  <div
+    key={product.id}
+    className="w-[78vw] max-w-[280px] shrink-0 snap-start sm:w-auto sm:max-w-none"
+  >
+    <ProductCard
+      product={product}
+      href={getProductHref(product)}
+    />
+  </div>
+))}
       </div>
     </section>
   );

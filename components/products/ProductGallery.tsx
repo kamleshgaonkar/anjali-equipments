@@ -53,7 +53,7 @@ export default function ProductGallery({
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-contain p-8 md:p-10"
+          className="object-contain p-3 sm:p-6 md:p-10"
         />
       </div>
 
@@ -69,7 +69,7 @@ export default function ProductGallery({
                 onClick={() => setSelectedImage(img)}
                 aria-label={`View image ${index + 1}`}
                 aria-pressed={isActive}
-                className={`relative h-20 w-20 overflow-hidden bg-[#f5f5f4] transition ${
+                className={`relative h-16 w-16 overflow-hidden bg-[#f5f5f4] transition sm:h-20 sm:w-20 ${
                   isActive
                     ? "ring-2 ring-[#8b191c] ring-offset-2"
                     : "ring-1 ring-stone-200 hover:ring-stone-300"
