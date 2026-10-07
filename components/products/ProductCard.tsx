@@ -52,24 +52,21 @@ export default function ProductCard({ product, href }: ProductCardProps) {
     : "Add to Quote";
 
   return (
-    <article
-      className="group relative w-full min-w-0 cursor-pointer bg-[#f5f5f4]"
-      style={{ aspectRatio: "235 / 320" }}
-    >
+    <article className="group relative w-full min-w-0 cursor-pointer bg-[#f5f5f4] sm:aspect-[235/320]">
       {/* Entire tile → product detail */}
       <Link
         href={productHref}
-        className="absolute inset-0 flex cursor-pointer flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c] focus-visible:ring-inset"
+        className="flex cursor-pointer flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b191c] focus-visible:ring-inset sm:absolute sm:inset-0"
       >
         {/* Image area ~68% */}
-        <div className="relative min-h-0 flex-[0.68] overflow-hidden">
+        <div className="relative aspect-square w-full overflow-hidden sm:aspect-auto sm:min-h-0 sm:flex-[0.68]">
           {showImage ? (
             <Image
               src={product.image}
               alt=""
               fill
               sizes="(max-width: 639px) 100vw, (max-width: 899px) 50vw, (max-width: 1199px) 33vw, (max-width: 1499px) 25vw, (max-width: 1799px) 20vw, 16vw"
-              className="object-contain p-5 transition-transform duration-300 ease-out group-hover:scale-[1.035] sm:p-6"
+              className="object-contain p-3 transition-transform duration-300 ease-out group-hover:scale-[1.035] sm:p-6"
               onError={() => setImageFailed(true)}
             />
           ) : (
@@ -93,7 +90,7 @@ export default function ProductCard({ product, href }: ProductCardProps) {
         </div>
 
         {/* Text ~32% — compact, close to image */}
-        <div className="flex min-h-0 flex-[0.32] flex-col items-center justify-start px-3 pb-3 pt-1 text-center">
+        <div className="flex flex-col items-center px-4 pb-6 pt-2 text-center sm:min-h-0 sm:flex-[0.32] sm:justify-start sm:px-3 sm:pb-3 sm:pt-1">
           <p className="text-[13px] font-medium leading-4 text-stone-600">
             {product.group}
           </p>
