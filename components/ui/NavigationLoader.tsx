@@ -1,16 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function NavigationLoader() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(false);
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -35,12 +34,10 @@ export default function NavigationLoader() {
 
       if (url.origin !== window.location.origin) return;
 
-      const current =
-        window.location.pathname + window.location.search;
+      const currentPath = window.location.pathname;
+      const nextPath = url.pathname;
 
-      const next = url.pathname + url.search;
-
-      if (current === next) return;
+      if (currentPath === nextPath) return;
 
       setLoading(true);
     };

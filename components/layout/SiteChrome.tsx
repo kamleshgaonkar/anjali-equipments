@@ -1,6 +1,6 @@
 "use client";
 
-import NavigationLoader from "@/components/ui/NavigationLoader";
+// import NavigationLoader from "@/components/ui/NavigationLoader";
 import { usePathname } from "next/navigation";
 import { QuoteProvider } from "@/context/QuoteContext";
 import { HeaderScrollProvider } from "@/context/HeaderScrollContext";
@@ -24,7 +24,7 @@ export default function SiteChrome({
   return (
     <QuoteProvider>
       <HeaderScrollProvider>
-        <NavigationLoader />
+        {/* <NavigationLoader /> */}
   
         {header}
         {children}
